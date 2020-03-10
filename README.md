@@ -1,6 +1,10 @@
 [![Build Status](https://travis-ci.com/mP1/walkingkooka-text-printer.svg?branch=master)](https://travis-ci.com/mP1/walkingkooka-text-printer.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/mP1/walkingkooka-text-printer/badge.svg?branch=master)](https://coveralls.io/github/mP1/walkingkooka-text-printer?branch=master)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/mP1/walkingkooka-text-printer.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/mP1/walkingkooka-text-printer/context:java)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/mP1/walkingkooka-text-printer.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/mP1/walkingkooka-text-printer/alerts/)
+
+
 
 A library that establishes simple but elegant interfaces for printing text with devices to create elegant readable
 structured text rather than difficult to read sea of text of found in tools and programs that print output.
