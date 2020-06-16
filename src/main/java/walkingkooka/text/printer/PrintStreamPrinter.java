@@ -94,7 +94,7 @@ final class PrintStreamPrinter implements Printer {
 
     @Override
     public void print(final CharSequence chars) throws PrinterException {
-        this.printStream.append(chars);
+        this.printStream.print(chars);
     }
 
     @Override
@@ -114,7 +114,14 @@ final class PrintStreamPrinter implements Printer {
      */
     @Override
     public void close() throws PrinterException {
-        this.printStream.close();
+        try {
+            this.printStream.close();
+            // j2cl emulated PrintStream#close throws IOException
+        } catch (final RuntimeException cause) {
+            throw cause;
+        } catch (final Exception cause) {
+            throw new PrinterException(cause.getMessage(), cause);
+        }
     }
 
     // properties
