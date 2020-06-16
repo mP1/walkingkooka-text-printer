@@ -132,11 +132,11 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
                     }
 
                     @Override
-                    public PrintStream append(final CharSequence csq) {
+                    public void print(final Object object) {
                         if (this.closed) {
                             throw new PrinterException("PrintStream already closed");
                         }
-                        return super.append(csq);
+                        super.print(object);
                     }
 
                     @Override
