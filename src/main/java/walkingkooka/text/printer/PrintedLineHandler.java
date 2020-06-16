@@ -17,10 +17,8 @@
 
 package walkingkooka.text.printer;
 
+import javaemul.internal.annotations.GwtIncompatible;
 import walkingkooka.text.LineEnding;
-import walkingkooka.text.printer.Printer;
-import walkingkooka.text.printer.PrinterException;
-import walkingkooka.text.printer.PrinterLike;
 
 /**
  * Callback that is invoked by a {@link Printer} each time a complete line which may be empty is
@@ -33,4 +31,30 @@ public interface PrintedLineHandler extends PrinterLike {
      */
     void linePrinted(CharSequence line, LineEnding lineEnding, Printer printer)
             throws PrinterException;
+
+    /**
+     * <pre>
+     * >>First line
+     * >>Second
+     * >>Third
+     * >>Fourth lines
+     * >>last
+     * </pre>
+     */
+    @GwtIncompatible
+    public static void main(final String[] args) {
+        final Printer printer = Printers.sysOut()
+                .printedLine(new PrintedLineHandler() {
+                    @Override
+                    public void linePrinted(final CharSequence line,
+                                            final LineEnding lineEnding,
+                                            final Printer printer) throws PrinterException {
+                        printer.print(">>" + line + lineEnding);
+                    }
+                });
+        printer.print("First line\n");
+        printer.print("Second\nThird\nFourth lines\n");
+        printer.print("last");
+        printer.flush(); // forces PrintedLineHandler to be called
+    }
 }
