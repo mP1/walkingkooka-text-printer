@@ -19,6 +19,31 @@ Some simple abstractions and examples are included below.
 This library provides several building blocks including `IndentingPrinter` which supports fine grained multi levels of 
 indentation to all printed lines with a scope. 
 
+```java
+final IndentingPrinter printer = Printers.sysOut()
+        .indenting(Indentation.with("  "));
+printer.print("First line\n");
+printer.indent();
+{
+    printer.indent();
+    {
+        printer.print("Second\nThird\nFourth lines\n");
+    }
+    printer.outdent();
+    printer.print("last\n");
+}
+printer.outdent();
+```
+
+prints the following, notice the multi lined second String print is indented.
+```text
+First line
+    Second
+    Third
+    Fourth lines
+  last
+```
+
 The tree/indented output taken from executing the [j2cl-maven-plugin](https://github.com/mP1/j2cl-maven-plugin) below is
  simply a `IndentedPrinter` printing lines and strategically increasing and decreasing indentation.
   
@@ -76,6 +101,31 @@ Messages
 The `PrintedLineHandler` is mapper that is called for each and every completed line of text printed. The mapper can change
 the text or line ending and then print.
 
+```java
+final Printer printer = Printers.sysOut()
+        .printedLine(new PrintedLineHandler() {
+            @Override
+            public void linePrinted(final CharSequence line,
+                                    final LineEnding lineEnding,
+                                    final Printer printer) throws PrinterException {
+                printer.print(">>" + line + lineEnding);
+            }
+        });
+printer.print("First line\n");
+printer.print("Second\nThird\nFourth lines\n");
+printer.print("last");
+printer.flush(); // forces PrintedLineHandler to be called
+```
+
+prints the following, notice that each line has had a ">>" added.
+
+```text
+>>First line
+>>Second
+>>Third
+>>Fourth lines
+>>last
+```
 
 
 # walkingkooka-text-pretty

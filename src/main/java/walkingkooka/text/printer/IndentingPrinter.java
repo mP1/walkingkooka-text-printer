@@ -17,6 +17,9 @@
 
 package walkingkooka.text.printer;
 
+import javaemul.internal.annotations.GwtIncompatible;
+import walkingkooka.text.Indentation;
+
 /**
  * A {@link Printer} that includes additional functionality to support indentation.
  */
@@ -36,4 +39,30 @@ public interface IndentingPrinter extends Printer {
      * Removes a previous indentation.
      */
     void outdent() throws PrinterException;
+
+    /**
+     * <pre>
+     * First line
+     *     Second
+     *     Third
+     *     Fourth lines
+     *   last
+     * </pre>
+     */
+    @GwtIncompatible
+    public static void main(final String[] args) {
+        final IndentingPrinter printer = Printers.sysOut()
+                .indenting(Indentation.with("  "));
+        printer.print("First line\n");
+        printer.indent();
+        {
+            printer.indent();
+            {
+                printer.print("Second\nThird\nFourth lines\n");
+            }
+            printer.outdent();
+            printer.print("last\n");
+        }
+        printer.outdent();
+    }
 }
