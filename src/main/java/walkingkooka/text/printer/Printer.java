@@ -34,6 +34,21 @@ public interface Printer extends PrinterLike, Closeable {
     void print(CharSequence chars) throws PrinterException;
 
     /**
+     * Prints the given {@link CharSequence} chars followed by a line ending.
+     */
+    default void println(final CharSequence chars) throws PrinterException {
+        this.print(chars);
+        this.println();
+    }
+
+    /**
+     * Prints the {@link #lineEnding()}
+     */
+    default void println() throws PrinterException {
+        this.print(this.lineEnding());
+    }
+
+    /**
      * Returns the recommended {@link LineEnding}.
      */
     LineEnding lineEnding() throws PrinterException;
