@@ -4,6 +4,8 @@ import walkingkooka.test.Testing;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
+import java.util.function.Supplier;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public interface TreePrintableTesting<T extends TreePrintable> extends Testing {
@@ -26,6 +28,26 @@ public interface TreePrintableTesting<T extends TreePrintable> extends Testing {
                 expected,
                 printable.treeToString(INDENTATION, EOL),
                 () -> printable.toString()
+        );
+    }
+
+    default void checkEquals(final TreePrintable expected,
+                             final TreePrintable actual,
+                             final String message) {
+        this.checkEquals(
+                expected,
+                actual,
+                () -> message
+        );
+    }
+
+    default void checkEquals(final TreePrintable expected,
+                             final TreePrintable actual,
+                             final Supplier<String> message) {
+        assertEquals(
+                null != expected ? expected.treeToString(INDENTATION, EOL) : null,
+                null != actual ? actual.treeToString(INDENTATION, EOL) : null,
+                message
         );
     }
 }
