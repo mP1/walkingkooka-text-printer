@@ -22,16 +22,9 @@ public interface TreePrintableTesting<T extends TreePrintable> extends Testing {
 
     default void treePrintAndCheck(final TreePrintable printable,
                                    final String expected) {
-        final StringBuilder printed = new StringBuilder();
-        final Printer printer = Printers.stringBuilder(printed, EOL);
-        final IndentingPrinter indentingPrinter = printer.indenting(INDENTATION);
-        printable.printTree(indentingPrinter);
-        indentingPrinter.flush();
-        indentingPrinter.close();
-
         assertEquals(
                 expected,
-                printed.toString(),
+                printable.treeToString(INDENTATION, EOL),
                 () -> printable.toString()
         );
     }
