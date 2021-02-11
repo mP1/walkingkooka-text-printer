@@ -3,6 +3,8 @@ package walkingkooka.text.printer;
 import org.junit.jupiter.api.Test;
 import walkingkooka.text.printer.TreePrintableTestingTest.TestTreePrintable;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public final class TreePrintableTestingTest implements TreePrintableTesting<TestTreePrintable> {
 
     @Test
@@ -32,6 +34,38 @@ public final class TreePrintableTestingTest implements TreePrintableTesting<Test
                         "  Between2\n" +
                         "After3\n"
         );
+    }
+
+    @Test
+    public void testCheckEqualsNullNull() {
+        this.checkEquals(null, null, "message");
+    }
+
+    @Test
+    public void testCheckEqualsNullTreePrintableFails() {
+        boolean failed = false;
+        try {
+            this.checkEquals(null, this.createTreePrintable(), "message");
+        } catch (final AssertionError expected) {
+            failed = true;
+        }
+        assertEquals(true, failed);
+    }
+
+    @Test
+    public void testCheckEquals() {
+        this.checkEquals(this.createTreePrintable(), this.createTreePrintable(), "message");
+    }
+
+    @Test
+    public void testCheckEqualsTreePrintableNullFails() {
+        boolean failed = false;
+        try {
+            this.checkEquals(this.createTreePrintable(), null, "message");
+        } catch (final AssertionError expected) {
+            failed = true;
+        }
+        assertEquals(true, failed);
     }
 
     @Override
