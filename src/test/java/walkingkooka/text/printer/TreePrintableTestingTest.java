@@ -21,19 +21,10 @@ import walkingkooka.text.printer.TreePrintableTestingTest.TestTreePrintable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public final class TreePrintableTestingTest implements TreePrintableTesting<TestTreePrintable> {
+public final class TreePrintableTestingTest implements TreePrintableTesting {
 
     @Test
     public void testTreePrintAndCheck() {
-        this.treePrintAndCheck(
-                "Before\n" +
-                        "  Between\n" +
-                        "After\n"
-        );
-    }
-
-    @Test
-    public void testTreePrintAndCheck2() {
         this.treePrintAndCheck(
                 new TreePrintable() {
 
@@ -84,8 +75,7 @@ public final class TreePrintableTestingTest implements TreePrintableTesting<Test
         assertEquals(true, failed);
     }
 
-    @Override
-    public TestTreePrintable createTreePrintable() {
+    private TestTreePrintable createTreePrintable() {
         return new TestTreePrintable();
     }
 
