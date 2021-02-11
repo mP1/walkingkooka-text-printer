@@ -16,6 +16,9 @@
  */
 package walkingkooka.text.printer;
 
+import walkingkooka.text.Indentation;
+import walkingkooka.text.LineEnding;
+
 /**
  * Advertises support for printing a value as a tree, with values and child values, which is particularly useful as
  * content for debugging failed assertions in tests.
@@ -25,4 +28,17 @@ public interface TreePrintable {
      * Requests the implementation to print itself and its fields to the {@link IndentingPrinter}.
      */
     void printTree(IndentingPrinter printer);
+
+    /**
+     * Returns as a {@link String} the result of calling {@link #printTree(IndentingPrinter)}.
+     */
+    default String treeToString(final Indentation indentation,
+                                final LineEnding eol) {
+        final StringBuilder b = new StringBuilder();
+        try (final IndentingPrinter printer = Printers.stringBuilder(b, eol).indenting(indentation)) {
+            this.printTree(printer);
+            printer.flush();
+        }
+        return b.toString();
+    }
 }
