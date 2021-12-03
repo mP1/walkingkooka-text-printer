@@ -24,6 +24,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public interface TreePrintableTesting extends Testing {
 
@@ -36,6 +37,15 @@ public interface TreePrintableTesting extends Testing {
                 expected,
                 printable.treeToString(INDENTATION, EOL),
                 () -> printable.toString()
+        );
+    }
+
+    default void checkEquals(final TreePrintable expected,
+                             final TreePrintable actual) {
+        this.checkEquals(
+                expected,
+                actual,
+                (String) null
         );
     }
 
@@ -54,6 +64,37 @@ public interface TreePrintableTesting extends Testing {
                              final Supplier<String> message) {
         if (!Objects.equals(expected, actual)) {
             assertEquals(
+                    null != expected ? expected.treeToString(INDENTATION, EOL) : null,
+                    null != actual ? actual.treeToString(INDENTATION, EOL) : null,
+                    message
+            );
+        }
+    }
+
+    default void checkNotEquals(final TreePrintable expected,
+                                final TreePrintable actual) {
+        this.checkNotEquals(
+                expected,
+                actual,
+                (String) null
+        );
+    }
+
+    default void checkNotEquals(final TreePrintable expected,
+                                final TreePrintable actual,
+                                final String message) {
+        this.checkNotEquals(
+                expected,
+                actual,
+                () -> message
+        );
+    }
+
+    default void checkNotEquals(final TreePrintable expected,
+                                final TreePrintable actual,
+                                final Supplier<String> message) {
+        if (Objects.equals(expected, actual)) {
+            assertNotEquals(
                     null != expected ? expected.treeToString(INDENTATION, EOL) : null,
                     null != actual ? actual.treeToString(INDENTATION, EOL) : null,
                     message

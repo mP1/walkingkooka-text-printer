@@ -17,11 +17,12 @@
 package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.text.printer.TreePrintableTestingTest.TestTreePrintable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class TreePrintableTestingTest implements TreePrintableTesting {
+
+    private final static TreePrintable NULL_TREE_PRINTABLE = null;
 
     @Test
     public void testTreePrintAndCheck() {
@@ -43,16 +44,18 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
         );
     }
 
+    // checkEquals TreePrintable........................................................................................
+
     @Test
     public void testCheckEqualsNullNull() {
-        this.checkEquals(null, null, "message");
+        this.checkEquals(NULL_TREE_PRINTABLE, NULL_TREE_PRINTABLE, "message");
     }
 
     @Test
     public void testCheckEqualsNullTreePrintableFails() {
         boolean failed = false;
         try {
-            this.checkEquals(null, this.createTreePrintable(), "message");
+            this.checkEquals(NULL_TREE_PRINTABLE, this.createTreePrintable(), "message");
         } catch (final AssertionError expected) {
             failed = true;
         }
@@ -68,26 +71,80 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
     public void testCheckEqualsTreePrintableNullFails() {
         boolean failed = false;
         try {
-            this.checkEquals(this.createTreePrintable(), null, "message");
+            this.checkEquals(this.createTreePrintable(), NULL_TREE_PRINTABLE, "message");
         } catch (final AssertionError expected) {
             failed = true;
         }
         assertEquals(true, failed);
     }
 
+    // checkNotEquals TreePrintable........................................................................................
+
+    @Test
+    public void testCheckNotEqualsNullNull() {
+        boolean failed = false;
+        try {
+            this.checkNotEquals(NULL_TREE_PRINTABLE, NULL_TREE_PRINTABLE, "message");
+        } catch (final AssertionError expected) {
+            failed = true;
+        }
+        assertEquals(true, failed);
+    }
+
+    @Test
+    public void testCheckNotEqualsNullTreePrintableFails() {
+        this.checkNotEquals(NULL_TREE_PRINTABLE, this.createTreePrintable(), "message");
+    }
+
+    @Test
+    public void testCheckNotEquals() {
+        this.checkNotEquals(new TestTreePrintable("111"), new TestTreePrintable("222"), "message");
+    }
+
+    @Test
+    public void testCheckNotEqualsFails() {
+        final String printTree = "111";
+
+        boolean failed = false;
+        try {
+            this.checkNotEquals(new TestTreePrintable(printTree), new TestTreePrintable(printTree), "message");
+        } catch (final AssertionError expected) {
+            assertEquals("message ==> expected: not equal but was: <111>", expected.getMessage(), "message");
+            failed = true;
+        }
+        assertEquals(true, failed);
+    }
+
+    // TreePrintableTesting.............................................................................................
+
     private TestTreePrintable createTreePrintable() {
-        return new TestTreePrintable();
+        return new TestTreePrintable("123");
     }
 
     static class TestTreePrintable implements TreePrintable {
 
+        TestTreePrintable(final String printTree) {
+            this.printTree = printTree;
+        }
+
+        public int hashCode() {
+            return this.printTree.hashCode();
+        }
+
+        public boolean equals(final Object other) {
+            return this == other || other instanceof TestTreePrintable && this.printTree.equals(((TestTreePrintable) other).printTree);
+        }
+
         @Override
         public void printTree(final IndentingPrinter printer) {
-            printer.print("Before\n");
-            printer.indent();
-            printer.print("Between\n");
-            printer.outdent();
-            printer.print("After\n");
+            printer.print(this.printTree);
+        }
+
+        private final String printTree;
+
+        @Override
+        public String toString() {
+            return "toString: " + this.printTree;
         }
     }
 }
