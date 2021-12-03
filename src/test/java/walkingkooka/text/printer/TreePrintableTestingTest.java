@@ -56,7 +56,7 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
         } catch (final AssertionError expected) {
             failed = true;
         }
-        assertEquals(true, failed);
+        this.checkEquals(true, failed);
     }
 
     @Test
@@ -72,7 +72,7 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
         } catch (final AssertionError expected) {
             failed = true;
         }
-        assertEquals(true, failed);
+        this.checkEquals(true, failed);
     }
 
     private TestTreePrintable createTreePrintable() {

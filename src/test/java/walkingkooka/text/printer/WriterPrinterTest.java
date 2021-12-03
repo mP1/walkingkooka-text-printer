@@ -69,7 +69,7 @@ final public class WriterPrinterTest extends PrinterTestCase<WriterPrinter> {
         printer.print("1");
         printer.print("23");
         printer.print("456");
-        checkEquals("123456", writer.toString());
+        this.checkEquals("123456", writer.toString());
     }
 
     @Test
@@ -111,7 +111,7 @@ final public class WriterPrinterTest extends PrinterTestCase<WriterPrinter> {
 
     @Test
     public void testToString() {
-        checkEquals(WRITER.toString(),
+        this.checkEquals(WRITER.toString(),
                 this.createPrinter(WRITER).toString());
     }
 

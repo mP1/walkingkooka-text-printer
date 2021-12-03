@@ -35,7 +35,7 @@ final public class BasicIndentingPrinterTest
         final BasicIndentingPrinter printer = this.createPrinter(printed);
         printer.indent();
         printer.print("line1");
-        checkEquals(">line1", printed.toString());
+        this.checkEquals(">line1", printed.toString());
     }
 
     @Test
@@ -46,7 +46,7 @@ final public class BasicIndentingPrinterTest
         printer.indent();
         printer.print("after\n");
         printer.print("next");
-        checkEquals("beforeafter\n>next", printed.toString());
+        this.checkEquals("beforeafter\n>next", printed.toString());
     }
 
     @Test
@@ -56,7 +56,7 @@ final public class BasicIndentingPrinterTest
         printer.indent();
         printer.print("line1\r");
         printer.print("line2\r");
-        checkEquals(">line1\r>line2\r", printed.toString());
+        this.checkEquals(">line1\r>line2\r", printed.toString());
     }
 
     @Test
@@ -66,7 +66,7 @@ final public class BasicIndentingPrinterTest
         printer.indent();
         printer.print("line1\n");
         printer.print("line2\n");
-        checkEquals(">line1\n>line2\n", printed.toString());
+        this.checkEquals(">line1\n>line2\n", printed.toString());
     }
 
     @Test
@@ -76,7 +76,7 @@ final public class BasicIndentingPrinterTest
         printer.indent();
         printer.print("line1\r\n");
         printer.print("line2\r\n");
-        checkEquals(">line1\r\n>line2\r\n", printed.toString());
+        this.checkEquals(">line1\r\n>line2\r\n", printed.toString());
     }
 
     @Test
@@ -89,7 +89,7 @@ final public class BasicIndentingPrinterTest
         printer.print("e2\n");
         printer.print("\n\n");
 
-        checkEquals(">line1\n" + // )
+        this.checkEquals(">line1\n" + // )
                 ">line2\n" + //
                 ">\n" + //
                 ">\n", printed.toString());
@@ -104,7 +104,7 @@ final public class BasicIndentingPrinterTest
         printer.outdent();
         printer.print("line2");
 
-        checkEquals(">line1\n" + // )
+        this.checkEquals(">line1\n" + // )
                 "line2", printed.toString());
     }
 
@@ -120,7 +120,7 @@ final public class BasicIndentingPrinterTest
         printer.print("line3\n");
         printer.outdent();
         printer.print("line4");
-        checkEquals(">line1\n" + // )
+        this.checkEquals(">line1\n" + // )
                 "line2\n" + //
                 ">line3\n" + //
                 "line4", printed.toString());
@@ -135,7 +135,7 @@ final public class BasicIndentingPrinterTest
         printer.outdent();
         printer.print("after\n");
         printer.print("next");
-        checkEquals(">beforeafter\nnext", printed.toString());
+        this.checkEquals(">beforeafter\nnext", printed.toString());
     }
 
     @Test
@@ -151,7 +151,7 @@ final public class BasicIndentingPrinterTest
         printer.print("line4\n");
         printer.outdent();
         printer.print("line5");
-        checkEquals(">line1\n" + //
+        this.checkEquals(">line1\n" + //
                 ">>line2\n" + //
                 ">>line3\r" + //
                 ">line4\n" + //
@@ -169,7 +169,7 @@ final public class BasicIndentingPrinterTest
         printer.print("line3");
         printer.lineStart();
 
-        checkEquals("line1\rline2\rline3\r", printed.toString());
+        this.checkEquals("line1\rline2\rline3\r", printed.toString());
     }
 
     @Test
@@ -181,7 +181,7 @@ final public class BasicIndentingPrinterTest
         printer.lineStart();
         printer.print("line2");
 
-        checkEquals("line1" + LINE_ENDING + ">line2",
+        this.checkEquals("line1" + LINE_ENDING + ">line2",
                 printed.toString());
     }
 
@@ -194,7 +194,7 @@ final public class BasicIndentingPrinterTest
         printer.print(printer.lineEnding());
         printer.print("line2");
 
-        checkEquals("line1" + LINE_ENDING + ">line2",
+        this.checkEquals("line1" + LINE_ENDING + ">line2",
                 printed.toString());
     }
 
@@ -215,14 +215,14 @@ final public class BasicIndentingPrinterTest
 
         printer.print("line3");
 
-        checkEquals("line1" + LINE_ENDING + ">##line2" + LINE_ENDING + ">line3",
+        this.checkEquals("line1" + LINE_ENDING + ">##line2" + LINE_ENDING + ">line3",
                 printed.toString());
     }
 
     @Test
     public void testToString() {
         final Printer printer = Printers.fake();
-        checkEquals(printer.toString(), BasicIndentingPrinter.with(printer, INDENTATION).toString());
+        this.checkEquals(printer.toString(), BasicIndentingPrinter.with(printer, INDENTATION).toString());
     }
 
     private BasicIndentingPrinter createPrinter(final Printer printer) {
@@ -251,7 +251,7 @@ final public class BasicIndentingPrinterTest
         final BasicIndentingPrinter printer = this.createPrinter(builder);
         printer.print("line1\n");
         printer.print("line2\n");
-        checkEquals("line1\nline2\n", builder.toString());
+        this.checkEquals("line1\nline2\n", builder.toString());
     }
 
     @Test
@@ -263,7 +263,7 @@ final public class BasicIndentingPrinterTest
         printer.lineStart();
         printer.print("next");
 
-        checkEquals("before" + LINE_ENDING + "next",
+        this.checkEquals("before" + LINE_ENDING + "next",
                 builder.toString());
     }
 
@@ -274,7 +274,7 @@ final public class BasicIndentingPrinterTest
         printer.lineStart();
         printer.print("after");
 
-        checkEquals("after", builder.toString());
+        this.checkEquals("after", builder.toString());
     }
 
     @Test
@@ -285,7 +285,7 @@ final public class BasicIndentingPrinterTest
         printer.lineStart();
         printer.print("after");
 
-        checkEquals("before" + LINE_ENDING + "after",
+        this.checkEquals("before" + LINE_ENDING + "after",
                 builder.toString());
     }
 
@@ -296,7 +296,7 @@ final public class BasicIndentingPrinterTest
         printer.print("before");
         printer.lineStart();
 
-        checkEquals("before" + LINE_ENDING, printed.toString());
+        this.checkEquals("before" + LINE_ENDING, printed.toString());
     }
 
     @Test
@@ -307,7 +307,7 @@ final public class BasicIndentingPrinterTest
         printer.lineStart();
         printer.print("next");
 
-        checkEquals("before\rnext", printed.toString());
+        this.checkEquals("before\rnext", printed.toString());
     }
 
     @Test
@@ -318,7 +318,7 @@ final public class BasicIndentingPrinterTest
         printer.lineStart();
         printer.print("next");
 
-        checkEquals("before\nnext", printed.toString());
+        this.checkEquals("before\nnext", printed.toString());
     }
 
     @Test
@@ -329,7 +329,7 @@ final public class BasicIndentingPrinterTest
         printer.lineStart();
         printer.print("next");
 
-        checkEquals("before\r\nnext", printed.toString());
+        this.checkEquals("before\r\nnext", printed.toString());
     }
 
     @Test
@@ -342,7 +342,7 @@ final public class BasicIndentingPrinterTest
         printer.lineStart();
         printer.print("next");
 
-        checkEquals("before\nnext", printed.toString());
+        this.checkEquals("before\nnext", printed.toString());
     }
 
     @Override

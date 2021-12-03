@@ -32,7 +32,7 @@ public interface TreePrintableTesting extends Testing {
 
     default void treePrintAndCheck(final TreePrintable printable,
                                    final String expected) {
-        assertEquals(
+        this.checkEquals(
                 expected,
                 printable.treeToString(INDENTATION, EOL),
                 () -> printable.toString()
@@ -53,7 +53,7 @@ public interface TreePrintableTesting extends Testing {
                              final TreePrintable actual,
                              final Supplier<String> message) {
         if (!Objects.equals(expected, actual)) {
-            assertEquals(
+            this.checkEquals(
                     null != expected ? expected.treeToString(INDENTATION, EOL) : null,
                     null != actual ? actual.treeToString(INDENTATION, EOL) : null,
                     message

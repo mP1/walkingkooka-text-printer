@@ -115,7 +115,7 @@ public interface PrintedLineHandlerTesting<H extends PrintedLineHandler>
 
         final String printed = printedBuffer.toString();
         if (false == printed.equals(expected)) {
-            assertEquals(CharSequences.quoteAndEscape(expected),
+            this.checkEquals(CharSequences.quoteAndEscape(expected),
                     CharSequences.quoteAndEscape(printed),
                     message);
         }

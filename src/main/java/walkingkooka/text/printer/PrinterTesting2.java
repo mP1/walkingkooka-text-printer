@@ -44,7 +44,7 @@ public interface PrinterTesting2<P extends Printer> extends PrinterTesting<P> {
     default void testPrintedLine() {
         final Printer printer = this.createPrinter();
         final Printer lines = printer.printedLine(PrintedLineHandlers.fake());
-        assertEquals(PrintedLineHandlerPrinter.class, lines.getClass(), lines::toString);
+        this.checkEquals(PrintedLineHandlerPrinter.class, lines.getClass(), lines::toString);
     }
 
     @Test
@@ -62,7 +62,7 @@ public interface PrinterTesting2<P extends Printer> extends PrinterTesting<P> {
         final Printer printer = this.createPrinter();
         final Function<CharSequence, CharSequence> transformer = (s) -> s.toString().toUpperCase();
         final Printer transformingPrinter = printer.transformText(transformer);
-        assertEquals(TextTransformingPrinter.class, transformingPrinter.getClass(), transformingPrinter::toString);
+        this.checkEquals(TextTransformingPrinter.class, transformingPrinter.getClass(), transformingPrinter::toString);
         assertSame(transformer, ((TextTransformingPrinter) transformingPrinter).transformer, "transformer");
     }
 
@@ -154,7 +154,7 @@ public interface PrinterTesting2<P extends Printer> extends PrinterTesting<P> {
         }
         final String printed = target.toString();
         if (false == printed.equals(expected)) {
-            assertEquals(CharSequences.quoteAndEscape(expected),
+            this.checkEquals(CharSequences.quoteAndEscape(expected),
                     CharSequences.quoteAndEscape(printed),
                     message);
         }
