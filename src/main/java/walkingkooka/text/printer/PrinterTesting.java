@@ -22,7 +22,6 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.text.CharSequences;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -86,16 +85,21 @@ public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
 
     default void checkEquals(final CharSequence expected,
                              final CharSequence actual) {
-        assertEquals(CharSequences.escape(expected),
-                CharSequences.escape(actual).toString());
+        this.checkEquals(
+                expected,
+                actual,
+                (String)null
+        );
     }
 
     default void checkEquals(final CharSequence expected,
                              final CharSequence actual,
                              final String message) {
-        assertEquals(CharSequences.escape(expected),
-                CharSequences.escape(actual).toString(),
-                message);
+        this.checkEquals(
+                (Object)CharSequences.escape(expected),
+                (Object)CharSequences.escape(actual).toString(),
+                message
+        );
     }
 
     // TypeNameTesting .........................................................................................

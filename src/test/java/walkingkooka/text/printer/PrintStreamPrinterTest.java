@@ -88,13 +88,13 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
         final Printer printer = PrintStreamPrinter.with(new PrintStream(output),
                 LINE_ENDING);
         printer.print("ascii");
-        checkEquals("ascii", new String(output.toByteArray()));
+        this.checkEquals("ascii", new String(output.toByteArray()));
     }
 
     @Test
     public void testToString() {
         final PrintStream printStream = new PrintStream(OUTPUTSTREAM);
-        checkEquals(printStream.toString(),
+        this.checkEquals(printStream.toString(),
                 PrintStreamPrinter.with(printStream, LINE_ENDING)
                         .toString());
     }
@@ -102,14 +102,14 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
     @Test
     public void testSystemErrToString() {
         final PrintStream printStream = System.err;
-        checkEquals("System.err " + printStream.toString(),
+        this.checkEquals("System.err " + printStream.toString(),
                 PrintStreamPrinter.sysErr().toString());
     }
 
     @Test
     public void testSystemOutToString() {
         final PrintStream printStream = System.out;
-        checkEquals("System.out " + printStream.toString(),
+        this.checkEquals("System.out " + printStream.toString(),
                 PrintStreamPrinter.sysOut().toString());
     }
 

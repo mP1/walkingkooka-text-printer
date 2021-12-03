@@ -23,7 +23,6 @@ import walkingkooka.text.LineEnding;
 
 import java.util.function.Function;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEntityDecodingPrinter> {
@@ -67,8 +66,8 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
         final HtmlEntityDecodingPrinter printer = this.createPrinter();
         printer.print("&");
         this.check(printer, "");
-        assertEquals(1, printer.last);
-        assertEquals("&", printer.buffer());
+        this.checkEquals(1, printer.last);
+        this.checkEquals("&", printer.buffer());
     }
 
     @Test
@@ -76,7 +75,7 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
         final HtmlEntityDecodingPrinter printer = this.createPrinter();
         printer.print("&;");
         this.check(printer, "&;");
-        assertEquals(0, printer.last);
+        this.checkEquals(0, printer.last);
     }
 
     @Test
@@ -85,8 +84,8 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
         final String text = "&star";
         printer.print(text);
         this.check(printer, "");
-        assertEquals(text.length(), printer.last);
-        assertEquals(text, printer.buffer());
+        this.checkEquals(text.length(), printer.last);
+        this.checkEquals(text, printer.buffer());
     }
 
     @Test
@@ -110,8 +109,8 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
         final String text = "&#123";
         printer.print(text);
         this.check(printer, "");
-        assertEquals(text.length(), printer.last);
-        assertEquals(text, printer.buffer());
+        this.checkEquals(text.length(), printer.last);
+        this.checkEquals(text, printer.buffer());
     }
 
     @Test
@@ -169,7 +168,7 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
         printer.print("456");
         printer.print(printer.lineEnding());
         printer.flush();
-        checkEquals(
+        this.checkEquals(
                 "123" + LINE_ENDING + "456" + LINE_ENDING,
                 printed.toString());
     }
@@ -183,7 +182,7 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
         printer.print("4&star;6");
         printer.print(printer.lineEnding());
         printer.flush();
-        checkEquals(
+        this.checkEquals(
                 "1*3" + LINE_ENDING + "4*6" + LINE_ENDING,
                 printed.toString());
     }
@@ -192,7 +191,7 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
     public void testToString() {
         final Function<String, String> decoder = (s) -> s;
         final Printer printer = Printers.fake();
-        checkEquals(printer + " AND " + decoder,
+        this.checkEquals(printer + " AND " + decoder,
                 HtmlEntityDecodingPrinter.wrap(decoder, printer).toString());
     }
 
@@ -213,7 +212,7 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
 
     private void check(final HtmlEntityDecodingPrinter printer, final String expected) {
         final String actual = this.builder.toString();
-        assertEquals(expected,
+        this.checkEquals(expected,
                 actual,
                 () -> "Different text written, buffer=" + CharSequences.quote(printer.buffer()));
     }
@@ -226,8 +225,8 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
             b.append(string);
         }
         this.check(printer, expected);
-        assertEquals(0, printer.last, "printer.last");
-        checkEquals("", printer.buffer());
+        this.checkEquals(0, printer.last, "printer.last");
+        this.checkEquals("", printer.buffer());
 
         this.builder.setLength(0);
         final char[] chars = b.toString().toCharArray();
@@ -235,8 +234,8 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
             printer.print(String.valueOf(c));
         }
         this.check(printer, expected);
-        assertEquals(0, printer.last, "printer.last");
-        checkEquals("", printer.buffer());
+        this.checkEquals(0, printer.last, "printer.last");
+        this.checkEquals("", printer.buffer());
     }
 
     @Override

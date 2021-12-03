@@ -61,7 +61,7 @@ final public class UncloseablePrinterTest extends PrinterTestCase2<UncloseablePr
         printer.print(printer.lineEnding());
         printer.print("456");
         printer.print(printer.lineEnding());
-        checkEquals("123" + LINE_ENDING + "456" + LINE_ENDING, printed.toString());
+        this.checkEquals("123" + LINE_ENDING + "456" + LINE_ENDING, printed.toString());
     }
 
     @Override
@@ -84,7 +84,7 @@ final public class UncloseablePrinterTest extends PrinterTestCase2<UncloseablePr
 
         printer.close();
 
-        checkEquals(expected.toString(), printed.toString());
+        this.checkEquals(expected.toString(), printed.toString());
     }
 
     @Override

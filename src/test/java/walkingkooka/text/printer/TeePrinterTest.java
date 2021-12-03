@@ -74,8 +74,8 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
 
         printer.print("string2");
         builder3.append("string2");
-        checkEquals(builder3.toString(), builder1.toString());
-        checkEquals(builder1.toString(), builder2.toString());
+        this.checkEquals(builder3.toString(), builder1.toString());
+        this.checkEquals(builder1.toString(), builder2.toString());
     }
 
     @Test
@@ -99,15 +99,15 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
 
         printer.print("string2");
         builder3.append("string2");
-        checkEquals(builder3.toString(), builder1.toString());
-        checkEquals(builder1.toString(), builder2.toString());
+        this.checkEquals(builder3.toString(), builder1.toString());
+        this.checkEquals(builder1.toString(), builder2.toString());
     }
 
     @Test
     public void testToString() {
         final Printer left = Printers.fake();
         final Printer right = Printers.fake();
-        checkEquals("tee (" + left + " AND " + right + ")",
+        this.checkEquals("tee (" + left + " AND " + right + ")",
                 TeePrinter.wrap(left, right).toString());
     }
 
