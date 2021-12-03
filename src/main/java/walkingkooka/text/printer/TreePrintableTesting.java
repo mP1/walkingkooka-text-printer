@@ -23,8 +23,6 @@ import walkingkooka.text.LineEnding;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
 public interface TreePrintableTesting extends Testing {
 
     Indentation INDENTATION = Indentation.with("  ");
@@ -93,7 +91,7 @@ public interface TreePrintableTesting extends Testing {
                                 final TreePrintable actual,
                                 final Supplier<String> message) {
         if (Objects.equals(expected, actual)) {
-            assertNotEquals(
+            this.checkNotEquals(
                     null != expected ? expected.treeToString(INDENTATION, EOL) : null,
                     null != actual ? actual.treeToString(INDENTATION, EOL) : null,
                     message
