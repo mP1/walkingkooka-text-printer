@@ -23,7 +23,6 @@ import walkingkooka.text.LineEnding;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public interface TreePrintableTesting extends Testing {
@@ -99,6 +98,24 @@ public interface TreePrintableTesting extends Testing {
                     null != actual ? actual.treeToString(INDENTATION, EOL) : null,
                     message
             );
+        }
+    }
+
+    // Testing.........................................................................................................
+
+    default void checkEquals(final Object expected, final Object actual, final Supplier<String> message) {
+        if (expected instanceof TreePrintable && actual instanceof TreePrintable) {
+            this.checkEquals((TreePrintable) expected, (TreePrintable) actual, message);
+        } else {
+            Testing.super.checkEquals(expected, actual, message);
+        }
+    }
+
+    default void checkNotEquals(final Object expected, final Object actual, final Supplier<String> message) {
+        if (expected instanceof TreePrintable && actual instanceof TreePrintable) {
+            this.checkNotEquals((TreePrintable) expected, (TreePrintable) actual, message);
+        } else {
+            Testing.super.checkNotEquals(expected, actual, message);
         }
     }
 }

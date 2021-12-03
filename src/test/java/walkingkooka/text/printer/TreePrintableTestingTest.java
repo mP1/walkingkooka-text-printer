@@ -47,12 +47,12 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
     // checkEquals TreePrintable........................................................................................
 
     @Test
-    public void testCheckEqualsNullNull() {
+    public void testCheckEqualsTreePrintableNullNull() {
         this.checkEquals(NULL_TREE_PRINTABLE, NULL_TREE_PRINTABLE, "message");
     }
 
     @Test
-    public void testCheckEqualsNullTreePrintableFails() {
+    public void testCheckEqualsTreePrintableNullTreePrintableFails() {
         boolean failed = false;
         try {
             this.checkEquals(NULL_TREE_PRINTABLE, this.createTreePrintable(), "message");
@@ -63,7 +63,7 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
     }
 
     @Test
-    public void testCheckEquals() {
+    public void testCheckEqualsTreePrintable() {
         this.checkEquals(this.createTreePrintable(), this.createTreePrintable(), "message");
     }
 
@@ -81,7 +81,7 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
     // checkNotEquals TreePrintable........................................................................................
 
     @Test
-    public void testCheckNotEqualsNullNull() {
+    public void testCheckNotEqualsTreePrintableNullNull() {
         boolean failed = false;
         try {
             this.checkNotEquals(NULL_TREE_PRINTABLE, NULL_TREE_PRINTABLE, "message");
@@ -92,17 +92,17 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
     }
 
     @Test
-    public void testCheckNotEqualsNullTreePrintableFails() {
+    public void testCheckNotEqualsTreePrintableNullTreePrintableFails() {
         this.checkNotEquals(NULL_TREE_PRINTABLE, this.createTreePrintable(), "message");
     }
 
     @Test
-    public void testCheckNotEquals() {
+    public void testCheckNotEqualsTreePrintable() {
         this.checkNotEquals(new TestTreePrintable("111"), new TestTreePrintable("222"), "message");
     }
 
     @Test
-    public void testCheckNotEqualsFails() {
+    public void testCheckNotEqualsTreePrintableFails() {
         final String printTree = "111";
 
         boolean failed = false;
@@ -110,6 +110,48 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
             this.checkNotEquals(new TestTreePrintable(printTree), new TestTreePrintable(printTree), "message");
         } catch (final AssertionError expected) {
             assertEquals("message ==> expected: not equal but was: <111>", expected.getMessage(), "message");
+            failed = true;
+        }
+        assertEquals(true, failed);
+    }
+
+    // Testing..........................................................................................................
+
+    @Test
+    public void testCheckEqualsObject() {
+        this.checkEquals(1, 1);
+    }
+
+    @Test
+    public void testCheckEqualsObjectFails() {
+        boolean failed = false;
+        try {
+            this.checkEquals(
+                    (Object) new TestTreePrintable("123"),
+                    (Object) new TestTreePrintable("different")
+            );
+        } catch (final AssertionError expected) {
+            assertEquals("expected: <123> but was: <different>", expected.getMessage(), "message");
+            failed = true;
+        }
+        assertEquals(true, failed);
+    }
+
+    @Test
+    public void testCheckNotEqualsObject() {
+        this.checkNotEquals(1, 2);
+    }
+
+    @Test
+    public void testCheckNotEqualsObjectFails() {
+        boolean failed = false;
+        try {
+            this.checkNotEquals(
+                    (Object) new TestTreePrintable("same"),
+                    (Object) new TestTreePrintable("same")
+            );
+        } catch (final AssertionError expected) {
+            assertEquals("expected: not equal but was: <same>", expected.getMessage(), "message");
             failed = true;
         }
         assertEquals(true, failed);
