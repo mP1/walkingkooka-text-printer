@@ -24,6 +24,20 @@ import walkingkooka.text.LineEnding;
  * content for debugging failed assertions in tests.
  */
 public interface TreePrintable {
+
+    /**
+     * Helper which if the object is {@link TreePrintable} prints it otherwise prints {@link Object#toString()}
+     */
+    static void printTreeOrToString(final Object object,
+                                    final IndentingPrinter printer) {
+        if (object instanceof TreePrintable) {
+            final TreePrintable treePrintable = (TreePrintable) object;
+            treePrintable.printTree(printer);
+        } else {
+            printer.print(String.valueOf(object));
+        }
+    }
+
     /**
      * Requests the implementation to print itself and its fields to the {@link IndentingPrinter}.
      */
