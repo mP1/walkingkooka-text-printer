@@ -16,11 +16,13 @@
  */
 package walkingkooka.text.printer;
 
+import walkingkooka.Cast;
 import walkingkooka.test.Testing;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public interface TreePrintableTesting extends Testing {
@@ -102,18 +104,40 @@ public interface TreePrintableTesting extends Testing {
     // Testing.........................................................................................................
 
     default void checkEquals(final Object expected, final Object actual, final Supplier<String> message) {
-        if (expected instanceof TreePrintable && actual instanceof TreePrintable) {
-            this.checkEquals((TreePrintable) expected, (TreePrintable) actual, message);
+        if (expected instanceof Optional && actual instanceof Optional) {
+            final Optional<?> expectedOptional = Cast.to(expected);
+            final Optional<?> actualOptional = Cast.to(actual);
+
+            this.checkEquals(
+                    expectedOptional.orElse(null),
+                    actualOptional.orElse(null),
+                    message
+            );
         } else {
-            Testing.super.checkEquals(expected, actual, message);
+            if (expected instanceof TreePrintable && actual instanceof TreePrintable) {
+                this.checkEquals((TreePrintable) expected, (TreePrintable) actual, message);
+            } else {
+                Testing.super.checkEquals(expected, actual, message);
+            }
         }
     }
 
     default void checkNotEquals(final Object expected, final Object actual, final Supplier<String> message) {
-        if (expected instanceof TreePrintable && actual instanceof TreePrintable) {
-            this.checkNotEquals((TreePrintable) expected, (TreePrintable) actual, message);
+        if (expected instanceof Optional && actual instanceof Optional) {
+            final Optional<?> expectedOptional = Cast.to(expected);
+            final Optional<?> actualOptional = Cast.to(actual);
+
+            this.checkNotEquals(
+                    expectedOptional.orElse(null),
+                    actualOptional.orElse(null),
+                    message
+            );
         } else {
-            Testing.super.checkNotEquals(expected, actual, message);
+            if (expected instanceof TreePrintable && actual instanceof TreePrintable) {
+                this.checkNotEquals((TreePrintable) expected, (TreePrintable) actual, message);
+            } else {
+                Testing.super.checkNotEquals(expected, actual, message);
+            }
         }
     }
 }

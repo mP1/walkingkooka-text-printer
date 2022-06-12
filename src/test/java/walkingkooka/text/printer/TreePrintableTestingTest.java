@@ -18,6 +18,8 @@ package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class TreePrintableTestingTest implements TreePrintableTesting {
@@ -108,6 +110,76 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
         boolean failed = false;
         try {
             this.checkNotEquals(new TestTreePrintable(printTree), new TestTreePrintable(printTree), "message");
+        } catch (final AssertionError expected) {
+            assertEquals("message ==> expected: not equal but was: <111>", expected.getMessage(), "message");
+            failed = true;
+        }
+        assertEquals(true, failed);
+    }
+
+    // checkEquals(Object,Object).......................................................................................
+
+    @Test
+    public void testCheckEqualsOptionalTreePrintable() {
+        this.checkEquals(
+                Optional.of(
+                        this.createTreePrintable()
+                ),
+                Optional.of(
+                        this.createTreePrintable()
+                ),
+                "message"
+        );
+    }
+
+    @Test
+    public void testCheckEqualsOptionalTreePrintableNullFails() {
+        boolean failed = false;
+        try {
+            this.checkEquals(
+                    Optional.of(
+                            this.createTreePrintable()
+                    ),
+                    Optional.ofNullable(
+                            NULL_TREE_PRINTABLE
+                    ), "message"
+            );
+        } catch (final AssertionError expected) {
+            failed = true;
+        }
+        assertEquals(true, failed);
+    }
+
+    // checkNotEquals(Object,Object)....................................................................................
+
+    @Test
+    public void testCheckNotEqualsOptionalTreePrintable() {
+        this.checkNotEquals(
+                Optional.of(
+                        new TestTreePrintable("111")
+                ),
+                Optional.of(
+                        new TestTreePrintable("222")
+                ),
+                "message"
+        );
+    }
+
+    @Test
+    public void testCheckNotEqualsOptionalTreePrintableFails() {
+        final String printTree = "111";
+
+        boolean failed = false;
+        try {
+            this.checkNotEquals(
+                    Optional.of(
+                            new TestTreePrintable(printTree)
+                    ),
+                    Optional.of(
+                            new TestTreePrintable(printTree)
+                    ),
+                    "message"
+            );
         } catch (final AssertionError expected) {
             assertEquals("message ==> expected: not equal but was: <111>", expected.getMessage(), "message");
             failed = true;
