@@ -21,6 +21,7 @@ import walkingkooka.test.Testing;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -117,7 +118,15 @@ public interface TreePrintableTesting extends Testing {
             if (expected instanceof TreePrintable && actual instanceof TreePrintable) {
                 this.checkEquals((TreePrintable) expected, (TreePrintable) actual, message);
             } else {
-                Testing.super.checkEquals(expected, actual, message);
+                if(TreePrintableTestingHelper.shouldTreePrint(actual) && TreePrintableTestingHelper.shouldTreePrint(expected)) {
+                    Testing.super.checkEquals(
+                            TreePrintableTestingHelper.treePrint((Collection<?>)expected),
+                            TreePrintableTestingHelper.treePrint((Collection<?>)actual),
+                            message
+                    );
+                } else {
+                    Testing.super.checkEquals(expected, actual, message);
+                }
             }
         }
     }
@@ -136,7 +145,15 @@ public interface TreePrintableTesting extends Testing {
             if (expected instanceof TreePrintable && actual instanceof TreePrintable) {
                 this.checkNotEquals((TreePrintable) expected, (TreePrintable) actual, message);
             } else {
-                Testing.super.checkNotEquals(expected, actual, message);
+                if(TreePrintableTestingHelper.shouldTreePrint(actual) && TreePrintableTestingHelper.shouldTreePrint(expected)) {
+                    Testing.super.checkNotEquals(
+                            TreePrintableTestingHelper.treePrint((Collection<?>)expected),
+                            TreePrintableTestingHelper.treePrint((Collection<?>)actual),
+                            message
+                    );
+                } else {
+                    Testing.super.checkNotEquals(expected, actual, message);
+                }
             }
         }
     }

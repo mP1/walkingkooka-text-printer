@@ -17,32 +17,126 @@
 package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.collect.list.Lists;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class TreePrintableTestingTest implements TreePrintableTesting {
 
     private final static TreePrintable NULL_TREE_PRINTABLE = null;
 
+    private final static TreePrintable TREE_PRINTABLE = new TreePrintable() {
+
+        @Override
+        public void printTree(final IndentingPrinter printer) {
+            printer.print("Before1\n");
+            printer.indent();
+            printer.print("Between2\n");
+            printer.outdent();
+            printer.print("After3\n");
+        }
+
+        @Override
+        public String toString() {
+            return "TREE_PRINTABLE";
+        }
+    };
+
     @Test
     public void testTreePrintAndCheck() {
         this.treePrintAndCheck(
-                new TreePrintable() {
-
-                    @Override
-                    public void printTree(final IndentingPrinter printer) {
-                        printer.print("Before1\n");
-                        printer.indent();
-                        printer.print("Between2\n");
-                        printer.outdent();
-                        printer.print("After3\n");
-                    }
-                },
+                TREE_PRINTABLE,
                 "Before1\n" +
                         "  Between2\n" +
                         "After3\n"
+        );
+    }
+
+    // checkEquals Collection...........................................................................................
+
+    @Test
+    public void testCheckEqualsList() {
+        this.checkEquals(
+                Lists.of(1, 2, 3),
+                Lists.of(1, 2, 3)
+        );
+    }
+
+    @Test
+    public void testCheckEqualsListTreePrintedFails() {
+        final AssertionError thrown = assertThrows(
+                AssertionError.class,
+                () -> this.checkEquals(
+                            Lists.of(null, TREE_PRINTABLE, true, 'A', 1.0, 2.5f, 3, Long.MAX_VALUE, Short.MAX_VALUE, "String"),
+                            Lists.of(TREE_PRINTABLE)
+                    )
+        );
+
+        this.checkEquals(
+                "expected: <null\n" +
+                        "Before1\n" +
+                        "  Between2\n" +
+                        "After3\n" +
+                        "\n" + // should TreePrintable.treePrintOrString print the String followed by a new line.
+                        "true\n" +
+                        "A\n" +
+                        "1.0\n" +
+                        "2.5\n" +
+                        "3\n" +
+                        "9223372036854775807\n" +
+                        "32767\n" +
+                        "String\n" +
+                        "> but was: <Before1\n" +
+                        "  Between2\n" +
+                        "After3\n" +
+                        "\n" +
+                        ">",
+                thrown.getMessage()
+        );
+    }
+
+    // checkNotEquals Collection...........................................................................................
+
+    @Test
+    public void testCheckNotEqualsList() {
+        this.checkNotEquals(
+                Lists.of(1, 2, 3),
+                Lists.of(3, 2, TREE_PRINTABLE)
+        );
+    }
+
+    @Test
+    public void testCheckNotEqualsListTreePrintedFails() {
+        final Collection<?> collection = Lists.of(null, TREE_PRINTABLE, true, 'A', 1.0, 2.5f, 3, Long.MAX_VALUE, Short.MAX_VALUE, "String");
+
+        final AssertionError thrown = assertThrows(
+                AssertionError.class,
+                () -> this.checkNotEquals(
+                        collection,
+                        collection
+                )
+        );
+
+        this.checkEquals(
+                "expected: not equal but was: <null\n" +
+                        "Before1\n" +
+                        "  Between2\n" +
+                        "After3\n" +
+                        "\n" +
+                        "true\n" +
+                        "A\n" +
+                        "1.0\n" +
+                        "2.5\n" +
+                        "3\n" +
+                        "9223372036854775807\n" +
+                        "32767\n" +
+                        "String\n" +
+                        ">",
+                thrown.getMessage()
         );
     }
 
