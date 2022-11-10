@@ -52,7 +52,7 @@ public interface IndentingPrinter extends Printer {
     @GwtIncompatible
     public static void main(final String[] args) {
         final IndentingPrinter printer = Printers.sysOut()
-                .indenting(Indentation.with("  "));
+                .indenting(Indentation.SPACES2);
         printer.print("First line\n");
         printer.indent();
         {

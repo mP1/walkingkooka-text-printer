@@ -35,7 +35,7 @@ final class TreePrintableTestingHelper {
     static String treePrint(final Collection<?> collection) {
         final StringBuilder b = new StringBuilder();
         final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM)
-                .indenting(Indentation.with("  "));
+                .indenting(Indentation.SPACES2);
         for (final Object element : collection) {
             TreePrintable.printTreeOrToString(element, printer);
             printer.println();

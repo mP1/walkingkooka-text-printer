@@ -30,7 +30,7 @@ public interface IndentingPrinterTesting<P extends IndentingPrinter>
 
     // constants
 
-    Indentation INDENTATION = Indentation.with("  ");
+    Indentation INDENTATION = Indentation.SPACES2;
 
     // tests
 

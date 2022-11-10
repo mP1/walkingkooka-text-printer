@@ -52,7 +52,7 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
     private void printTreeOrToStringAndCheck(final Object value,
                                              final String expected) {
         final StringBuilder b = new StringBuilder();
-        try (final IndentingPrinter printer = Printers.stringBuilder(b, EOL).indenting(Indentation.with("  "))) {
+        try (final IndentingPrinter printer = Printers.stringBuilder(b, EOL).indenting(Indentation.SPACES2)) {
             TreePrintable.printTreeOrToString(value, printer);
             printer.flush();
         }
