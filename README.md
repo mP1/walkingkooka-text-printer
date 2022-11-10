@@ -21,7 +21,7 @@ indentation to all printed lines with a scope.
 
 ```java
 final IndentingPrinter printer = Printers.sysOut()
-        .indenting(Indentation.with("  "));
+        .indenting(Indentation.SPACES2);
 printer.print("First line\n");
 printer.indent();
 {

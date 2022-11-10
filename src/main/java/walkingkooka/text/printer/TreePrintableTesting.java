@@ -28,7 +28,7 @@ import java.util.function.Supplier;
 
 public interface TreePrintableTesting extends Testing {
 
-    Indentation INDENTATION = Indentation.with("  ");
+    Indentation INDENTATION = Indentation.SPACES2;
     LineEnding EOL = LineEnding.NL;
 
     default void treePrintAndCheck(final TreePrintable printable,
