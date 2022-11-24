@@ -94,8 +94,14 @@ final class BasicIndentingPrinter implements IndentingPrinter {
                 if (start != i) {
                     printer.print(chars.subSequence(start, i));
                 }
-                for(int j = 0; j < this.indentationDepth; j++) {
-                    printer.print(this.indentation);
+                final int depth = this.indentationDepth;
+
+                if (depth > 0) {
+                    printer.print(
+                            this.indentation.repeat(
+                                    depth
+                            )
+                    );
                 }
                 start = i;
             }
