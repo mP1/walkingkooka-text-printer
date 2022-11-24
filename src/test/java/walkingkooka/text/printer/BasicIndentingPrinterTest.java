@@ -23,8 +23,7 @@ import walkingkooka.text.LineEnding;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-final public class BasicIndentingPrinterTest
-        extends PrinterTestCase2<BasicIndentingPrinter> implements IndentingPrinterTesting<BasicIndentingPrinter>, walkingkooka.reflect.TypeNameTesting<BasicIndentingPrinter> {
+final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicIndentingPrinter> implements IndentingPrinterTesting<BasicIndentingPrinter>, walkingkooka.reflect.TypeNameTesting<BasicIndentingPrinter> {
 
     protected final static LineEnding LINE_ENDING = LineEnding.CR;
     private final static Indentation INDENTATION = Indentation.with(">");
@@ -235,7 +234,7 @@ final public class BasicIndentingPrinterTest
     }
 
     @Test
-    final public void testWrapNullPrinterFails() {
+    public void testWrapNullPrinterFails() {
         assertThrows(NullPointerException.class, () -> this.createPrinter((Printer) null));
     }
 
@@ -255,7 +254,7 @@ final public class BasicIndentingPrinterTest
     }
 
     @Test
-    final public void testLineStart() {
+    public void testLineStart() {
         final StringBuilder builder = new StringBuilder();
         final BasicIndentingPrinter printer = this.createPrinter(Printers.stringBuilder(builder,
                 LINE_ENDING));
@@ -268,7 +267,7 @@ final public class BasicIndentingPrinterTest
     }
 
     @Test
-    final public void testLineStartWhenEmpty() {
+    public void testLineStartWhenEmpty() {
         final StringBuilder builder = new StringBuilder();
         final BasicIndentingPrinter printer = this.createPrinter(builder);
         printer.lineStart();
@@ -278,7 +277,7 @@ final public class BasicIndentingPrinterTest
     }
 
     @Test
-    final public void testLineStart2() {
+    public void testLineStart2() {
         final StringBuilder builder = new StringBuilder();
         final BasicIndentingPrinter printer = this.createPrinter(builder);
         printer.print("before");
@@ -290,7 +289,7 @@ final public class BasicIndentingPrinterTest
     }
 
     @Test
-    final public void testLineStartWithoutFollowingPrint() {
+    public void testLineStartWithoutFollowingPrint() {
         final StringBuilder printed = new StringBuilder();
         final BasicIndentingPrinter printer = this.createPrinter(printed);
         printer.print("before");
@@ -300,7 +299,7 @@ final public class BasicIndentingPrinterTest
     }
 
     @Test
-    final public void testLineStartFollowingCarriageReturn() {
+    public void testLineStartFollowingCarriageReturn() {
         final StringBuilder printed = new StringBuilder();
         final BasicIndentingPrinter printer = this.createPrinter(printed);
         printer.print("before\r");
@@ -311,7 +310,7 @@ final public class BasicIndentingPrinterTest
     }
 
     @Test
-    final public void testLineStartFollowingNewline() {
+    public void testLineStartFollowingNewline() {
         final StringBuilder printed = new StringBuilder();
         final BasicIndentingPrinter printer = this.createPrinter(printed);
         printer.print("before\n");
@@ -322,7 +321,7 @@ final public class BasicIndentingPrinterTest
     }
 
     @Test
-    final public void testLineStartFollowingCarriageReturnNewLine() {
+    public void testLineStartFollowingCarriageReturnNewLine() {
         final StringBuilder printed = new StringBuilder();
         final BasicIndentingPrinter printer = this.createPrinter(printed);
         printer.print("before\r\n");
@@ -333,7 +332,7 @@ final public class BasicIndentingPrinterTest
     }
 
     @Test
-    final public void testManyConsecutiveLineStarts() {
+    public void testManyConsecutiveLineStarts() {
         final StringBuilder printed = new StringBuilder();
         final BasicIndentingPrinter printer = this.createPrinter(printed);
         printer.print("before\n");
@@ -372,25 +371,25 @@ final public class BasicIndentingPrinterTest
     }
 
     @Override
-    final public BasicIndentingPrinter createPrinter(final StringBuilder builder) {
+    public BasicIndentingPrinter createPrinter(final StringBuilder builder) {
         return this.createPrinter(this.createStringBuilderPrinter(builder));
     }
 
-    final BasicIndentingPrinter createPrinter(final StringBuilder builder, final LineEnding lineEnding) {
+    BasicIndentingPrinter createPrinter(final StringBuilder builder, final LineEnding lineEnding) {
         return this.createPrinter(Printers.stringBuilder(builder, lineEnding));
     }
 
-    final Printer createStringBuilderPrinter(final StringBuilder printed) {
+    Printer createStringBuilderPrinter(final StringBuilder printed) {
         return Printers.stringBuilder(printed, LINE_ENDING);
     }
 
     @Override
-    public final String typeNamePrefix() {
+    public String typeNamePrefix() {
         return BasicIndentingPrinter.class.getSimpleName();
     }
 
     @Override
-    public final String typeNameSuffix() {
+    public String typeNameSuffix() {
         return "";
     }
 }
