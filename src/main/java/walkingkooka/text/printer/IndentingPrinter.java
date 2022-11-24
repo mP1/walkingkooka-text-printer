@@ -55,7 +55,7 @@ public interface IndentingPrinter extends Printer {
      * </pre>
      */
     @GwtIncompatible
-    public static void main(final String[] args) {
+    static void main(final String[] args) {
         final IndentingPrinter printer = Printers.sysOut()
                 .indenting(Indentation.SPACES2);
         printer.print("First line\n");
