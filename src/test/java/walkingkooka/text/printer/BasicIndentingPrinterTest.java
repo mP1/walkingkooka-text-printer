@@ -375,12 +375,11 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         return this.createPrinter(this.createStringBuilderPrinter(builder));
     }
 
-    BasicIndentingPrinter createPrinter(final StringBuilder builder, final LineEnding lineEnding) {
-        return this.createPrinter(Printers.stringBuilder(builder, lineEnding));
-    }
-
-    Printer createStringBuilderPrinter(final StringBuilder printed) {
-        return Printers.stringBuilder(printed, LINE_ENDING);
+    private Printer createStringBuilderPrinter(final StringBuilder printed) {
+        return Printers.stringBuilder(
+                printed,
+                LINE_ENDING
+        );
     }
 
     @Override
