@@ -61,6 +61,17 @@ public interface IndentingPrinterTesting<P extends IndentingPrinter>
         assertThrows(IllegalStateException.class, printer::outdent);
     }
 
+    // indentation............ .........................................................................................
+
+    default void indentationAndCheck(final IndentingPrinter printer,
+                                     final Indentation indentation) {
+        this.checkEquals(
+                indentation,
+                printer.indentation(),
+                () -> "indentation of " + printer
+        );
+    }
+
     // TypeNameTesting .........................................................................................
 
     @Override

@@ -345,6 +345,32 @@ final public class BasicIndentingPrinterTest
         this.checkEquals("before\nnext", printed.toString());
     }
 
+    @Test
+    public void testIndentation() {
+        final Indentation indentation = Indentation.with("abc");
+
+        final IndentingPrinter printer = this.createPrinter()
+                .indenting(indentation);
+
+        this.indentationAndCheck(
+                printer,
+                Indentation.EMPTY
+        );
+
+        printer.indent();
+        this.indentationAndCheck(
+                printer,
+                indentation
+        );
+
+        printer.indent();
+        printer.indent();
+        this.indentationAndCheck(
+                printer,
+                indentation.repeat(3)
+        );
+    }
+
     @Override
     final public BasicIndentingPrinter createPrinter(final StringBuilder builder) {
         return this.createPrinter(this.createStringBuilderPrinter(builder));

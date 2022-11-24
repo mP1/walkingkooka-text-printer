@@ -146,6 +146,11 @@ final class BasicIndentingPrinter implements IndentingPrinter {
     }
 
     @Override
+    public Indentation indentation() {
+        return this.indentation.repeat(this.indentationDepth);
+    }
+
+    @Override
     public void flush() throws PrinterException {
         this.printer.flush();
     }
