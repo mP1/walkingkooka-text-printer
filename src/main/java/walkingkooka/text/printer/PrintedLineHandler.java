@@ -42,7 +42,7 @@ public interface PrintedLineHandler extends PrinterLike {
      * </pre>
      */
     @GwtIncompatible
-    public static void main(final String[] args) {
+    static void main(final String[] args) {
         final Printer printer = Printers.sysOut()
                 .printedLine(new PrintedLineHandler() {
                     @Override
