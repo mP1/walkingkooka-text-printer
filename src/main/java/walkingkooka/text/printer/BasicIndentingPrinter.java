@@ -72,7 +72,7 @@ final class BasicIndentingPrinter implements IndentingPrinter {
     }
 
     @Override
-    final public void print(final CharSequence chars) throws PrinterException {
+    public void print(final CharSequence chars) throws PrinterException {
         this.print0(null == chars ? "null" : chars);
     }
 
