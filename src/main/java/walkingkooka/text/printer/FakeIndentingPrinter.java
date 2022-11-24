@@ -17,6 +17,8 @@
 
 package walkingkooka.text.printer;
 
+import walkingkooka.text.Indentation;
+
 /**
  * A {@link IndentingPrinter} that always throws {@link UnsupportedOperationException}.
  */
@@ -50,6 +52,11 @@ public class FakeIndentingPrinter extends FakePrinter implements IndentingPrinte
 
     @Override
     public void outdent() throws PrinterException {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Indentation indentation() throws PrinterException {
         throw new UnsupportedOperationException();
     }
 }

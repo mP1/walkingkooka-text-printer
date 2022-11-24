@@ -41,6 +41,11 @@ public interface IndentingPrinter extends Printer {
     void outdent() throws PrinterException;
 
     /**
+     * Returns the current {@link Indentation} if a newline followed by text was printed.
+     */
+    Indentation indentation();
+
+    /**
      * <pre>
      * First line
      *     Second
