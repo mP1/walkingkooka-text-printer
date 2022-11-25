@@ -17,6 +17,7 @@
 
 package walkingkooka.text.printer;
 
+import javaemul.internal.annotations.GwtIncompatible;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
@@ -103,6 +104,7 @@ public interface Printer extends PrinterLike, Closeable {
     /**
      * Returns a {@link PrintWriter} that prints any characters to this {@link Printer}.
      */
+    @GwtIncompatible("https://github.com/mP1/j2cl-java-io/issues/70")
     default PrintWriter asPrintWriter() {
         return new PrintWriter(
                 PrinterWriter.with(this),
