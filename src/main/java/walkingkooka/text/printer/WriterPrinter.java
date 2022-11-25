@@ -24,9 +24,9 @@ import java.io.Writer;
 import java.util.Objects;
 
 /**
- * An adapter that wraps a {@link Writer} printing to {@link Writer#write(String)}. Any {@link
- * IOException} that are thrown by the {@link Writer} are wrapped and then thrown inside a {@link
- * PrinterException}. The writer is never auto flushed.
+ * An Printer that directs all prints  to the provided Writer. Any {@link IOException} that may. be thrown is wrapped
+ * and rethrown within a {@link PrinterException}. The wrapped {@link Writer} is never automatically flushed, calls to
+ * {@link Printer#flush} are required.
  */
 final class WriterPrinter implements Printer {
 
