@@ -22,9 +22,8 @@ import walkingkooka.text.LineEnding;
 import java.util.Objects;
 
 /**
- * A {@link Printer} that buffers lines of they are written so it may detect long lines and pass
- * them to a {@link PrintedLineHandler}. To ensure that the buffer is flushed this {@link Printer}
- * requires an empty line to be printed when finished.
+ * A {@link Printer} that buffers lines of text as they are written. Each complete line is then passed to the given
+ * {@link PrintedLineHandler}.
  */
 final class PrintedLineHandlerPrinter implements Printer {
 
