@@ -21,6 +21,7 @@ import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.io.Closeable;
+import java.io.PrintWriter;
 import java.util.function.Function;
 
 /**
@@ -97,5 +98,15 @@ public interface Printer extends PrinterLike, Closeable {
      */
     default Printer uncloseable() {
         return Printers.uncloseable(this);
+    }
+
+    /**
+     * Returns a {@link PrintWriter} that prints any characters to this {@link Printer}.
+     */
+    default PrintWriter asPrintWriter() {
+        return new PrintWriter(
+                PrinterWriter.with(this),
+            false // auto-flash
+        );
     }
 }
