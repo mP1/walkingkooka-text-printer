@@ -19,21 +19,49 @@ package walkingkooka.text.printer;
 
 import walkingkooka.text.LineEnding;
 
+import java.util.Objects;
+
 /**
  * A {@link Printer} that ignores all {@link CharSequence sequences} added to it.
  */
 final class SinkPrinter implements Printer {
 
-    /**
-     * Singleton
-     */
-    final static SinkPrinter INSTANCE = new SinkPrinter();
+    static SinkPrinter with(final LineEnding lineEnding) {
+        Objects.requireNonNull(lineEnding, "lineEnding");
+
+        final SinkPrinter printer;
+
+        switch (lineEnding.toString()) {
+            case "\r":
+                printer = CR;
+                break;
+            case "\r\n":
+                printer = CRNL;
+                break;
+            case "\n":
+                printer = NL;
+                break;
+            case "":
+                printer = NONE;
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown lineEnding: " + lineEnding);
+        }
+
+        return printer;
+    }
+
+    private final static SinkPrinter CR = new SinkPrinter(LineEnding.CR);
+    private final static SinkPrinter CRNL = new SinkPrinter(LineEnding.CRNL);
+    private final static SinkPrinter NL = new SinkPrinter(LineEnding.NL);
+    private final static SinkPrinter NONE = new SinkPrinter(LineEnding.NONE);
 
     /**
      * Singleton
      */
-    private SinkPrinter() {
+    private SinkPrinter(final LineEnding lineEnding) {
         super();
+        this.lineEnding = lineEnding;
     }
 
     @Override
@@ -46,8 +74,10 @@ final class SinkPrinter implements Printer {
      */
     @Override
     public LineEnding lineEnding() throws PrinterException {
-        return LineEnding.NONE;
+        return this.lineEnding;
     }
+
+    private final LineEnding lineEnding;
 
     @Override
     public void flush() throws PrinterException {
