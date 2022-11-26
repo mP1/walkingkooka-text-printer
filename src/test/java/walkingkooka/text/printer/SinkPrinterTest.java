@@ -18,8 +18,10 @@
 package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.ToStringTesting;
+import walkingkooka.text.LineEnding;
 
-final public class SinkPrinterTest extends PrinterTestCase<SinkPrinter> {
+final public class SinkPrinterTest extends PrinterTestCase<SinkPrinter> implements ToStringTesting<SinkPrinter> {
 
     @Override
     @Test
@@ -29,7 +31,25 @@ final public class SinkPrinterTest extends PrinterTestCase<SinkPrinter> {
 
     @Test
     public void testPrintWorks() {
-        SinkPrinter.INSTANCE.print("string");
+        SinkPrinter.with(LineEnding.CR)
+                .print("string");
+    }
+
+    @Test
+    public void testLineEndingCr() {
+        this.checkEquals(
+                LineEnding.CR,
+                this.createPrinter().lineEnding()
+        );
+    }
+
+    @Test
+    public void testLineEndingNone() {
+        this.checkEquals(
+                LineEnding.NONE,
+                SinkPrinter.with(LineEnding.NONE)
+                        .lineEnding()
+        );
     }
 
     @Override
@@ -52,12 +72,15 @@ final public class SinkPrinterTest extends PrinterTestCase<SinkPrinter> {
 
     @Test
     public void testToString() {
-        this.checkEquals("sink", SinkPrinter.INSTANCE.toString());
+        this.toStringAndCheck(
+                this.createPrinter(),
+                "sink"
+        );
     }
 
     @Override
     public SinkPrinter createPrinter() {
-        return SinkPrinter.INSTANCE;
+        return SinkPrinter.with(LineEnding.CR);
     }
 
     @Override
