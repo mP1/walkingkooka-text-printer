@@ -17,7 +17,6 @@
 
 package walkingkooka.text.printer;
 
-import java.io.IOException;
 import java.io.Writer;
 
 /**
@@ -48,7 +47,7 @@ final class PrinterWriter extends Writer {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         this.printer.close();
     }
 
