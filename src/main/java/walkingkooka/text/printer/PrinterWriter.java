@@ -43,7 +43,7 @@ final class PrinterWriter extends Writer {
     }
 
     @Override
-    public void flush() throws IOException {
+    public void flush() {
         this.printer.flush();
     }
 
