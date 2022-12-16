@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Miroslav Pokorny (github.com/mP1)
+ * Copyright 2022 Miroslav Pokorny (github.com/mP1)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ package walkingkooka.text.printer;
 
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
-import walkingkooka.text.printer.PrintedLineHandlers;
 
 import java.lang.reflect.Method;
 
