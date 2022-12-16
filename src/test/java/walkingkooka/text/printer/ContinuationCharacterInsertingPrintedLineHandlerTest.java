@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Miroslav Pokorny (github.com/mP1)
+ * Copyright 2022 Miroslav Pokorny (github.com/mP1)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,8 +22,6 @@ import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.ThrowableTesting;
 import walkingkooka.text.LineEnding;
-import walkingkooka.text.printer.ContinuationCharacterInsertingPrintedLineHandler;
-import walkingkooka.text.printer.PrintedLineHandlerTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
