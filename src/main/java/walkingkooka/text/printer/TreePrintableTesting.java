@@ -36,7 +36,7 @@ public interface TreePrintableTesting extends Testing {
         this.checkEquals(
                 expected,
                 printable.treeToString(INDENTATION, EOL),
-                () -> printable.toString()
+                printable::toString
         );
     }
 
