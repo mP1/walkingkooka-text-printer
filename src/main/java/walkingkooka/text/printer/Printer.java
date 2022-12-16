@@ -22,6 +22,7 @@ import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.io.Closeable;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.function.Function;
 
@@ -110,5 +111,10 @@ public interface Printer extends PrinterLike, Closeable {
                 PrinterWriter.with(this),
             false // auto-flash
         );
+    }
+
+    @GwtIncompatible
+    default PrintStream asPrintStream() {
+        return PrinterPrintStream.with(this);
     }
 }
