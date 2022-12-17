@@ -88,7 +88,11 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
         final Printer printer = PrintStreamPrinter.with(new PrintStream(output),
                 LINE_ENDING);
         printer.print("ascii");
-        this.checkEquals("ascii", new String(output.toByteArray()));
+
+        this.checkEquals(
+                "ascii",
+                output.toString()
+        );
     }
 
     @Test
