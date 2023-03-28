@@ -246,6 +246,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         );
     }
 
+    @Test
     public void testPrintIndentLineStartPrintOutdent2() {
         final StringBuilder printed = new StringBuilder();
 
