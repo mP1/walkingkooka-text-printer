@@ -219,6 +219,66 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     }
 
     @Test
+    public void testPrintIndentLineStartPrintOutdent() {
+        final StringBuilder printed = new StringBuilder();
+
+        final BasicIndentingPrinter printer = this.createPrinter(printed);
+
+        final IndentingPrinter printer2 = printer.indenting(Indentation.with(">>"));
+        printer2.lineStart();
+        printer2.print("line1");
+
+        printer2.indent();
+        {
+            printer2.lineStart();
+            printer2.print("line2");
+        }
+        printer2.outdent();
+
+        printer2.lineStart();
+        printer2.print("line3");
+
+        this.checkEquals(
+                "line1" + LINE_ENDING +
+                        ">>line2" + LINE_ENDING +
+                        "line3",
+                printed.toString()
+        );
+    }
+
+    public void testPrintIndentLineStartPrintOutdent2() {
+        final StringBuilder printed = new StringBuilder();
+
+        final BasicIndentingPrinter printer = this.createPrinter(printed);
+
+        final IndentingPrinter printer2 = printer.indenting(Indentation.with(">>"));
+
+        printer2.lineStart();
+        printer2.print("line1");
+
+        printer2.indent();
+        {
+            printer2.lineStart();
+            printer2.print("line2");
+
+            printer2.lineStart();
+            printer2.print("line2b");
+        }
+        printer2.outdent();
+
+        printer2.lineStart();
+        printer2.print("line3");
+
+        this.checkEquals(
+                "line1" + LINE_ENDING +
+                        ">>line2" + LINE_ENDING +
+                        ">>line2b" + LINE_ENDING +
+                        "line3",
+                printed.toString()
+        );
+    }
+
+    @Test
     public void testToString() {
         final Printer printer = Printers.fake();
         this.checkEquals(printer.toString(), BasicIndentingPrinter.with(printer, INDENTATION).toString());
