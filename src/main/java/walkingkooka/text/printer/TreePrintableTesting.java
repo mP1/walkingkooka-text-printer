@@ -35,7 +35,7 @@ public interface TreePrintableTesting extends Testing {
                                    final String expected) {
         this.checkEquals(
                 expected,
-                printable.treeToString(INDENTATION, EOL),
+                TreePrintableTestingHelper.treePrint(printable),
                 printable::toString
         );
     }
@@ -64,8 +64,8 @@ public interface TreePrintableTesting extends Testing {
                              final Supplier<String> message) {
         if (!Objects.equals(expected, actual)) {
             this.checkEquals(
-                    null != expected ? expected.treeToString(INDENTATION, EOL) : null,
-                    null != actual ? actual.treeToString(INDENTATION, EOL) : null,
+                    TreePrintableTestingHelper.treePrint(expected),
+                    TreePrintableTestingHelper.treePrint(actual),
                     message
             );
         }
@@ -95,8 +95,8 @@ public interface TreePrintableTesting extends Testing {
                                 final Supplier<String> message) {
         if (Objects.equals(expected, actual)) {
             this.checkNotEquals(
-                    null != expected ? expected.treeToString(INDENTATION, EOL) : null,
-                    null != actual ? actual.treeToString(INDENTATION, EOL) : null,
+                    TreePrintableTestingHelper.treePrint(expected),
+                    TreePrintableTestingHelper.treePrint(actual),
                     message
             );
         }
@@ -125,7 +125,11 @@ public interface TreePrintableTesting extends Testing {
                             message
                     );
                 } else {
-                    Testing.super.checkEquals(expected, actual, message);
+                    Testing.super.checkEquals(
+                            expected,
+                            actual,
+                            message
+                    );
                 }
             }
         }
@@ -143,7 +147,11 @@ public interface TreePrintableTesting extends Testing {
             );
         } else {
             if (expected instanceof TreePrintable && actual instanceof TreePrintable) {
-                this.checkNotEquals((TreePrintable) expected, (TreePrintable) actual, message);
+                this.checkNotEquals(
+                        (TreePrintable) expected,
+                        (TreePrintable) actual,
+                        message
+                );
             } else {
                 if(TreePrintableTestingHelper.shouldTreePrint(actual) && TreePrintableTestingHelper.shouldTreePrint(expected)) {
                     Testing.super.checkNotEquals(
@@ -152,7 +160,11 @@ public interface TreePrintableTesting extends Testing {
                             message
                     );
                 } else {
-                    Testing.super.checkNotEquals(expected, actual, message);
+                    Testing.super.checkNotEquals(
+                            expected,
+                            actual,
+                            message
+                    );
                 }
             }
         }

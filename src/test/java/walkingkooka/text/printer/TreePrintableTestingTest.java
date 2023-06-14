@@ -50,9 +50,10 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
     public void testTreePrintAndCheck() {
         this.treePrintAndCheck(
                 TREE_PRINTABLE,
-                "Before1\n" +
-                        "  Between2\n" +
-                        "After3\n"
+                "walkingkooka.text.printer.TreePrintableTestingTest$1\n" +
+                        "  Before1\n" +
+                        "    Between2\n" +
+                        "  After3\n"
         );
     }
 
@@ -205,7 +206,12 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
         try {
             this.checkNotEquals(new TestTreePrintable(printTree), new TestTreePrintable(printTree), "message");
         } catch (final AssertionError expected) {
-            assertEquals("message ==> expected: not equal but was: <111>", expected.getMessage(), "message");
+            assertEquals(
+                    "message ==> expected: not equal but was: <walkingkooka.text.printer.TreePrintableTestingTest$TestTreePrintable\n" +
+                            "  111>",
+                    expected.getMessage(),
+                    "message"
+            );
             failed = true;
         }
         assertEquals(true, failed);
@@ -275,7 +281,12 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
                     "message"
             );
         } catch (final AssertionError expected) {
-            assertEquals("message ==> expected: not equal but was: <111>", expected.getMessage(), "message");
+            assertEquals(
+                    "message ==> expected: not equal but was: <walkingkooka.text.printer.TreePrintableTestingTest$TestTreePrintable\n" +
+                            "  111>",
+                    expected.getMessage(),
+                    "message"
+            );
             failed = true;
         }
         assertEquals(true, failed);
@@ -297,7 +308,13 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
                     (Object) new TestTreePrintable("different")
             );
         } catch (final AssertionError expected) {
-            assertEquals("expected: <123> but was: <different>", expected.getMessage(), "message");
+            assertEquals(
+                    "expected: <walkingkooka.text.printer.TreePrintableTestingTest$TestTreePrintable\n" +
+                            "  123> but was: <walkingkooka.text.printer.TreePrintableTestingTest$TestTreePrintable\n" +
+                            "  different>",
+                    expected.getMessage(),
+                    "message"
+            );
             failed = true;
         }
         assertEquals(true, failed);
@@ -317,7 +334,12 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
                     (Object) new TestTreePrintable("same")
             );
         } catch (final AssertionError expected) {
-            assertEquals("expected: not equal but was: <same>", expected.getMessage(), "message");
+            assertEquals(
+                    "expected: not equal but was: <walkingkooka.text.printer.TreePrintableTestingTest$TestTreePrintable\n" +
+                            "  same>",
+                    expected.getMessage(),
+                    "message"
+            );
             failed = true;
         }
         assertEquals(true, failed);
