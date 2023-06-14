@@ -49,6 +49,26 @@ final class TreePrintableTestingHelper {
                 value instanceof TreePrintable;
     }
 
+    static String treePrint(final TreePrintable treePrintable) {
+        final StringBuilder b = new StringBuilder();
+
+        if(null != treePrintable) {
+            try (final IndentingPrinter printer = Printers.stringBuilder(
+                    b,
+                    LineEnding.SYSTEM
+            ).indenting(Indentation.SPACES2)) {
+                printer.println(treePrintable.getClass().getName());
+                printer.indent();
+                {
+                    treePrintable.printTree(printer);
+                }
+                printer.outdent();
+                printer.flush();
+            }
+        }
+        return b.toString();
+    }
+
     static String treePrint(final Collection<?> collection) {
         final StringBuilder b = new StringBuilder();
         final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM)
