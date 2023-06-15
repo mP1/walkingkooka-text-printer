@@ -28,13 +28,22 @@ import java.util.function.Supplier;
 
 public interface TreePrintableTesting extends Testing {
 
+    Indentation INDENTATION = Indentation.SPACES2;
+
+    /**
+     * {@link LineEnding} are particularly important especially in {@link #treePrintAndCheck(TreePrintable, String)} where the {@link String} will have fixed line endings.
+     * <br>
+     * {@link LineEnding#NL} or <pre>\n</pre> should be used in all expected {@link String}.
+     */
+    LineEnding EOL = LineEnding.NL;
+
     default void treePrintAndCheck(final TreePrintable printable,
                                    final String expected) {
         this.checkEquals(
                 expected,
                 printable.treeToString(
                         Indentation.SPACES2,
-                        LineEnding.SYSTEM
+                        EOL
                 ),
                 printable::toString
         );

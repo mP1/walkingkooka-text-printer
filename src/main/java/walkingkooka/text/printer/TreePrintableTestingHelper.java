@@ -17,9 +17,6 @@
 
 package walkingkooka.text.printer;
 
-import walkingkooka.text.Indentation;
-import walkingkooka.text.LineEnding;
-
 import java.util.Collection;
 
 final class TreePrintableTestingHelper {
@@ -55,8 +52,8 @@ final class TreePrintableTestingHelper {
         if (null != treePrintable) {
             try (final IndentingPrinter printer = Printers.stringBuilder(
                     b,
-                    LineEnding.SYSTEM
-            ).indenting(Indentation.SPACES2)) {
+                    TreePrintableTesting.EOL
+            ).indenting(TreePrintableTesting.INDENTATION)) {
                 printer.println(treePrintable.getClass().getName());
                 printer.indent();
                 {
@@ -71,8 +68,8 @@ final class TreePrintableTestingHelper {
 
     static String treePrint(final Collection<?> collection) {
         final StringBuilder b = new StringBuilder();
-        final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM)
-                .indenting(Indentation.SPACES2);
+        final IndentingPrinter printer = Printers.stringBuilder(b, TreePrintableTesting.EOL)
+                .indenting(TreePrintableTesting.INDENTATION);
         for (final Object element : collection) {
             TreePrintable.printTreeOrToString(element, printer);
             printer.println();
