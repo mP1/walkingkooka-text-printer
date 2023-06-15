@@ -50,10 +50,9 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
     public void testTreePrintAndCheck() {
         this.treePrintAndCheck(
                 TREE_PRINTABLE,
-                "walkingkooka.text.printer.TreePrintableTestingTest$1\n" +
-                        "  Before1\n" +
-                        "    Between2\n" +
-                        "  After3\n"
+                "Before1\n" +
+                        "  Between2\n" +
+                        "After3\n"
         );
     }
 

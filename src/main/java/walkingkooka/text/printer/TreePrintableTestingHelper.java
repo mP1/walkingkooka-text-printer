@@ -49,10 +49,10 @@ final class TreePrintableTestingHelper {
                 value instanceof TreePrintable;
     }
 
-    static String treePrint(final TreePrintable treePrintable) {
+    static String treePrintWithClassName(final TreePrintable treePrintable) {
         final StringBuilder b = new StringBuilder();
 
-        if(null != treePrintable) {
+        if (null != treePrintable) {
             try (final IndentingPrinter printer = Printers.stringBuilder(
                     b,
                     LineEnding.SYSTEM

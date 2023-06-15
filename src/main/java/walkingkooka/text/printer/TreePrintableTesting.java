@@ -18,6 +18,8 @@ package walkingkooka.text.printer;
 
 import walkingkooka.Cast;
 import walkingkooka.test.Testing;
+import walkingkooka.text.Indentation;
+import walkingkooka.text.LineEnding;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -30,7 +32,10 @@ public interface TreePrintableTesting extends Testing {
                                    final String expected) {
         this.checkEquals(
                 expected,
-                TreePrintableTestingHelper.treePrint(printable),
+                printable.treeToString(
+                        Indentation.SPACES2,
+                        LineEnding.SYSTEM
+                ),
                 printable::toString
         );
     }
@@ -59,8 +64,8 @@ public interface TreePrintableTesting extends Testing {
                              final Supplier<String> message) {
         if (!Objects.equals(expected, actual)) {
             this.checkEquals(
-                    TreePrintableTestingHelper.treePrint(expected),
-                    TreePrintableTestingHelper.treePrint(actual),
+                    TreePrintableTestingHelper.treePrintWithClassName(expected),
+                    TreePrintableTestingHelper.treePrintWithClassName(actual),
                     message
             );
         }
@@ -90,8 +95,8 @@ public interface TreePrintableTesting extends Testing {
                                 final Supplier<String> message) {
         if (Objects.equals(expected, actual)) {
             this.checkNotEquals(
-                    TreePrintableTestingHelper.treePrint(expected),
-                    TreePrintableTestingHelper.treePrint(actual),
+                    TreePrintableTestingHelper.treePrintWithClassName(expected),
+                    TreePrintableTestingHelper.treePrintWithClassName(actual),
                     message
             );
         }
