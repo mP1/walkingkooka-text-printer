@@ -18,8 +18,6 @@ package walkingkooka.text.printer;
 
 import walkingkooka.Cast;
 import walkingkooka.test.Testing;
-import walkingkooka.text.Indentation;
-import walkingkooka.text.LineEnding;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -27,9 +25,6 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public interface TreePrintableTesting extends Testing {
-
-    Indentation INDENTATION = Indentation.SPACES2;
-    LineEnding EOL = LineEnding.NL;
 
     default void treePrintAndCheck(final TreePrintable printable,
                                    final String expected) {
