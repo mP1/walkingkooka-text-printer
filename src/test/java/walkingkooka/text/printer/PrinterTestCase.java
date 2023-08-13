@@ -35,30 +35,30 @@ abstract public class PrinterTestCase<P extends Printer> implements ClassTesting
         return new Printer() {
 
             @Override
-            public void print(final CharSequence chars) throws PrinterException {
+            public void print(final CharSequence chars) {
                 this.complainIfClosed();
                 throw new UnsupportedOperationException();
             }
 
             @Override
-            public LineEnding lineEnding() throws PrinterException {
+            public LineEnding lineEnding() {
                 this.complainIfClosed();
                 throw new UnsupportedOperationException();
             }
 
             @Override
-            public void flush() throws PrinterException {
+            public void flush() {
                 this.complainIfClosed();
             }
 
-            private void complainIfClosed() throws PrinterException {
+            private void complainIfClosed() {
                 if (this.closed) {
-                    throw new PrinterException("Closed");
+                    throw new IllegalStateException("Closed");
                 }
             }
 
             @Override
-            public void close() throws PrinterException {
+            public void close() {
                 this.closed = true;
             }
 

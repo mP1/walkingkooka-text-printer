@@ -20,7 +20,6 @@ package walkingkooka.text.printer;
 import walkingkooka.text.LineEnding;
 import walkingkooka.util.OpenChecker;
 
-import java.awt.print.PrinterException;
 import java.util.Objects;
 
 /**
@@ -85,8 +84,10 @@ final class StringBuilderPrinter implements Printer {
     /**
      * A flag that keeps track of whether this {@link Printer} is open(false) or closed(true)
      */
-    private final OpenChecker<PrinterException> openChecker = OpenChecker.with("Printer is closed",
-            PrinterException.FACTORY);
+    private final OpenChecker<IllegalStateException> openChecker = OpenChecker.with(
+            "Printer is closed",
+            IllegalStateException::new
+    );
 
     /**
      * Dumps the wrapped {@link StringBuilder}

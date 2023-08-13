@@ -54,7 +54,7 @@ final class WriterPrinter implements Printer {
         try {
             this.writer.write(chars.toString());
         } catch (final IOException cause) {
-            throw new PrinterException("Print failed", cause);
+            throw new IllegalStateException("Print failed", cause);
         }
     }
 
@@ -73,7 +73,7 @@ final class WriterPrinter implements Printer {
         try {
             this.writer.flush();
         } catch (final IOException cause) {
-            throw new PrinterException("Flush failed", cause);
+            throw new IllegalStateException("Flush failed", cause);
         }
     }
 
@@ -82,7 +82,7 @@ final class WriterPrinter implements Printer {
         try {
             this.writer.close();
         } catch (final IOException cause) {
-            throw new PrinterException("Close failed", cause);
+            throw new IllegalStateException("Close failed", cause);
         }
     }
 

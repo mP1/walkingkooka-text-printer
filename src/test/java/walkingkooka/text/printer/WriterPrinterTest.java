@@ -99,7 +99,10 @@ final public class WriterPrinterTest extends PrinterTestCase<WriterPrinter> {
                         throw new UnsupportedOperationException();
                     }
                 });
-        final PrinterException expected = assertThrows(PrinterException.class, () -> printer.print(written));
+        final IllegalStateException expected = assertThrows(
+                IllegalStateException.class,
+                () -> printer.print(written)
+        );
         assertSame(thrown, expected.getCause(), "cause");
     }
 
