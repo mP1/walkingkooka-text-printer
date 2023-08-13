@@ -61,7 +61,7 @@ final public class TextTransformingPrinterTest extends PrinterTestCase2<TextTran
     private void lineEndingAndCheck(final LineEnding lineEnding) {
         final TextTransformingPrinter printer = this.createPrinter(new FakePrinter() {
             @Override
-            public LineEnding lineEnding() throws PrinterException {
+            public LineEnding lineEnding() {
                 return lineEnding;
             }
         });

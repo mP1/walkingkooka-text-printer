@@ -19,7 +19,6 @@ package walkingkooka.text.printer;
 
 import walkingkooka.text.LineEnding;
 
-import java.awt.print.PrinterException;
 import java.io.PrintStream;
 import java.util.Objects;
 
@@ -121,7 +120,7 @@ final class PrintStreamPrinter implements Printer {
         } catch (final RuntimeException cause) {
             throw cause;
         } catch (final Exception cause) {
-            throw new PrinterException(cause.getMessage(), cause);
+            throw new IllegalStateException(cause.getMessage(), cause);
         }
     }
 

@@ -131,14 +131,14 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
                     @Override
                     public void println() {
                         if (this.closed) {
-                            throw new PrinterException("PrintStream already closed");
+                            throw new IllegalStateException("PrintStream already closed");
                         }
                     }
 
                     @Override
                     public void print(final Object object) {
                         if (this.closed) {
-                            throw new PrinterException("PrintStream already closed");
+                            throw new IllegalStateException("PrintStream already closed");
                         }
                         super.print(object);
                     }
@@ -146,7 +146,7 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
                     @Override
                     public void flush() {
                         if (this.closed) {
-                            throw new PrinterException("PrintStream already closed");
+                            throw new IllegalStateException("PrintStream already closed");
                         }
                         super.flush();
                     }

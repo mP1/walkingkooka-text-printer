@@ -107,7 +107,7 @@ final Printer printer = Printers.sysOut()
             @Override
             public void linePrinted(final CharSequence line,
                                     final LineEnding lineEnding,
-                                    final Printer printer) throws PrinterException {
+                                    final Printer printer) {
                 printer.print(">>" + line + lineEnding);
             }
         });

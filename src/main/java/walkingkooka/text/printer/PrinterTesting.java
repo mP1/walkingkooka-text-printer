@@ -50,23 +50,30 @@ public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
     default void testPrintAfterCloseFails() {
         final P printer = this.createPrinterAndClose();
 
-        assertThrows(PrinterException.class, () -> printer.print("print should have been failed because is already closed"));
+        assertThrows(
+                IllegalStateException.class,
+                () -> printer.print("print should have been failed because is already closed")
+        );
     }
 
     @Test
     default void testLineEndingAfterCloseFails() {
         final P printer = this.createPrinterAndClose();
 
-        assertThrows(PrinterException.class, printer::lineEnding);
-
+        assertThrows(
+                IllegalStateException.class,
+                printer::lineEnding
+        );
     }
 
     @Test
     default void testFlushAfterCloseFails() {
         final P printer = this.createPrinterAndClose();
 
-        assertThrows(PrinterException.class, printer::flush);
-
+        assertThrows(
+                IllegalStateException.class,
+                printer::flush
+        );
     }
 
     @Test
