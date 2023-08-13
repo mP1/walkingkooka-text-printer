@@ -19,14 +19,13 @@ package walkingkooka.text.printer;
 
 import walkingkooka.text.LineEnding;
 
-import java.awt.print.PrinterException;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Objects;
 
 /**
- * An Printer that directs all prints  to the provided Writer. Any {@link IOException} that may. be thrown is wrapped
- * and rethrown within a {@link PrinterException}. The wrapped {@link Writer} is never automatically flushed, calls to
+ * A Printer that directs all prints  to the provided Writer. Any {@link IOException} that may. be thrown is wrapped
+ * and rethrown within a {@link IllegalStateException}. The wrapped {@link Writer} is never automatically flushed, calls to
  * {@link Printer#flush} are required.
  */
 final class WriterPrinter implements Printer {
