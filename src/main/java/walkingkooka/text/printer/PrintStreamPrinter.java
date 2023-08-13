@@ -19,6 +19,7 @@ package walkingkooka.text.printer;
 
 import walkingkooka.text.LineEnding;
 
+import java.awt.print.PrinterException;
 import java.io.PrintStream;
 import java.util.Objects;
 
@@ -93,19 +94,19 @@ final class PrintStreamPrinter implements Printer {
     }
 
     @Override
-    public void print(final CharSequence chars) throws PrinterException {
+    public void print(final CharSequence chars) {
         this.printStream.print(chars);
     }
 
     @Override
-    public LineEnding lineEnding() throws PrinterException {
+    public LineEnding lineEnding() {
         return this.lineEnding;
     }
 
     private final LineEnding lineEnding;
 
     @Override
-    public void flush() throws PrinterException {
+    public void flush() {
         this.printStream.flush();
     }
 
@@ -113,7 +114,7 @@ final class PrintStreamPrinter implements Printer {
      * This method closes the wrapped {@link PrintStream}.
      */
     @Override
-    public void close() throws PrinterException {
+    public void close() {
         try {
             this.printStream.close();
             // j2cl emulated PrintStream#close throws IOException

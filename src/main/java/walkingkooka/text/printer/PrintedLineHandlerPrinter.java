@@ -47,7 +47,7 @@ final class PrintedLineHandlerPrinter implements Printer {
     }
 
     @Override
-    public void print(final CharSequence chars) throws PrinterException {
+    public void print(final CharSequence chars) {
         Objects.requireNonNull(chars, "chars");
 
         // only attempt to process if not an empty line
@@ -67,7 +67,7 @@ final class PrintedLineHandlerPrinter implements Printer {
      * handled by {@link #printPartOfBuffer(CharSequence, int)}.
      */
     private void printToBuffer(final CharSequence chars, final StringBuilder buffer)
-            throws PrinterException {
+            {
         final Printer printer = this.printer;
         final int length = chars.length();
         final PrintedLineHandler handler = this.handler;
@@ -154,7 +154,7 @@ final class PrintedLineHandlerPrinter implements Printer {
      * encountered at the end a {@link StringBuilder buffer} will be created and set with the
      * unprinted characters.
      */
-    private void printPartOfBuffer(final CharSequence chars, int start) throws PrinterException {
+    private void printPartOfBuffer(final CharSequence chars, int start) {
         final Printer printer = this.printer;
         final int length = chars.length();
         final PrintedLineHandler handler = this.handler;
@@ -216,7 +216,7 @@ final class PrintedLineHandlerPrinter implements Printer {
      * Returns the wrapped {@link Printer#lineEnding()}.
      */
     @Override
-    public LineEnding lineEnding() throws PrinterException {
+    public LineEnding lineEnding() {
         return this.printer.lineEnding();
     }
 
@@ -224,7 +224,7 @@ final class PrintedLineHandlerPrinter implements Printer {
      * Does nothing, flushing of the last line is performed when this printer is closed.
      */
     @Override
-    public void flush() throws PrinterException {
+    public void flush() {
         final Printer printer = this.printer;
 
         final StringBuilder buffer = this.buffer;
@@ -246,7 +246,7 @@ final class PrintedLineHandlerPrinter implements Printer {
      * Closes the wrapped printer after flushing the last pending line.
      */
     @Override
-    public void close() throws PrinterException {
+    public void close() {
         this.printer.close();
     }
 

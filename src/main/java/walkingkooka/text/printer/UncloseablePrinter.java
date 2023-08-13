@@ -49,22 +49,22 @@ final class UncloseablePrinter implements Printer {
     }
 
     @Override
-    public void print(final CharSequence chars) throws PrinterException {
+    public void print(final CharSequence chars) {
         this.printer.print(chars);
     }
 
     @Override
-    public LineEnding lineEnding() throws PrinterException {
+    public LineEnding lineEnding() {
         return this.printer.lineEnding();
     }
 
     @Override
-    public void flush() throws PrinterException {
+    public void flush() {
         this.printer.flush();
     }
 
     @Override
-    public void close() throws PrinterException {
+    public void close() {
         // ignore
     }
 

@@ -28,17 +28,17 @@ public interface IndentingPrinter extends Printer {
     /**
      * Starts a new line, multiple requests are ignored.
      */
-    void lineStart() throws PrinterException;
+    void lineStart();
 
     /**
      * Increases the indentation
      */
-    void indent() throws PrinterException;
+    void indent();
 
     /**
      * Removes a previous indentation.
      */
-    void outdent() throws PrinterException;
+    void outdent();
 
     /**
      * Returns the current {@link Indentation} if a newline followed by text was printed.

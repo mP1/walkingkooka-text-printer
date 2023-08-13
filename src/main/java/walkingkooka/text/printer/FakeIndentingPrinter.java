@@ -36,27 +36,27 @@ public class FakeIndentingPrinter extends FakePrinter implements IndentingPrinte
     }
 
     @Override
-    public void print(final CharSequence chars) throws PrinterException {
+    public void print(final CharSequence chars) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void lineStart() throws PrinterException {
+    public void lineStart() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void indent() throws PrinterException {
+    public void indent() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void outdent() throws PrinterException {
+    public void outdent() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public Indentation indentation() throws PrinterException {
+    public Indentation indentation() {
         throw new UnsupportedOperationException();
     }
 }

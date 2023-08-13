@@ -37,22 +37,22 @@ public class FakePrinter implements Printer, Fake {
     }
 
     @Override
-    public void print(final CharSequence value) throws PrinterException {
+    public void print(final CharSequence value) {
         throw new UnsupportedOperationException(value.toString());
     }
 
     @Override
-    public LineEnding lineEnding() throws PrinterException {
+    public LineEnding lineEnding() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void flush() throws PrinterException {
+    public void flush() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void close() throws PrinterException {
+    public void close() {
         throw new UnsupportedOperationException();
     }
 }
