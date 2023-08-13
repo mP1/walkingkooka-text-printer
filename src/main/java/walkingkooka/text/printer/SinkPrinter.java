@@ -65,7 +65,7 @@ final class SinkPrinter implements Printer {
     }
 
     @Override
-    public void print(final CharSequence chars) throws PrinterException {
+    public void print(final CharSequence chars) {
         // nop
     }
 
@@ -73,19 +73,19 @@ final class SinkPrinter implements Printer {
      * Always returns {@link LineEnding}.
      */
     @Override
-    public LineEnding lineEnding() throws PrinterException {
+    public LineEnding lineEnding() {
         return this.lineEnding;
     }
 
     private final LineEnding lineEnding;
 
     @Override
-    public void flush() throws PrinterException {
+    public void flush() {
         // nop
     }
 
     @Override
-    public void close() throws PrinterException {
+    public void close() {
         // nop
     }
 

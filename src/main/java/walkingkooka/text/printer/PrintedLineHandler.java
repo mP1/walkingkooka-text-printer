@@ -33,7 +33,7 @@ public interface PrintedLineHandler extends PrinterLike {
     void linePrinted(final CharSequence line,
                      final LineEnding lineEnding,
                      final Printer printer)
-            throws PrinterException;
+           ;
 
     /**
      * <pre>
@@ -52,7 +52,7 @@ public interface PrintedLineHandler extends PrinterLike {
                             @Override
                             public void linePrinted(final CharSequence line,
                                                     final LineEnding lineEnding,
-                                                    final Printer printer) throws PrinterException {
+                                                    final Printer printer) {
                                 printer.print(">>" + line + lineEnding);
                             }
                         }

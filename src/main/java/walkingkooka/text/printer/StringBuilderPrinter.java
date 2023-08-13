@@ -20,6 +20,7 @@ package walkingkooka.text.printer;
 import walkingkooka.text.LineEnding;
 import walkingkooka.util.OpenChecker;
 
+import java.awt.print.PrinterException;
 import java.util.Objects;
 
 /**
@@ -50,13 +51,13 @@ final class StringBuilderPrinter implements Printer {
      * Appends the {@link CharSequence} to the wrapped {@link StringBuilder}.
      */
     @Override
-    public void print(final CharSequence chars) throws PrinterException {
+    public void print(final CharSequence chars) {
         this.openChecker.check();
         this.stringBuilder.append(chars);
     }
 
     @Override
-    public LineEnding lineEnding() throws PrinterException {
+    public LineEnding lineEnding() {
         this.openChecker.check();
         return this.lineEnding;
     }
@@ -67,12 +68,12 @@ final class StringBuilderPrinter implements Printer {
      * Does nothing but verify this printer is still open
      */
     @Override
-    public void flush() throws PrinterException {
+    public void flush() {
         this.openChecker.check();
     }
 
     @Override
-    public void close() throws PrinterException {
+    public void close() {
         this.openChecker.close();
     }
 

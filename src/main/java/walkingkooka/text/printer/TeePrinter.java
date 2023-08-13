@@ -46,7 +46,7 @@ final class TeePrinter implements Printer {
     }
 
     @Override
-    public void print(final CharSequence chars) throws PrinterException {
+    public void print(final CharSequence chars) {
         this.first.print(chars);
         this.second.print(chars);
     }
@@ -63,7 +63,7 @@ final class TeePrinter implements Printer {
      * Flushes both {@link Printer printers} even if the first fails.
      */
     @Override
-    public void flush() throws PrinterException {
+    public void flush() {
         try {
             this.first.flush();
         } finally {
@@ -75,7 +75,7 @@ final class TeePrinter implements Printer {
      * Closes both {@link Printer printers} even if the first fails.
      */
     @Override
-    public void close() throws PrinterException {
+    public void close() {
         try {
             this.first.close();
         } finally {

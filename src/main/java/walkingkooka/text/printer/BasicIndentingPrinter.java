@@ -72,7 +72,7 @@ final class BasicIndentingPrinter implements IndentingPrinter {
     }
 
     @Override
-    public void print(final CharSequence chars) throws PrinterException {
+    public void print(final CharSequence chars) {
         this.print0(null == chars ? "null" : chars);
     }
 
@@ -112,7 +112,7 @@ final class BasicIndentingPrinter implements IndentingPrinter {
     }
 
     @Override
-    public void indent() throws PrinterException {
+    public void indent() {
         this.indentationDepth++; // dont care if overflows...
     }
 
@@ -120,7 +120,7 @@ final class BasicIndentingPrinter implements IndentingPrinter {
      * Decreases indentation.
      */
     @Override
-    public void outdent() throws PrinterException {
+    public void outdent() {
         if (0 == this.indentationDepth) {
             throw new IllegalStateException("More outdents than indents");
         }
@@ -128,7 +128,7 @@ final class BasicIndentingPrinter implements IndentingPrinter {
     }
 
     @Override
-    public LineEnding lineEnding() throws PrinterException {
+    public LineEnding lineEnding() {
         return this.printer.lineEnding();
     }
 
@@ -136,7 +136,7 @@ final class BasicIndentingPrinter implements IndentingPrinter {
      * Conditionally inserts a EOL guaranteeing the next print will start on a new line.
      */
     @Override
-    public void lineStart() throws PrinterException {
+    public void lineStart() {
         final char previous = this.previous;
         if ((BasicIndentingPrinter.CR != previous) && (BasicIndentingPrinter.NL != previous)) {
             final Printer printer = this.printer;
@@ -151,12 +151,12 @@ final class BasicIndentingPrinter implements IndentingPrinter {
     }
 
     @Override
-    public void flush() throws PrinterException {
+    public void flush() {
         this.printer.flush();
     }
 
     @Override
-    public void close() throws PrinterException {
+    public void close() {
         this.printer.close();
     }
 

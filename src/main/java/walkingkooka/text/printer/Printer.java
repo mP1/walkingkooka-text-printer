@@ -34,12 +34,12 @@ public interface Printer extends PrinterLike, Closeable {
     /**
      * Prints of or more characters.
      */
-    void print(CharSequence chars) throws PrinterException;
+    void print(CharSequence chars);
 
     /**
      * Prints the given {@link CharSequence} chars followed by a line ending.
      */
-    default void println(final CharSequence chars) throws PrinterException {
+    default void println(final CharSequence chars) {
         this.print(chars);
         this.println();
     }
@@ -47,25 +47,25 @@ public interface Printer extends PrinterLike, Closeable {
     /**
      * Prints the {@link #lineEnding()}
      */
-    default void println() throws PrinterException {
+    default void println() {
         this.print(this.lineEnding());
     }
 
     /**
      * Returns the recommended {@link LineEnding}.
      */
-    LineEnding lineEnding() throws PrinterException;
+    LineEnding lineEnding();
 
     /**
      * Flushes this {@link Printer}
      */
-    void flush() throws PrinterException;
+    void flush();
 
     /**
      * Closes this {@link Printer}. Any future prints will fail.
      */
     @Override
-    void close() throws PrinterException;
+    void close();
 
     /**
      * Creates an {@link IndentingPrinter} wrapping this {@link Printer}.
