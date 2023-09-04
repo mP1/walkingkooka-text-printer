@@ -113,7 +113,10 @@ public interface TreePrintableTesting extends Testing {
 
     // Testing.........................................................................................................
 
-    default void checkEquals(final Object expected, final Object actual, final Supplier<String> message) {
+    @Override
+    default void checkEquals(final Object expected,
+                             final Object actual,
+                             final Supplier<String> message) {
         if (expected instanceof Optional && actual instanceof Optional) {
             final Optional<?> expectedOptional = Cast.to(expected);
             final Optional<?> actualOptional = Cast.to(actual);
@@ -144,7 +147,10 @@ public interface TreePrintableTesting extends Testing {
         }
     }
 
-    default void checkNotEquals(final Object expected, final Object actual, final Supplier<String> message) {
+    @Override
+    default void checkNotEquals(final Object expected,
+                                final Object actual,
+                                final Supplier<String> message) {
         if (expected instanceof Optional && actual instanceof Optional) {
             final Optional<?> expectedOptional = Cast.to(expected);
             final Optional<?> actualOptional = Cast.to(actual);
