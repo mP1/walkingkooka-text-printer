@@ -280,6 +280,37 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     }
 
     @Test
+    public void testIndentPrintOutdentOutdentPrintIndentPrint() {
+        final StringBuilder printed = new StringBuilder();
+
+        final BasicIndentingPrinter printer = this.createPrinter(printed);
+
+
+        printer.indent();
+        {
+            printer.println("line1");
+        }
+        printer.outdent();
+
+        printer.outdent();
+        printer.outdent();
+
+        printer.indent();
+        {
+            printer.println("line2");
+        }
+        printer.outdent();
+
+        printer.flush();
+
+        this.checkEquals(
+                ">line1" + LINE_ENDING +
+                        ">line2" + LINE_ENDING,
+                printed.toString()
+        );
+    }
+
+    @Test
     public void testToString() {
         final Printer printer = Printers.fake();
         this.checkEquals(printer.toString(), BasicIndentingPrinter.with(printer, INDENTATION).toString());
