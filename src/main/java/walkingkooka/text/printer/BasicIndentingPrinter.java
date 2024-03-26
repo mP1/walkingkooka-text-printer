@@ -21,6 +21,7 @@ import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Adds support for writing text that requires some line formatting functionality such of
@@ -44,7 +45,14 @@ final class BasicIndentingPrinter implements IndentingPrinter {
     /**
      * The indentation depth that increases with calls to {@link #indent} and decreases with calls to {@link #outdent()}.
      */
-    private int indentationDepth;
+    private AtomicInteger indentationDepth;
+
+    private int indentationDepth() {
+        return Math.max(
+                this.indentationDepth.get(),
+                0
+        ); // ensure never underflows
+    }
 
     /**
      * Holds the last character to be added.
@@ -69,6 +77,7 @@ final class BasicIndentingPrinter implements IndentingPrinter {
         this.printer = printer;
         this.indentation =indentation;
         this.previous = START_OF_NEW_LINE;
+        this.indentationDepth = new AtomicInteger(0);
     }
 
     @Override
@@ -96,7 +105,7 @@ final class BasicIndentingPrinter implements IndentingPrinter {
                 }
                 printer.print(
                         this.indentation.repeat(
-                                this.indentationDepth
+                                this.indentationDepth()
                         )
                 );
                 start = i;
@@ -113,7 +122,7 @@ final class BasicIndentingPrinter implements IndentingPrinter {
 
     @Override
     public void indent() {
-        this.indentationDepth++; // dont care if overflows...
+        this.indentationDepth.incrementAndGet(); // dont care if overflows...
     }
 
     /**
@@ -121,10 +130,21 @@ final class BasicIndentingPrinter implements IndentingPrinter {
      */
     @Override
     public void outdent() {
-        if (0 == this.indentationDepth) {
-            throw new IllegalStateException("More outdents than indents");
+        final AtomicInteger depth = this.indentationDepth;
+
+        // try and decrement but never underflow below 0
+        for (; ; ) {
+            int value = depth.get();
+            if (value <= 0) {
+                break;
+            }
+            if (depth.compareAndSet(
+                    value,
+                    --value
+            )) {
+                break;
+            }
         }
-        this.indentationDepth--;
     }
 
     @Override
@@ -147,7 +167,9 @@ final class BasicIndentingPrinter implements IndentingPrinter {
 
     @Override
     public Indentation indentation() {
-        return this.indentation.repeat(this.indentationDepth);
+        return this.indentation.repeat(
+                this.indentationDepth()
+        );
     }
 
     @Override
