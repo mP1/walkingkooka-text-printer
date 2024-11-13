@@ -47,6 +47,16 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
     };
 
     @Test
+    public void testTreePrintAndCheckWithOptionalTreePrintable() {
+        this.treePrintAndCheck(
+                Optional.of(TREE_PRINTABLE),
+                "Before1\n" +
+                        "  Between2\n" +
+                        "After3\n"
+        );
+    }
+
+    @Test
     public void testTreePrintAndCheckWithNullTreePrintable() {
         this.treePrintAndCheck(
                 (TreePrintable) null,

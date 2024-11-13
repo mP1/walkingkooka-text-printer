@@ -37,6 +37,14 @@ public interface TreePrintableTesting extends Testing {
      */
     LineEnding EOL = LineEnding.NL;
 
+    default void treePrintAndCheck(final Optional<TreePrintable> printable,
+                                   final String expected) {
+        this.treePrintAndCheck(
+                printable.orElse(null),
+                expected
+        );
+    }
+
     default void treePrintAndCheck(final TreePrintable printable,
                                    final String expected) {
         if (null == printable) {
