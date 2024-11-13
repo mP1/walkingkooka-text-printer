@@ -47,6 +47,14 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
     };
 
     @Test
+    public void testTreePrintAndCheckWithNullTreePrintable() {
+        this.treePrintAndCheck(
+                (TreePrintable) null,
+                null
+        );
+    }
+
+    @Test
     public void testTreePrintAndCheck() {
         this.treePrintAndCheck(
                 TREE_PRINTABLE,

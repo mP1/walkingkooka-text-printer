@@ -39,14 +39,21 @@ public interface TreePrintableTesting extends Testing {
 
     default void treePrintAndCheck(final TreePrintable printable,
                                    final String expected) {
-        this.checkEquals(
-                expected,
-                printable.treeToString(
-                        Indentation.SPACES2,
-                        EOL
-                ),
-                printable::toString
-        );
+        if (null == printable) {
+            this.checkEquals(
+                    expected,
+                    null
+            );
+        } else {
+            this.checkEquals(
+                    expected,
+                    printable.treeToString(
+                            Indentation.SPACES2,
+                            EOL
+                    ),
+                    printable::toString
+            );
+        }
     }
 
     default void checkEquals(final TreePrintable expected,
