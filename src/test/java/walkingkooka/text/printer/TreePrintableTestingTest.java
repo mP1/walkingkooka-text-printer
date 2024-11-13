@@ -49,10 +49,11 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
     @Test
     public void testTreePrintAndCheckWithOptionalTreePrintable() {
         this.treePrintAndCheck(
-                Optional.of(TREE_PRINTABLE),
-                "Before1\n" +
-                        "  Between2\n" +
-                        "After3\n"
+                Optional.of(
+                        new TestTreePrintable("111\n  222")
+                ),
+                "111\n" +
+                        "  222"
         );
     }
 
