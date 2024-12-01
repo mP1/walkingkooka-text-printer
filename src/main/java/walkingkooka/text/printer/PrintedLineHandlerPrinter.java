@@ -52,22 +52,42 @@ final class PrintedLineHandlerPrinter implements Printer {
 
         // only attempt to process if not an empty line
         if (chars.length() > 0) {
-            // attempt to find an end of line with the buffer
-            final StringBuilder buffer = this.buffer;
-            if (null != buffer) {
-                this.printToBuffer(chars, buffer);
-            } else {
-                this.printPartOfBuffer(chars, 0);
+            // synchronization necessary to prevent multiple threads from "printing" and possibly causing ArrayIndexOutOfBoundsException
+            //
+            // Caused by: java.lang.ArrayIndexOutOfBoundsException: Index 75 out of bounds for length 34
+            //    at java.lang.AbstractStringBuilder.append (AbstractStringBuilder.java:804)
+            //    at java.lang.StringBuilder.append (StringBuilder.java:246)
+            //    at walkingkooka.text.printer.PrintedLineHandlerPrinter.printToBuffer (PrintedLineHandlerPrinter.java:146)
+            //    at walkingkooka.text.printer.PrintedLineHandlerPrinter.print (PrintedLineHandlerPrinter.java:58)
+            //    at walkingkooka.text.printer.BasicIndentingPrinter.print0 (BasicIndentingPrinter.java:119)
+            //    at walkingkooka.text.printer.BasicIndentingPrinter.print (BasicIndentingPrinter.java:85)
+            //    at walkingkooka.j2cl.maven.log.TreeLogger.line0 (TreeLogger.java:433)
+            //    at walkingkooka.j2cl.maven.log.TreeLogger.line (TreeLogger.java:428)
+            //    at walkingkooka.j2cl.maven.J2clMavenContext.callable (J2clMavenContext.java:435)
+            //    at walkingkooka.j2cl.maven.J2clMavenContext.lambda$trySubmitTasks$2 (J2clMavenContext.java:394)
+            synchronized (this.lock) {
+                this.printNotEmpty(chars);
             }
         }
+    }
+
+    private final Object lock = new Object();
+
+    private void printNotEmpty(final CharSequence chars) {
+        // attempt to find an end of line with the buffer
+        final StringBuilder buffer = this.buffer;
+        if (null != buffer) {
+            this.printToBuffer(chars, buffer);
+        } else {
+            this.printPartOfBuffer(chars, 0);
+            }
     }
 
     /**
      * Fills the {@link StringBuilder buffer} until a new line is encountered. The new line will be
      * handled by {@link #printPartOfBuffer(CharSequence, int)}.
      */
-    private void printToBuffer(final CharSequence chars, final StringBuilder buffer)
-            {
+    private void printToBuffer(final CharSequence chars, final StringBuilder buffer) {
         final Printer printer = this.printer;
         final int length = chars.length();
         final PrintedLineHandler handler = this.handler;

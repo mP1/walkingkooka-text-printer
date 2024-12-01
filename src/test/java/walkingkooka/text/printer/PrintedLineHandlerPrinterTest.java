@@ -22,6 +22,8 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.LineEnding;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 final public class PrintedLineHandlerPrinterTest extends PrinterTestCase2<PrintedLineHandlerPrinter> {
@@ -290,6 +292,62 @@ final public class PrintedLineHandlerPrinterTest extends PrinterTestCase2<Printe
     @Test
     public void testFlushAfterCloseFails() {
         // nop
+    }
+
+    @Test
+    public void testManyThreadsPrintingConcurrently() throws Exception {
+        final PrintedLineHandlerPrinter printer = PrintedLineHandlerPrinter.wrap(
+                Printers.stringBuilder(
+                        new StringBuilder(),
+                        LineEnding.NL
+                ),
+                new PrintedLineHandler() {
+                    @Override
+                    public void linePrinted(final CharSequence line,
+                                            final LineEnding lineEnding,
+                                            final Printer printer) {
+                        printer.print("" + line + lineEnding);
+                    }
+                }
+        );
+
+        final AtomicLong printLineCounter = new AtomicLong();
+
+        final int threadCount = 20;
+        final AtomicLong finished = new AtomicLong();
+
+        for (int i = 0; i < threadCount; i++) {
+            new Thread(
+                    () -> {
+                        try {
+                            System.out.println("BEGIN " + Thread.currentThread().getId());
+
+                            for (int j = 0; j < 1000; j++) {
+                                printer.println("Hello\nHello2\nHello3\n");
+                                printLineCounter.incrementAndGet();
+                            }
+
+                            System.out.println("END " + Thread.currentThread().getId());
+                        } finally {
+                            finished.incrementAndGet();
+                        }
+                    }
+            ).start();
+        }
+
+        final long end = 10000 + System.currentTimeMillis();
+
+        for (; ; ) {
+            System.out.println(printLineCounter.get());
+
+            if (System.currentTimeMillis() >= end) {
+                //break;
+            }
+            if (finished.get() >= threadCount) {
+                break;
+            }
+            Thread.sleep(50);
+        }
     }
 
     @Test
