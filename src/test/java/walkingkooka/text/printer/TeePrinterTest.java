@@ -62,7 +62,7 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
         final StringBuilder builder2 = new StringBuilder();
         final StringBuilder builder3 = new StringBuilder();
         final Printer printer = TeePrinter.wrap(Printers.stringBuilder(builder1,
-                LINE_ENDING),
+                        LINE_ENDING),
                 Printers.stringBuilder(builder2, LINE_ENDING));
         printer.print("string");
         builder3.append("string");
@@ -84,7 +84,7 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
         final StringBuilder builder2 = new StringBuilder();
         final StringBuilder builder3 = new StringBuilder();
         final Printer printer = TeePrinter.wrap(Printers.stringBuilder(builder1,
-                LINE_ENDING),
+                        LINE_ENDING),
                 Printers.stringBuilder(builder2, LINE_ENDING));
         printer.print("string");
         builder3.append("string");

@@ -109,7 +109,7 @@ public interface Printer extends PrinterLike, Closeable {
     default PrintWriter asPrintWriter() {
         return new PrintWriter(
                 PrinterWriter.with(this),
-            false // auto-flash
+                false // auto-flash
         );
     }
 

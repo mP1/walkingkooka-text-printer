@@ -145,10 +145,10 @@ public interface TreePrintableTesting extends Testing {
             if (expected instanceof TreePrintable && actual instanceof TreePrintable) {
                 this.checkEquals((TreePrintable) expected, (TreePrintable) actual, message);
             } else {
-                if(TreePrintableTestingHelper.shouldTreePrint(actual) && TreePrintableTestingHelper.shouldTreePrint(expected)) {
+                if (TreePrintableTestingHelper.shouldTreePrint(actual) && TreePrintableTestingHelper.shouldTreePrint(expected)) {
                     Testing.super.checkEquals(
-                            TreePrintableTestingHelper.treePrint((Collection<?>)expected),
-                            TreePrintableTestingHelper.treePrint((Collection<?>)actual),
+                            TreePrintableTestingHelper.treePrint((Collection<?>) expected),
+                            TreePrintableTestingHelper.treePrint((Collection<?>) actual),
                             message
                     );
                 } else {
@@ -183,10 +183,10 @@ public interface TreePrintableTesting extends Testing {
                         message
                 );
             } else {
-                if(TreePrintableTestingHelper.shouldTreePrint(actual) && TreePrintableTestingHelper.shouldTreePrint(expected)) {
+                if (TreePrintableTestingHelper.shouldTreePrint(actual) && TreePrintableTestingHelper.shouldTreePrint(expected)) {
                     Testing.super.checkNotEquals(
-                            TreePrintableTestingHelper.treePrint((Collection<?>)expected),
-                            TreePrintableTestingHelper.treePrint((Collection<?>)actual),
+                            TreePrintableTestingHelper.treePrint((Collection<?>) expected),
+                            TreePrintableTestingHelper.treePrint((Collection<?>) actual),
                             message
                     );
                 } else {

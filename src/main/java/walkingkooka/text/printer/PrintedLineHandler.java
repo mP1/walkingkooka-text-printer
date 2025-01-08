@@ -33,7 +33,7 @@ public interface PrintedLineHandler extends PrinterLike {
     void linePrinted(final CharSequence line,
                      final LineEnding lineEnding,
                      final Printer printer)
-           ;
+    ;
 
     /**
      * <pre>
