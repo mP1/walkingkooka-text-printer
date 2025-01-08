@@ -90,9 +90,9 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
         final AssertionError thrown = assertThrows(
                 AssertionError.class,
                 () -> this.checkEquals(
-                            Lists.of(null, TREE_PRINTABLE, true, 'A', 1.0, 2.5f, 3, Long.MAX_VALUE, Short.MAX_VALUE, "String"),
-                            Lists.of(TREE_PRINTABLE)
-                    )
+                        Lists.of(null, TREE_PRINTABLE, true, 'A', 1.0, 2.5f, 3, Long.MAX_VALUE, Short.MAX_VALUE, "String"),
+                        Lists.of(TREE_PRINTABLE)
+                )
         );
 
         this.checkEquals(

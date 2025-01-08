@@ -75,7 +75,7 @@ final class BasicIndentingPrinter implements IndentingPrinter {
         super();
 
         this.printer = printer;
-        this.indentation =indentation;
+        this.indentation = indentation;
         this.previous = START_OF_NEW_LINE;
         this.indentationDepth = new AtomicInteger(0);
     }

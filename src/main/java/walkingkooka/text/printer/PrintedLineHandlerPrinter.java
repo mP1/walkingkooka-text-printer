@@ -80,7 +80,7 @@ final class PrintedLineHandlerPrinter implements Printer {
             this.printToBuffer(chars, buffer);
         } else {
             this.printPartOfBuffer(chars, 0);
-            }
+        }
     }
 
     /**

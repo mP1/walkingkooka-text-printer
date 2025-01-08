@@ -27,7 +27,7 @@ import java.io.IOException;
 public final class PrinterWriterTest implements ClassTesting<PrinterWriter> {
 
     @Test
-    public void testWrite() throws IOException  {
+    public void testWrite() throws IOException {
         final StringBuilder b = new StringBuilder();
         final Printer printer = Printers.stringBuilder(b, LineEnding.NL);
         final PrinterWriter printWriter = PrinterWriter.with(printer);

@@ -95,7 +95,7 @@ public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
         this.checkEquals(
                 expected,
                 actual,
-                (String)null
+                (String) null
         );
     }
 
@@ -103,8 +103,8 @@ public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
                              final CharSequence actual,
                              final String message) {
         this.checkEquals(
-                (Object)CharSequences.escape(expected),
-                (Object)CharSequences.escape(actual).toString(),
+                (Object) CharSequences.escape(expected),
+                (Object) CharSequences.escape(actual).toString(),
                 message
         );
     }

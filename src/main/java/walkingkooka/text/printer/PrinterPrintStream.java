@@ -86,7 +86,7 @@ final class PrinterPrintStream extends PrintStream {
     }
 
     // println..........................................................................................................
-    
+
     @Override
     public void println() {
         this.printer.println();
