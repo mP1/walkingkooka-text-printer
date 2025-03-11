@@ -16,6 +16,7 @@
  */
 package walkingkooka.text.printer;
 
+import org.opentest4j.AssertionFailedError;
 import walkingkooka.Cast;
 import walkingkooka.test.Testing;
 import walkingkooka.text.Indentation;
@@ -118,11 +119,20 @@ public interface TreePrintableTesting extends Testing {
                                 final TreePrintable actual,
                                 final Supplier<String> message) {
         if (Objects.equals(expected, actual)) {
-            this.checkNotEquals(
-                    TreePrintableTestingHelper.treePrintWithClassName(expected),
-                    TreePrintableTestingHelper.treePrintWithClassName(actual),
+            final String expectedString = TreePrintableTestingHelper.treePrintWithClassName(
+                    (TreePrintable)expected
+            );
+            final String actualString = TreePrintableTestingHelper.treePrintWithClassName(
+                    (TreePrintable)actual
+            );
+
+            Testing.super.checkNotEquals(
+                    expectedString,
+                    actualString,
                     message
             );
+
+            throw new AssertionFailedError("Expected different but got <" + expectedString + "> and <" + actualString + ">");
         }
     }
 
@@ -146,11 +156,15 @@ public interface TreePrintableTesting extends Testing {
                 this.checkEquals((TreePrintable) expected, (TreePrintable) actual, message);
             } else {
                 if (TreePrintableTestingHelper.shouldTreePrint(actual) && TreePrintableTestingHelper.shouldTreePrint(expected)) {
-                    Testing.super.checkEquals(
-                            TreePrintableTestingHelper.treePrint((Collection<?>) expected),
-                            TreePrintableTestingHelper.treePrint((Collection<?>) actual),
-                            message
-                    );
+                    // extra test here because some TreePrintables might be equal but print differently.
+                    // SpreadsheetDelta.deletedCell Set<SpreadsheetCellReference> ignores SpreadsheetReferenceKind
+                    if(false == Objects.equals(expected, actual)) {
+                        Testing.super.checkEquals(
+                                TreePrintableTestingHelper.treePrint((Collection<?>) expected),
+                                TreePrintableTestingHelper.treePrint((Collection<?>) actual),
+                                message
+                        );
+                    }
                 } else {
                     Testing.super.checkEquals(
                             expected,
@@ -184,11 +198,20 @@ public interface TreePrintableTesting extends Testing {
                 );
             } else {
                 if (TreePrintableTestingHelper.shouldTreePrint(actual) && TreePrintableTestingHelper.shouldTreePrint(expected)) {
-                    Testing.super.checkNotEquals(
-                            TreePrintableTestingHelper.treePrint((Collection<?>) expected),
-                            TreePrintableTestingHelper.treePrint((Collection<?>) actual),
-                            message
-                    );
+                    // extra test here because some TreePrintables might be equal but print differently.
+                    // SpreadsheetDelta.deletedCell Set<SpreadsheetCellReference> ignores SpreadsheetReferenceKind
+                    if(Objects.equals(expected, actual)) {
+                        final String expectedString = TreePrintableTestingHelper.treePrint((Collection<?>) expected);
+                        final String actualString = TreePrintableTestingHelper.treePrint((Collection<?>) actual);
+
+                        Testing.super.checkNotEquals(
+                                expectedString,
+                                actualString,
+                                message
+                        );
+
+                        throw new AssertionFailedError("Expected different but got <" + expectedString + "> and <" + actualString + ">");
+                    };
                 } else {
                     Testing.super.checkNotEquals(
                             expected,
