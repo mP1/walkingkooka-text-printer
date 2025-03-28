@@ -40,8 +40,29 @@ public interface TreePrintable {
                     CharSequences.quoteIfChars(object)
             );
 
-            if(null != object) {
-                printer.print(" (" + object.getClass().getName() + ")");
+            if (object instanceof Byte) {
+                printer.print(" (Byte)");
+            } else {
+                if (object instanceof Short) {
+                    printer.print(" (Short)");
+                } else {
+                    if (object instanceof Long) {
+                        printer.print("L");
+                    } else {
+                        if (null != object &&
+                                false ==
+                                        (object instanceof Boolean ||
+                                                object instanceof Integer ||
+                                                object instanceof Float ||
+                                                object instanceof Double ||
+                                                object instanceof Character ||
+                                                object instanceof String ||
+                                                object instanceof Enum)) {
+                            printer.print(" (" + object.getClass().getName() + ")");
+                        }
+
+                    }
+                }
             }
 
             printer.println();

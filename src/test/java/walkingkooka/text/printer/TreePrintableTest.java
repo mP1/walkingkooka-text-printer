@@ -24,6 +24,8 @@ import walkingkooka.text.CharSequences;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
+import java.math.RoundingMode;
+
 public final class TreePrintableTest implements ClassTesting<TreePrintable> {
 
     private final static LineEnding EOL = LineEnding.NL;
@@ -42,7 +44,7 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
     public void testPrintTreeOrToStringWithBoolean() {
         this.printTreeOrToStringAndCheck(
                 true,
-                "true (java.lang.Boolean)\n"
+                "true\n"
         );
     }
 
@@ -50,7 +52,7 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
     public void testPrintTreeOrToStringWithByte() {
         this.printTreeOrToStringAndCheck(
                 Byte.parseByte("12"),
-                "12 (java.lang.Byte)\n"
+                "12 (Byte)\n"
         );
     }
 
@@ -58,7 +60,7 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
     public void testPrintTreeOrToStringWithShort() {
         this.printTreeOrToStringAndCheck(
                 Short.parseShort("34"),
-                "34 (java.lang.Short)\n"
+                "34 (Short)\n"
         );
     }
 
@@ -66,7 +68,7 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
     public void testPrintTreeOrToStringWithInt() {
         this.printTreeOrToStringAndCheck(
                 56,
-                "56 (java.lang.Integer)\n"
+                "56\n"
         );
     }
 
@@ -74,7 +76,7 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
     public void testPrintTreeOrToStringWithLong() {
         this.printTreeOrToStringAndCheck(
                 78L,
-                "78 (java.lang.Long)\n"
+                "78L\n"
         );
     }
 
@@ -82,7 +84,7 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
     public void testPrintTreeOrToStringWithFloat() {
         this.printTreeOrToStringAndCheck(
                 9.0f,
-                "9.0 (java.lang.Float)\n"
+                "9.0\n"
         );
     }
 
@@ -90,7 +92,7 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
     public void testPrintTreeOrToStringWithDouble() {
         this.printTreeOrToStringAndCheck(
                 111.0,
-                "111.0 (java.lang.Double)\n"
+                "111.0\n"
         );
     }
 
@@ -98,7 +100,7 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
     public void testPrintTreeOrToStringWithCharacter() {
         this.printTreeOrToStringAndCheck(
                 'Z',
-                "'Z' (java.lang.Character)\n"
+                "'Z'\n"
         );
     }
 
@@ -106,7 +108,23 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
     public void testPrintTreeOrToStringWithString() {
         this.printTreeOrToStringAndCheck(
                 "123abc",
-                "\"123abc\" (java.lang.String)\n"
+                "\"123abc\"\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithEnum() {
+        this.printTreeOrToStringAndCheck(
+                RoundingMode.DOWN,
+                "DOWN\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithNonTreePrintable() {
+        this.printTreeOrToStringAndCheck(
+                new StringBuilder("\"123\""),
+                "\"123\" (java.lang.StringBuilder)\n"
         );
     }
 

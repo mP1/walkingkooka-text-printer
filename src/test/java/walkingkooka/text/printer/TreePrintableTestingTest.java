@@ -113,21 +113,21 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
                         "  Between2\n" +
                         "After3\n" +
                         "\n" +
-                        "true (java.lang.Boolean)\n" +
+                        "true\n" +
                         "\n" +
-                        "'A' (java.lang.Character)\n" +
+                        "'A'\n" +
                         "\n" +
-                        "1.0 (java.lang.Double)\n" +
+                        "1.0\n" +
                         "\n" +
-                        "2.5 (java.lang.Float)\n" +
+                        "2.5\n" +
                         "\n" +
-                        "3 (java.lang.Integer)\n" +
+                        "3\n" +
                         "\n" +
-                        "9223372036854775807 (java.lang.Long)\n" +
+                        "9223372036854775807L\n" +
                         "\n" +
-                        "32767 (java.lang.Short)\n" +
+                        "32767 (Short)\n" +
                         "\n" +
-                        "\"String\" (java.lang.String)\n" +
+                        "\"String\"\n" +
                         "\n" +
                         "> but was: <Before1\n" +
                         "  Between2\n" +
@@ -178,21 +178,21 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
                         "  Between2\n" +
                         "After3\n" +
                         "\n" +
-                        "true (java.lang.Boolean)\n" +
+                        "true\n" +
                         "\n" +
-                        "'A' (java.lang.Character)\n" +
+                        "'A'\n" +
                         "\n" +
-                        "1.0 (java.lang.Double)\n" +
+                        "1.0\n" +
                         "\n" +
-                        "2.5 (java.lang.Float)\n" +
+                        "2.5\n" +
                         "\n" +
-                        "3 (java.lang.Integer)\n" +
+                        "3\n" +
                         "\n" +
-                        "9223372036854775807 (java.lang.Long)\n" +
+                        "9223372036854775807L\n" +
                         "\n" +
-                        "32767 (java.lang.Short)\n" +
+                        "32767 (Short)\n" +
                         "\n" +
-                        "\"String\" (java.lang.String)\n" +
+                        "\"String\"\n" +
                         "\n" +
                         ">",
                 thrown.getMessage()
