@@ -21,6 +21,10 @@ import walkingkooka.text.CharSequences;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
+import java.util.Collection;
+import java.util.Map;
+import java.util.Optional;
+
 /**
  * Advertises support for printing a value as a tree, with values and child values, which is particularly useful as
  * content for debugging failed assertions in tests.
@@ -59,7 +63,10 @@ public interface TreePrintable {
                                                 object instanceof Character ||
                                                 object instanceof String ||
                                                 object instanceof Enum ||
-                                                object instanceof Name)) {
+                                                object instanceof Name ||
+                                                object instanceof Optional ||
+                                                object instanceof Collection ||
+                                                object instanceof Map<?, ?>)) {
                             printer.print(" (" + object.getClass().getName() + ")");
                         }
 

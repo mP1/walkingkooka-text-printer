@@ -18,6 +18,9 @@
 package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.collect.list.Lists;
+import walkingkooka.collect.map.Maps;
+import walkingkooka.collect.set.Sets;
 import walkingkooka.naming.Names;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
@@ -26,6 +29,7 @@ import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.math.RoundingMode;
+import java.util.Optional;
 
 public final class TreePrintableTest implements ClassTesting<TreePrintable> {
 
@@ -126,6 +130,38 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
         this.printTreeOrToStringAndCheck(
                 Names.string("Hello"),
                 "Hello\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithOptional() {
+        this.printTreeOrToStringAndCheck(
+                Optional.ofNullable("Hello"),
+                "\"Hello\"\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithList() {
+        this.printTreeOrToStringAndCheck(
+                Lists.of("Hello"),
+                "[\"Hello\"]\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithSet() {
+        this.printTreeOrToStringAndCheck(
+                Sets.of("Hello"),
+                "[\"Hello\"]\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithMap() {
+        this.printTreeOrToStringAndCheck(
+                Maps.of("Key1", "Value2"),
+                "{\"Key1\"=\"Value2\"}\n"
         );
     }
 
