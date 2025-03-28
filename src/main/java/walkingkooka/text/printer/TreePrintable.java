@@ -16,6 +16,7 @@
  */
 package walkingkooka.text.printer;
 
+import walkingkooka.text.CharSequences;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
@@ -26,7 +27,8 @@ import walkingkooka.text.LineEnding;
 public interface TreePrintable {
 
     /**
-     * Helper which if the object is {@link TreePrintable} prints it otherwise prints {@link Object#toString()}
+     * Helper which if the object is {@link TreePrintable} prints it otherwise prints something like {@link Object#toString()}
+     * and the class name in parens.
      */
     static void printTreeOrToString(final Object object,
                                     final IndentingPrinter printer) {
@@ -34,7 +36,15 @@ public interface TreePrintable {
             final TreePrintable treePrintable = (TreePrintable) object;
             treePrintable.printTree(printer);
         } else {
-            printer.print(String.valueOf(object));
+            printer.print(
+                    CharSequences.quoteIfChars(object)
+            );
+
+            if(null != object) {
+                printer.print(" (" + object.getClass().getName() + ")");
+            }
+
+            printer.println();
         }
     }
 
