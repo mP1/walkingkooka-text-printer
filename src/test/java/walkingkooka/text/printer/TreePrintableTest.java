@@ -18,6 +18,7 @@
 package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.naming.Names;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.CharSequences;
@@ -117,6 +118,14 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
         this.printTreeOrToStringAndCheck(
                 RoundingMode.DOWN,
                 "DOWN\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithName() {
+        this.printTreeOrToStringAndCheck(
+                Names.string("Hello"),
+                "Hello\n"
         );
     }
 

@@ -16,6 +16,7 @@
  */
 package walkingkooka.text.printer;
 
+import walkingkooka.naming.Name;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
@@ -57,7 +58,8 @@ public interface TreePrintable {
                                                 object instanceof Double ||
                                                 object instanceof Character ||
                                                 object instanceof String ||
-                                                object instanceof Enum)) {
+                                                object instanceof Enum ||
+                                                object instanceof Name)) {
                             printer.print(" (" + object.getClass().getName() + ")");
                         }
 
