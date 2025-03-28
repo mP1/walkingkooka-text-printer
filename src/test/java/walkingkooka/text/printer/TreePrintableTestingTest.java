@@ -108,18 +108,27 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
 
         this.checkEquals(
                 "expected: <null\n" +
+                        "\n" +
                         "Before1\n" +
                         "  Between2\n" +
                         "After3\n" +
-                        "\n" + // should TreePrintable.treePrintOrString print the String followed by a new line.
-                        "true\n" +
-                        "A\n" +
-                        "1.0\n" +
-                        "2.5\n" +
-                        "3\n" +
-                        "9223372036854775807\n" +
-                        "32767\n" +
-                        "String\n" +
+                        "\n" +
+                        "true (java.lang.Boolean)\n" +
+                        "\n" +
+                        "'A' (java.lang.Character)\n" +
+                        "\n" +
+                        "1.0 (java.lang.Double)\n" +
+                        "\n" +
+                        "2.5 (java.lang.Float)\n" +
+                        "\n" +
+                        "3 (java.lang.Integer)\n" +
+                        "\n" +
+                        "9223372036854775807 (java.lang.Long)\n" +
+                        "\n" +
+                        "32767 (java.lang.Short)\n" +
+                        "\n" +
+                        "\"String\" (java.lang.String)\n" +
+                        "\n" +
                         "> but was: <Before1\n" +
                         "  Between2\n" +
                         "After3\n" +
@@ -164,18 +173,27 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
 
         this.checkEquals(
                 "expected: not equal but was: <null\n" +
+                        "\n" +
                         "Before1\n" +
                         "  Between2\n" +
                         "After3\n" +
                         "\n" +
-                        "true\n" +
-                        "A\n" +
-                        "1.0\n" +
-                        "2.5\n" +
-                        "3\n" +
-                        "9223372036854775807\n" +
-                        "32767\n" +
-                        "String\n" +
+                        "true (java.lang.Boolean)\n" +
+                        "\n" +
+                        "'A' (java.lang.Character)\n" +
+                        "\n" +
+                        "1.0 (java.lang.Double)\n" +
+                        "\n" +
+                        "2.5 (java.lang.Float)\n" +
+                        "\n" +
+                        "3 (java.lang.Integer)\n" +
+                        "\n" +
+                        "9223372036854775807 (java.lang.Long)\n" +
+                        "\n" +
+                        "32767 (java.lang.Short)\n" +
+                        "\n" +
+                        "\"String\" (java.lang.String)\n" +
+                        "\n" +
                         ">",
                 thrown.getMessage()
         );

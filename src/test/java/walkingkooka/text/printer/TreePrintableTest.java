@@ -34,17 +34,79 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
     public void testPrintTreeOrToStringNullValue() {
         this.printTreeOrToStringAndCheck(
                 null,
-                "null"
+                "null\n"
         );
     }
 
     @Test
-    public void testPrintTreeOrToStringNonTreePrintable() {
-        final String string = "123abc";
-
+    public void testPrintTreeOrToStringWithBoolean() {
         this.printTreeOrToStringAndCheck(
-                string,
-                string
+                true,
+                "true (java.lang.Boolean)\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithByte() {
+        this.printTreeOrToStringAndCheck(
+                Byte.parseByte("12"),
+                "12 (java.lang.Byte)\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithShort() {
+        this.printTreeOrToStringAndCheck(
+                Short.parseShort("34"),
+                "34 (java.lang.Short)\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithInt() {
+        this.printTreeOrToStringAndCheck(
+                56,
+                "56 (java.lang.Integer)\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithLong() {
+        this.printTreeOrToStringAndCheck(
+                78L,
+                "78 (java.lang.Long)\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithFloat() {
+        this.printTreeOrToStringAndCheck(
+                9.0f,
+                "9.0 (java.lang.Float)\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithDouble() {
+        this.printTreeOrToStringAndCheck(
+                111.0,
+                "111.0 (java.lang.Double)\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithCharacter() {
+        this.printTreeOrToStringAndCheck(
+                'Z',
+                "'Z' (java.lang.Character)\n"
+        );
+    }
+
+    @Test
+    public void testPrintTreeOrToStringWithString() {
+        this.printTreeOrToStringAndCheck(
+                "123abc",
+                "\"123abc\" (java.lang.String)\n"
         );
     }
 
