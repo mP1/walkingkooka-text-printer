@@ -112,7 +112,7 @@ final public class UncloseablePrinterTest extends PrinterTestCase2<UncloseablePr
     @Override
     public UncloseablePrinter createPrinter(final StringBuilder target) {
         return UncloseablePrinter.wrap(Printers.stringBuilder(target,
-                LINE_ENDING));
+            LINE_ENDING));
     }
 
     @Override

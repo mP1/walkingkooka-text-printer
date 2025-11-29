@@ -47,16 +47,16 @@ public interface PrintedLineHandler extends PrinterLike {
     @GwtIncompatible
     static void main(final String[] args) {
         final Printer printer = Printers.sysOut()
-                .printedLine(
-                        new PrintedLineHandler() {
-                            @Override
-                            public void linePrinted(final CharSequence line,
-                                                    final LineEnding lineEnding,
-                                                    final Printer printer) {
-                                printer.print(">>" + line + lineEnding);
-                            }
-                        }
-                );
+            .printedLine(
+                new PrintedLineHandler() {
+                    @Override
+                    public void linePrinted(final CharSequence line,
+                                            final LineEnding lineEnding,
+                                            final Printer printer) {
+                        printer.print(">>" + line + lineEnding);
+                    }
+                }
+            );
         printer.print("First line\n");
         printer.print("Second\nThird\nFourth lines\n");
         printer.print("last");

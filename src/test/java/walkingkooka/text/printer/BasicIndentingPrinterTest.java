@@ -89,9 +89,9 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         printer.print("\n\n");
 
         this.checkEquals(">line1\n" + // )
-                ">line2\n" + //
-                ">\n" + //
-                ">\n", printed.toString());
+            ">line2\n" + //
+            ">\n" + //
+            ">\n", printed.toString());
     }
 
     @Test
@@ -104,7 +104,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         printer.print("line2");
 
         this.checkEquals(">line1\n" + // )
-                "line2", printed.toString());
+            "line2", printed.toString());
     }
 
     @Test
@@ -120,9 +120,9 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         printer.outdent();
         printer.print("line4");
         this.checkEquals(">line1\n" + // )
-                "line2\n" + //
-                ">line3\n" + //
-                "line4", printed.toString());
+            "line2\n" + //
+            ">line3\n" + //
+            "line4", printed.toString());
     }
 
     @Test
@@ -151,10 +151,10 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         printer.outdent();
         printer.print("line5");
         this.checkEquals(">line1\n" + //
-                ">>line2\n" + //
-                ">>line3\r" + //
-                ">line4\n" + //
-                "line5", printed.toString());
+            ">>line2\n" + //
+            ">>line3\r" + //
+            ">line4\n" + //
+            "line5", printed.toString());
     }
 
     @Test
@@ -181,7 +181,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         printer.print("line2");
 
         this.checkEquals("line1" + LINE_ENDING + ">line2",
-                printed.toString());
+            printed.toString());
     }
 
     @Test
@@ -194,7 +194,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         printer.print("line2");
 
         this.checkEquals("line1" + LINE_ENDING + ">line2",
-                printed.toString());
+            printed.toString());
     }
 
     @Test
@@ -215,7 +215,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         printer.print("line3");
 
         this.checkEquals("line1" + LINE_ENDING + ">##line2" + LINE_ENDING + ">line3",
-                printed.toString());
+            printed.toString());
     }
 
     @Test
@@ -239,10 +239,10 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         printer2.print("line3");
 
         this.checkEquals(
-                "line1" + LINE_ENDING +
-                        ">>line2" + LINE_ENDING +
-                        "line3",
-                printed.toString()
+            "line1" + LINE_ENDING +
+                ">>line2" + LINE_ENDING +
+                "line3",
+            printed.toString()
         );
     }
 
@@ -271,11 +271,11 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         printer2.print("line3");
 
         this.checkEquals(
-                "line1" + LINE_ENDING +
-                        ">>line2" + LINE_ENDING +
-                        ">>line2b" + LINE_ENDING +
-                        "line3",
-                printed.toString()
+            "line1" + LINE_ENDING +
+                ">>line2" + LINE_ENDING +
+                ">>line2b" + LINE_ENDING +
+                "line3",
+            printed.toString()
         );
     }
 
@@ -304,9 +304,9 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         printer.flush();
 
         this.checkEquals(
-                ">line1" + LINE_ENDING +
-                        ">line2" + LINE_ENDING,
-                printed.toString()
+            ">line1" + LINE_ENDING +
+                ">line2" + LINE_ENDING,
+            printed.toString()
         );
     }
 
@@ -349,13 +349,13 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     public void testLineStart() {
         final StringBuilder builder = new StringBuilder();
         final BasicIndentingPrinter printer = this.createPrinter(Printers.stringBuilder(builder,
-                LINE_ENDING));
+            LINE_ENDING));
         printer.print("before");
         printer.lineStart();
         printer.print("next");
 
         this.checkEquals("before" + LINE_ENDING + "next",
-                builder.toString());
+            builder.toString());
     }
 
     @Test
@@ -377,7 +377,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         printer.print("after");
 
         this.checkEquals("before" + LINE_ENDING + "after",
-                builder.toString());
+            builder.toString());
     }
 
     @Test
@@ -441,24 +441,24 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         final Indentation indentation = Indentation.with("abc");
 
         final IndentingPrinter printer = this.createPrinter()
-                .indenting(indentation);
+            .indenting(indentation);
 
         this.indentationAndCheck(
-                printer,
-                Indentation.EMPTY
+            printer,
+            Indentation.EMPTY
         );
 
         printer.indent();
         this.indentationAndCheck(
-                printer,
-                indentation
+            printer,
+            indentation
         );
 
         printer.indent();
         printer.indent();
         this.indentationAndCheck(
-                printer,
-                indentation.repeat(3)
+            printer,
+            indentation.repeat(3)
         );
     }
 
@@ -469,8 +469,8 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
 
     private Printer createStringBuilderPrinter(final StringBuilder printed) {
         return Printers.stringBuilder(
-                printed,
-                LINE_ENDING
+            printed,
+            LINE_ENDING
         );
     }
 

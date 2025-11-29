@@ -26,8 +26,8 @@ import walkingkooka.text.LineEnding;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 final public class ContinuationCharacterInsertingPrintedLineHandlerTest implements ClassTesting2<ContinuationCharacterInsertingPrintedLineHandler>,
-        PrintedLineHandlerTesting<ContinuationCharacterInsertingPrintedLineHandler>,
-        ThrowableTesting {
+    PrintedLineHandlerTesting<ContinuationCharacterInsertingPrintedLineHandler>,
+    ThrowableTesting {
 
     // constants
 
@@ -46,14 +46,14 @@ final public class ContinuationCharacterInsertingPrintedLineHandlerTest implemen
     public void testWithCarriageReturnContinuationCharacterFails() {
         final IllegalArgumentException expected = assertThrows(IllegalArgumentException.class, () -> ContinuationCharacterInsertingPrintedLineHandler.with(WIDTH, '\r'));
         checkMessage(expected,
-                ContinuationCharacterInsertingPrintedLineHandler.mustNotBeEndOfLineCharacter('\r'));
+            ContinuationCharacterInsertingPrintedLineHandler.mustNotBeEndOfLineCharacter('\r'));
     }
 
     @Test
     public void testWithNewLineContinuationCharacterFails() {
         final IllegalArgumentException expected = assertThrows(IllegalArgumentException.class, () -> ContinuationCharacterInsertingPrintedLineHandler.with(WIDTH, '\n'));
         checkMessage(expected,
-                ContinuationCharacterInsertingPrintedLineHandler.mustNotBeEndOfLineCharacter('\n'));
+            ContinuationCharacterInsertingPrintedLineHandler.mustNotBeEndOfLineCharacter('\n'));
     }
 
     @Test
@@ -124,29 +124,29 @@ final public class ContinuationCharacterInsertingPrintedLineHandlerTest implemen
     @Test
     public void testToString() {
         this.toStringAndCheck(this.createLineHandler(),
-                "lines > " + WIDTH
-                        + " continue w/ '"
-                        + CONTINUATION + "'");
+            "lines > " + WIDTH
+                + " continue w/ '"
+                + CONTINUATION + "'");
     }
 
     @Override
     public ContinuationCharacterInsertingPrintedLineHandler createLineHandler() {
         return ContinuationCharacterInsertingPrintedLineHandler.with(
-                WIDTH,
-                CONTINUATION);
+            WIDTH,
+            CONTINUATION);
     }
 
     private void linePrintedAndCheck(final int width, final CharSequence line,
                                      final LineEnding lineEnding, final String expected) {
         this.linePrintedAndCheck(//
-                ContinuationCharacterInsertingPrintedLineHandler.with(width,
-                        CONTINUATION), //
-                replacePlaceHolder(line,
-                        lineEnding), //
-                lineEnding, //
-                replacePlaceHolder(expected,
-                        lineEnding), //
-                null);
+            ContinuationCharacterInsertingPrintedLineHandler.with(width,
+                CONTINUATION), //
+            replacePlaceHolder(line,
+                lineEnding), //
+            lineEnding, //
+            replacePlaceHolder(expected,
+                lineEnding), //
+            null);
     }
 
     private static String replacePlaceHolder(final CharSequence line, final LineEnding lineEnding) {

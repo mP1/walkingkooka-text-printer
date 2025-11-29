@@ -36,8 +36,8 @@ final class UncloseablePrinter implements Printer {
 
         // do not double wrap.
         return printer instanceof UncloseablePrinter ?
-                (UncloseablePrinter) printer :
-                new UncloseablePrinter(printer);
+            (UncloseablePrinter) printer :
+            new UncloseablePrinter(printer);
     }
 
     /**

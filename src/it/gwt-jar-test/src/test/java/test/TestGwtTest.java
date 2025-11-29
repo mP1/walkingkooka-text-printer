@@ -29,8 +29,8 @@ public class TestGwtTest extends GWTTestCase {
 
     public void testAssertEquals() {
         assertEquals(
-                1,
-                1
+            1,
+            1
         );
     }
 
@@ -42,8 +42,8 @@ public class TestGwtTest extends GWTTestCase {
         printer.flush();
 
         assertEquals(
-                "Hello",
-                b.toString()
+            "Hello",
+            b.toString()
         );
     }
 }

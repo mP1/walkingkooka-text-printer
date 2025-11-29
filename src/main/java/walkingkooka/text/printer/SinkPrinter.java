@@ -30,20 +30,20 @@ final class SinkPrinter implements Printer {
     static SinkPrinter with(final HasLineEnding lineEnding) {
         final SinkPrinter printer;
 
-        if(LineEnding.CR.equals(lineEnding)) {
+        if (LineEnding.CR.equals(lineEnding)) {
             printer = CR;
         } else {
-            if(LineEnding.CRNL.equals(lineEnding)) {
+            if (LineEnding.CRNL.equals(lineEnding)) {
                 printer = CRNL;
             } else {
-                if(LineEnding.NL.equals(lineEnding)) {
+                if (LineEnding.NL.equals(lineEnding)) {
                     printer = NL;
                 } else {
-                    if(LineEnding.NONE.equals(lineEnding)) {
+                    if (LineEnding.NONE.equals(lineEnding)) {
                         printer = NONE;
                     } else {
                         printer = new SinkPrinter(
-                                Objects.requireNonNull(lineEnding, "lineEnding")
+                            Objects.requireNonNull(lineEnding, "lineEnding")
                         );
                     }
                 }
@@ -77,7 +77,7 @@ final class SinkPrinter implements Printer {
     @Override
     public LineEnding lineEnding() {
         return this.lineEnding
-                .lineEnding();
+            .lineEnding();
     }
 
     private final HasLineEnding lineEnding;

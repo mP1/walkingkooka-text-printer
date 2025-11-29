@@ -18,7 +18,7 @@
 package walkingkooka.text.printer;
 
 abstract public class PrinterTestCase2<P extends Printer> extends PrinterTestCase<P>
-        implements PrinterTesting2<P> {
+    implements PrinterTesting2<P> {
 
     PrinterTestCase2() {
         super();

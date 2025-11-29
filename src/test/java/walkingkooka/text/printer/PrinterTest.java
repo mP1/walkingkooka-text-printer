@@ -35,8 +35,8 @@ public final class PrinterTest implements ClassTesting<Printer> {
         printWriter.flush();
 
         this.checkEquals(
-                "Hello" + LineEnding.NL,
-                b.toString()
+            "Hello" + LineEnding.NL,
+            b.toString()
         );
     }
 

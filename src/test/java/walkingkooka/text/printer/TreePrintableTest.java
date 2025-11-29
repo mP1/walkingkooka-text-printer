@@ -40,136 +40,136 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
     @Test
     public void testPrintTreeOrToStringNullValue() {
         this.printTreeOrToStringAndCheck(
-                null,
-                "null\n"
+            null,
+            "null\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithBoolean() {
         this.printTreeOrToStringAndCheck(
-                true,
-                "true\n"
+            true,
+            "true\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithByte() {
         this.printTreeOrToStringAndCheck(
-                Byte.parseByte("12"),
-                "12 (Byte)\n"
+            Byte.parseByte("12"),
+            "12 (Byte)\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithShort() {
         this.printTreeOrToStringAndCheck(
-                Short.parseShort("34"),
-                "34 (Short)\n"
+            Short.parseShort("34"),
+            "34 (Short)\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithInt() {
         this.printTreeOrToStringAndCheck(
-                56,
-                "56\n"
+            56,
+            "56\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithLong() {
         this.printTreeOrToStringAndCheck(
-                78L,
-                "78L\n"
+            78L,
+            "78L\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithFloat() {
         this.printTreeOrToStringAndCheck(
-                9.0f,
-                "9.0\n"
+            9.0f,
+            "9.0\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithDouble() {
         this.printTreeOrToStringAndCheck(
-                111.0,
-                "111.0\n"
+            111.0,
+            "111.0\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithCharacter() {
         this.printTreeOrToStringAndCheck(
-                'Z',
-                "'Z'\n"
+            'Z',
+            "'Z'\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithString() {
         this.printTreeOrToStringAndCheck(
-                "123abc",
-                "\"123abc\"\n"
+            "123abc",
+            "\"123abc\"\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithEnum() {
         this.printTreeOrToStringAndCheck(
-                RoundingMode.DOWN,
-                "DOWN\n"
+            RoundingMode.DOWN,
+            "DOWN\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithName() {
         this.printTreeOrToStringAndCheck(
-                Names.string("Hello"),
-                "Hello\n"
+            Names.string("Hello"),
+            "Hello\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithOptional() {
         this.printTreeOrToStringAndCheck(
-                Optional.ofNullable("Hello"),
-                "\"Hello\"\n"
+            Optional.ofNullable("Hello"),
+            "\"Hello\"\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithList() {
         this.printTreeOrToStringAndCheck(
-                Lists.of("Hello"),
-                "[\"Hello\"]\n"
+            Lists.of("Hello"),
+            "[\"Hello\"]\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithSet() {
         this.printTreeOrToStringAndCheck(
-                Sets.of("Hello"),
-                "[\"Hello\"]\n"
+            Sets.of("Hello"),
+            "[\"Hello\"]\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithMap() {
         this.printTreeOrToStringAndCheck(
-                Maps.of("Key1", "Value2"),
-                "{\"Key1\"=\"Value2\"}\n"
+            Maps.of("Key1", "Value2"),
+            "{\"Key1\"=\"Value2\"}\n"
         );
     }
 
     @Test
     public void testPrintTreeOrToStringWithNonTreePrintable() {
         this.printTreeOrToStringAndCheck(
-                new StringBuilder("\"123\""),
-                "\"123\" (java.lang.StringBuilder)\n"
+            new StringBuilder("\"123\""),
+            "\"123\" (java.lang.StringBuilder)\n"
         );
     }
 
@@ -179,15 +179,15 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
         final String string2 = "222";
 
         this.printTreeOrToStringAndCheck(
-                new TreePrintable() {
-                    @Override
-                    public void printTree(final IndentingPrinter printer) {
-                        printer.println(string1);
-                        printer.println(string2);
-                    }
-                },
-                string1 + EOL +
-                        string2 + EOL
+            new TreePrintable() {
+                @Override
+                public void printTree(final IndentingPrinter printer) {
+                    printer.println(string1);
+                    printer.println(string2);
+                }
+            },
+            string1 + EOL +
+                string2 + EOL
         );
     }
 
@@ -199,9 +199,9 @@ public final class TreePrintableTest implements ClassTesting<TreePrintable> {
             printer.flush();
         }
         this.checkEquals(
-                expected,
-                b.toString(),
-                () -> "printTreeOrToString(" + CharSequences.quoteIfChars(value) + ")"
+            expected,
+            b.toString(),
+            () -> "printTreeOrToString(" + CharSequences.quoteIfChars(value) + ")"
         );
     }
 

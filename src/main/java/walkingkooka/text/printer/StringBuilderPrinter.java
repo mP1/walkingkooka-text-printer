@@ -86,8 +86,8 @@ final class StringBuilderPrinter implements Printer {
      * A flag that keeps track of whether this {@link Printer} is open(false) or closed(true)
      */
     private final OpenChecker<IllegalStateException> openChecker = OpenChecker.with(
-            "Printer is closed",
-            IllegalStateException::new
+        "Printer is closed",
+        IllegalStateException::new
     );
 
     /**

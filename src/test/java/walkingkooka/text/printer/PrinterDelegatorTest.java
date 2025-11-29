@@ -69,8 +69,8 @@ public final class PrinterDelegatorTest implements PrinterTesting<TestPrinterDel
         private final StringBuilder b = new StringBuilder();
 
         private final Printer printer = Printers.stringBuilder(
-                this.b,
-                LINE_ENDING
+            this.b,
+            LINE_ENDING
         );
 
         @Override

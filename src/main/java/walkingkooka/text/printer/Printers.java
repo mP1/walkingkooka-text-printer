@@ -49,8 +49,8 @@ final public class Printers implements PublicStaticHelper {
     public static Printer printedLine(final Printer printer,
                                       final PrintedLineHandler handler) {
         return PrintedLineHandlerPrinter.wrap(
-                printer,
-                handler
+            printer,
+            handler
         );
     }
 
@@ -60,8 +60,8 @@ final public class Printers implements PublicStaticHelper {
     public static Printer printStream(final PrintStream printStream,
                                       final HasLineEnding lineEnding) {
         return PrintStreamPrinter.with(
-                printStream,
-                lineEnding
+            printStream,
+            lineEnding
         );
     }
 
@@ -78,8 +78,8 @@ final public class Printers implements PublicStaticHelper {
     public static Printer stringBuilder(final StringBuilder builder,
                                         final HasLineEnding lineEnding) {
         return StringBuilderPrinter.with(
-                builder,
-                lineEnding
+            builder,
+            lineEnding
         );
     }
 
@@ -127,8 +127,8 @@ final public class Printers implements PublicStaticHelper {
     public static Printer writer(final Writer writer,
                                  final LineEnding lineEnding) {
         return WriterPrinter.with(
-                writer,
-                lineEnding
+            writer,
+            lineEnding
         );
     }
 

@@ -33,16 +33,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * Interface with default methods which can be mixed in to assist testing of an {@link PrintedLineHandler}.
  */
 public interface PrintedLineHandlerTesting<H extends PrintedLineHandler>
-        extends ToStringTesting<H>,
-        TypeNameTesting<H> {
+    extends ToStringTesting<H>,
+    TypeNameTesting<H> {
 
     // tests
 
     @Test
     default void testNullLineFails() {
         assertThrows(NullPointerException.class, () -> this.createLineHandler().linePrinted(null,
-                LineEnding.NL,
-                Printers.fake()));
+            LineEnding.NL,
+            Printers.fake()));
     }
 
     @Test
@@ -53,8 +53,8 @@ public interface PrintedLineHandlerTesting<H extends PrintedLineHandler>
     @Test
     default void testNullPrinterFails() {
         assertThrows(NullPointerException.class, () -> this.createLineHandler().linePrinted("",
-                LineEnding.NL,
-                null));
+            LineEnding.NL,
+            null));
     }
 
     H createLineHandler();
@@ -107,7 +107,7 @@ public interface PrintedLineHandlerTesting<H extends PrintedLineHandler>
 
         final StringBuilder printedBuffer = new StringBuilder();
         final Printer printer = Printers.stringBuilder(printedBuffer,
-                LineEnding.NL);
+            LineEnding.NL);
         handler.linePrinted(line, lineEnding, printer);
         printer.flush();
         printer.close();
@@ -115,8 +115,8 @@ public interface PrintedLineHandlerTesting<H extends PrintedLineHandler>
         final String printed = printedBuffer.toString();
         if (false == printed.equals(expected)) {
             this.checkEquals(CharSequences.quoteAndEscape(expected),
-                    CharSequences.quoteAndEscape(printed),
-                    message);
+                CharSequences.quoteAndEscape(printed),
+                message);
         }
     }
 

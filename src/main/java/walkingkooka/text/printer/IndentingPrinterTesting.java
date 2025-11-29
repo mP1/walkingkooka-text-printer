@@ -22,8 +22,8 @@ import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.text.Indentation;
 
 public interface IndentingPrinterTesting<P extends IndentingPrinter>
-        extends PrinterTesting2<P>,
-        TypeNameTesting<P> {
+    extends PrinterTesting2<P>,
+    TypeNameTesting<P> {
 
 
     // constants
@@ -57,9 +57,9 @@ public interface IndentingPrinterTesting<P extends IndentingPrinter>
     default void indentationAndCheck(final IndentingPrinter printer,
                                      final Indentation indentation) {
         this.checkEquals(
-                indentation,
-                printer.indentation(),
-                () -> "indentation of " + printer
+            indentation,
+            printer.indentation(),
+            () -> "indentation of " + printer
         );
     }
 

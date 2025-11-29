@@ -49,8 +49,8 @@ final class BasicIndentingPrinter implements IndentingPrinter {
 
     private int indentationDepth() {
         return Math.max(
-                this.indentationDepth.get(),
-                0
+            this.indentationDepth.get(),
+            0
         ); // ensure never underflows
     }
 
@@ -104,9 +104,9 @@ final class BasicIndentingPrinter implements IndentingPrinter {
                     printer.print(chars.subSequence(start, i));
                 }
                 printer.print(
-                        this.indentation.repeat(
-                                this.indentationDepth()
-                        )
+                    this.indentation.repeat(
+                        this.indentationDepth()
+                    )
                 );
                 start = i;
             }
@@ -139,8 +139,8 @@ final class BasicIndentingPrinter implements IndentingPrinter {
                 break;
             }
             if (depth.compareAndSet(
-                    value,
-                    --value
+                value,
+                --value
             )) {
                 break;
             }
@@ -168,7 +168,7 @@ final class BasicIndentingPrinter implements IndentingPrinter {
     @Override
     public Indentation indentation() {
         return this.indentation.repeat(
-                this.indentationDepth()
+            this.indentationDepth()
         );
     }
 

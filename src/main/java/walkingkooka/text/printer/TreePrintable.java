@@ -42,7 +42,7 @@ public interface TreePrintable {
             treePrintable.printTree(printer);
         } else {
             printer.print(
-                    CharSequences.quoteIfChars(object)
+                CharSequences.quoteIfChars(object)
             );
 
             if (object instanceof Byte) {
@@ -55,18 +55,18 @@ public interface TreePrintable {
                         printer.print("L");
                     } else {
                         if (null != object &&
-                                false ==
-                                        (object instanceof Boolean ||
-                                                object instanceof Integer ||
-                                                object instanceof Float ||
-                                                object instanceof Double ||
-                                                object instanceof Character ||
-                                                object instanceof String ||
-                                                object instanceof Enum ||
-                                                object instanceof Name ||
-                                                object instanceof Optional ||
-                                                object instanceof Collection ||
-                                                object instanceof Map<?, ?>)) {
+                            false ==
+                                (object instanceof Boolean ||
+                                    object instanceof Integer ||
+                                    object instanceof Float ||
+                                    object instanceof Double ||
+                                    object instanceof Character ||
+                                    object instanceof String ||
+                                    object instanceof Enum ||
+                                    object instanceof Name ||
+                                    object instanceof Optional ||
+                                    object instanceof Collection ||
+                                    object instanceof Map<?, ?>)) {
                             printer.print(" (" + object.getClass().getName() + ")");
                         }
 

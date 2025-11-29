@@ -23,27 +23,27 @@ final class TreePrintableTestingHelper {
 
     static boolean shouldTreePrint(final Object maybe) {
         return maybe instanceof Collection &&
-                shouldTreePrint0((Collection<?>) maybe);
+            shouldTreePrint0((Collection<?>) maybe);
     }
 
     static boolean shouldTreePrint0(final Collection<?> collection) {
         return collection.stream()
-                .allMatch(TreePrintableTestingHelper::shouldTreePrint1);
+            .allMatch(TreePrintableTestingHelper::shouldTreePrint1);
     }
 
     private static boolean shouldTreePrint1(final Object value) {
         return null == value ||
-                value instanceof Boolean ||
-                value instanceof Byte ||
-                value instanceof Character ||
-                value instanceof Double ||
-                value instanceof Float ||
-                value instanceof Integer ||
-                value instanceof Long ||
-                value instanceof Short ||
-                value instanceof String ||
-                value instanceof Collection ||
-                value instanceof TreePrintable;
+            value instanceof Boolean ||
+            value instanceof Byte ||
+            value instanceof Character ||
+            value instanceof Double ||
+            value instanceof Float ||
+            value instanceof Integer ||
+            value instanceof Long ||
+            value instanceof Short ||
+            value instanceof String ||
+            value instanceof Collection ||
+            value instanceof TreePrintable;
     }
 
     static String treePrintWithClassName(final TreePrintable treePrintable) {
@@ -51,8 +51,8 @@ final class TreePrintableTestingHelper {
 
         if (null != treePrintable) {
             try (final IndentingPrinter printer = Printers.stringBuilder(
-                    b,
-                    TreePrintableTesting.EOL
+                b,
+                TreePrintableTesting.EOL
             ).indenting(TreePrintableTesting.INDENTATION)) {
                 printer.println(treePrintable.getClass().getName());
                 printer.indent();
@@ -69,7 +69,7 @@ final class TreePrintableTestingHelper {
     static String treePrint(final Collection<?> collection) {
         final StringBuilder b = new StringBuilder();
         final IndentingPrinter printer = Printers.stringBuilder(b, TreePrintableTesting.EOL)
-                .indenting(TreePrintableTesting.INDENTATION);
+            .indenting(TreePrintableTesting.INDENTATION);
         for (final Object element : collection) {
             TreePrintable.printTreeOrToString(element, printer);
             printer.println();

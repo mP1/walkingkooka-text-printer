@@ -55,21 +55,21 @@ final public class WriterPrinterTest extends PrinterTestCase<WriterPrinter> {
     @Test
     public void testWithNullWriterFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> WriterPrinter.with(
-                        null,
-                        LINE_ENDING)
+            NullPointerException.class,
+            () -> WriterPrinter.with(
+                null,
+                LINE_ENDING)
         );
     }
 
     @Test
     public void testWithNullLineEndingFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> WriterPrinter.with(
-                        WRITER,
-                        null
-                )
+            NullPointerException.class,
+            () -> WriterPrinter.with(
+                WRITER,
+                null
+            )
         );
     }
 
@@ -88,31 +88,31 @@ final public class WriterPrinterTest extends PrinterTestCase<WriterPrinter> {
         final String written = "printed";
         final IOException thrown = new IOException("thrown");
         final WriterPrinter printer = this.createPrinter(//
-                new Writer() {
-                    @Override
-                    public void write(final String string) throws IOException {
-                        assertSame(written, string, "written");
-                        throw thrown;
-                    }
+            new Writer() {
+                @Override
+                public void write(final String string) throws IOException {
+                    assertSame(written, string, "written");
+                    throw thrown;
+                }
 
-                    @Override
-                    public void write(final char[] cbuf, final int off, final int len) {
-                        throw new UnsupportedOperationException();
-                    }
+                @Override
+                public void write(final char[] cbuf, final int off, final int len) {
+                    throw new UnsupportedOperationException();
+                }
 
-                    @Override
-                    public void flush() {
-                        throw new UnsupportedOperationException();
-                    }
+                @Override
+                public void flush() {
+                    throw new UnsupportedOperationException();
+                }
 
-                    @Override
-                    public void close() {
-                        throw new UnsupportedOperationException();
-                    }
-                });
+                @Override
+                public void close() {
+                    throw new UnsupportedOperationException();
+                }
+            });
         final IllegalStateException expected = assertThrows(
-                IllegalStateException.class,
-                () -> printer.print(written)
+            IllegalStateException.class,
+            () -> printer.print(written)
         );
         assertSame(thrown, expected.getCause(), "cause");
     }
@@ -126,36 +126,36 @@ final public class WriterPrinterTest extends PrinterTestCase<WriterPrinter> {
     @Test
     public void testToString() {
         this.checkEquals(WRITER.toString(),
-                this.createPrinter(WRITER).toString());
+            this.createPrinter(WRITER).toString());
     }
 
     @Override
     public WriterPrinter createPrinter() {
         return this.createPrinter(//
-                new Writer() {
+            new Writer() {
 
-                    @Override
-                    public void write(final char[] cbuf, final int off, final int len)
-                            throws IOException {
-                        if (this.closed) {
-                            throw new IOException("Writer already closed");
-                        }
+                @Override
+                public void write(final char[] cbuf, final int off, final int len)
+                    throws IOException {
+                    if (this.closed) {
+                        throw new IOException("Writer already closed");
                     }
+                }
 
-                    @Override
-                    public void flush() throws IOException {
-                        if (this.closed) {
-                            throw new IOException("Writer already closed");
-                        }
+                @Override
+                public void flush() throws IOException {
+                    if (this.closed) {
+                        throw new IOException("Writer already closed");
                     }
+                }
 
-                    @Override
-                    public void close() {
-                        this.closed = true;
-                    }
+                @Override
+                public void close() {
+                    this.closed = true;
+                }
 
-                    private boolean closed;
-                });
+                private boolean closed;
+            });
     }
 
     private WriterPrinter createPrinter(final Writer writer) {

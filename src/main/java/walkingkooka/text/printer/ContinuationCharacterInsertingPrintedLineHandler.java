@@ -40,7 +40,7 @@ final class ContinuationCharacterInsertingPrintedLineHandler implements PrintedL
 
         if (('\r' == continuation) || ('\n' == continuation)) {
             throw new IllegalArgumentException(ContinuationCharacterInsertingPrintedLineHandler.mustNotBeEndOfLineCharacter(
-                    continuation));
+                continuation));
         }
         return new ContinuationCharacterInsertingPrintedLineHandler(width, continuation);
     }
@@ -50,7 +50,7 @@ final class ContinuationCharacterInsertingPrintedLineHandler implements PrintedL
      */
     static String mustNotBeEndOfLineCharacter(final char c) {
         return "Continuation character must not be carriage return or new line ="
-                + CharSequences.quoteAndEscape(c);
+            + CharSequences.quoteAndEscape(c);
     }
 
     /**
