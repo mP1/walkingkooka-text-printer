@@ -35,19 +35,33 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
     // tests
 
     @Test
-    public void testWrapNullFirstPrinterFails() {
-        assertThrows(NullPointerException.class, () -> TeePrinter.wrap(null, PRINTER));
+    public void testWithNullFirstPrinterFails() {
+        assertThrows(
+                NullPointerException.class,
+                () -> TeePrinter.with(null, PRINTER)
+        );
     }
 
     @Test
-    public void testWrapNullSecondPrinterFails() {
-        assertThrows(NullPointerException.class, () -> TeePrinter.wrap(PRINTER, null));
+    public void testWithNullSecondPrinterFails() {
+        assertThrows(
+                NullPointerException.class,
+                () -> TeePrinter.with(
+                        PRINTER,
+                        null
+                )
+        );
     }
 
     @Test
-    public void testDoesntWrapTwoEqualPrinters() {
-        assertSame(PRINTER,
-                TeePrinter.wrap(PRINTER, PRINTER));
+    public void testWithSamePrinterTwice() {
+        assertSame(
+                PRINTER,
+                TeePrinter.with(
+                        PRINTER,
+                        PRINTER
+                )
+        );
     }
 
     @Override
@@ -61,7 +75,7 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
         final StringBuilder builder1 = new StringBuilder();
         final StringBuilder builder2 = new StringBuilder();
         final StringBuilder builder3 = new StringBuilder();
-        final Printer printer = TeePrinter.wrap(Printers.stringBuilder(builder1,
+        final Printer printer = TeePrinter.with(Printers.stringBuilder(builder1,
                         LINE_ENDING),
                 Printers.stringBuilder(builder2, LINE_ENDING));
         printer.print("string");
@@ -83,7 +97,7 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
         final StringBuilder builder1 = new StringBuilder();
         final StringBuilder builder2 = new StringBuilder();
         final StringBuilder builder3 = new StringBuilder();
-        final Printer printer = TeePrinter.wrap(Printers.stringBuilder(builder1,
+        final Printer printer = TeePrinter.with(Printers.stringBuilder(builder1,
                         LINE_ENDING),
                 Printers.stringBuilder(builder2, LINE_ENDING));
         printer.print("string");
@@ -108,12 +122,12 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
         final Printer left = Printers.fake();
         final Printer right = Printers.fake();
         this.checkEquals("tee (" + left + " AND " + right + ")",
-                TeePrinter.wrap(left, right).toString());
+                TeePrinter.with(left, right).toString());
     }
 
     @Override
     public TeePrinter createPrinter() {
-        return Cast.to(TeePrinter.wrap(createContractPrinter(), createContractPrinter()));
+        return Cast.to(TeePrinter.with(createContractPrinter(), createContractPrinter()));
     }
 
     @Override
