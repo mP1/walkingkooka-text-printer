@@ -30,7 +30,7 @@ final class TeePrinter implements Printer {
     /**
      * Creates a new {@link TeePrinter} if the two printers are different.
      */
-    static Printer wrap(final Printer first, final Printer second) {
+    static Printer with(final Printer first, final Printer second) {
         Objects.requireNonNull(first, "first Printer");
         Objects.requireNonNull(second, "second Printer");
 

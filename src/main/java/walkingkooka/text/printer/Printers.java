@@ -101,7 +101,7 @@ final public class Printers implements PublicStaticHelper {
      */
     public static Printer tee(final Printer first,
                               final Printer second) {
-        return TeePrinter.wrap(first, second);
+        return TeePrinter.with(first, second);
     }
 
     /**
