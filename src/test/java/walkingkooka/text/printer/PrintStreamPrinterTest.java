@@ -44,12 +44,24 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
 
     @Test
     public void testWithNullPrintStreamFails() {
-        assertThrows(NullPointerException.class, () -> PrintStreamPrinter.with(null, LINE_ENDING));
+        assertThrows(
+                NullPointerException.class,
+                () -> PrintStreamPrinter.with(
+                        null,
+                        LINE_ENDING
+                )
+        );
     }
 
     @Test
     public void testWithNullHasLineEndingFails() {
-        assertThrows(NullPointerException.class, () -> PrintStreamPrinter.with(System.out, null));
+        assertThrows(
+                NullPointerException.class,
+                () -> PrintStreamPrinter.with(
+                        System.out,
+                        null
+                )
+        );
     }
 
     @Override
@@ -61,32 +73,50 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
     @Test
     public void testSysErr() {
         final Printer printer = PrintStreamPrinter.sysErr();
-        assertSame(printer, PrintStreamPrinter.sysErr());
+        assertSame(
+                printer,
+                PrintStreamPrinter.sysErr()
+        );
     }
 
     @Test
     public void testPrintStreamWithSysErr() {
-        assertSame(PrintStreamPrinter.sysErr(),
-                PrintStreamPrinter.with(System.err, LINE_ENDING));
+        assertSame(
+                PrintStreamPrinter.sysErr(),
+                PrintStreamPrinter.with(
+                        System.err,
+                        LINE_ENDING
+                )
+        );
     }
 
     @Test
     public void testSysOut() {
         final Printer printer = PrintStreamPrinter.sysOut();
-        assertSame(printer, PrintStreamPrinter.sysOut());
+        assertSame(
+                printer,
+                PrintStreamPrinter.sysOut()
+        );
     }
 
     @Test
     public void testPrintStreamWithSysOut() {
-        assertSame(PrintStreamPrinter.sysOut(),
-                PrintStreamPrinter.with(System.out, LINE_ENDING));
+        assertSame(
+                PrintStreamPrinter.sysOut(),
+                PrintStreamPrinter.with(
+                        System.out,
+                        LINE_ENDING
+                )
+        );
     }
 
     @Test
     public void testAppend() {
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
-        final Printer printer = PrintStreamPrinter.with(new PrintStream(output),
-                LINE_ENDING);
+        final Printer printer = PrintStreamPrinter.with(
+                new PrintStream(output),
+                LINE_ENDING
+        );
         printer.print("ascii");
 
         this.checkEquals(
@@ -98,23 +128,31 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
     @Test
     public void testToString() {
         final PrintStream printStream = new PrintStream(OUTPUTSTREAM);
-        this.checkEquals(printStream.toString(),
-                PrintStreamPrinter.with(printStream, LINE_ENDING)
-                        .toString());
+        this.checkEquals(
+                printStream.toString(),
+                PrintStreamPrinter.with(
+                        printStream,
+                        LINE_ENDING
+                ).toString())
+        ;
     }
 
     @Test
     public void testSystemErrToString() {
         final PrintStream printStream = System.err;
-        this.checkEquals("System.err " + printStream.toString(),
-                PrintStreamPrinter.sysErr().toString());
+        this.checkEquals(
+                "System.err " + printStream.toString(),
+                PrintStreamPrinter.sysErr().toString()
+        );
     }
 
     @Test
     public void testSystemOutToString() {
         final PrintStream printStream = System.out;
-        this.checkEquals("System.out " + printStream.toString(),
-                PrintStreamPrinter.sysOut().toString());
+        this.checkEquals(
+                "System.out " + printStream.toString(),
+                PrintStreamPrinter.sysOut().toString()
+        );
     }
 
     @Override
@@ -161,6 +199,8 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
                 }, //
                 LINE_ENDING);
     }
+
+    // class............................................................................................................
 
     @Override
     public Class<PrintStreamPrinter> type() {
