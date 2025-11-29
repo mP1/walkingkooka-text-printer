@@ -35,7 +35,10 @@ public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
     @Test
     default void testPrintNullFails() {
         final P printer = this.createPrinter();
-        assertThrows(NullPointerException.class, () -> printer.print(null));
+        assertThrows(
+                NullPointerException.class,
+                () -> printer.print(null)
+        );
     }
 
     @Test
@@ -111,7 +114,7 @@ public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
         );
     }
 
-    // TypeNameTesting .........................................................................................
+    // TypeNameTesting .................................................................................................
 
     @Override
     default String typeNamePrefix() {
