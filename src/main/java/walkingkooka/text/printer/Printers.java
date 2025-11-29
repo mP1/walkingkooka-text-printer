@@ -45,15 +45,23 @@ final public class Printers implements PublicStaticHelper {
     /**
      * {@see PrintedLineHandlerPrinter}
      */
-    public static Printer printedLine(final Printer printer, final PrintedLineHandler handler) {
-        return PrintedLineHandlerPrinter.wrap(printer, handler);
+    public static Printer printedLine(final Printer printer,
+                                      final PrintedLineHandler handler) {
+        return PrintedLineHandlerPrinter.wrap(
+                printer,
+                handler
+        );
     }
 
     /**
      * {@see PrintStreamPrinter}.
      */
-    public static Printer printStream(final PrintStream printStream, final LineEnding lineEnding) {
-        return PrintStreamPrinter.with(printStream, lineEnding);
+    public static Printer printStream(final PrintStream printStream,
+                                      final LineEnding lineEnding) {
+        return PrintStreamPrinter.with(
+                printStream,
+                lineEnding
+        );
     }
 
     /**
@@ -66,8 +74,12 @@ final public class Printers implements PublicStaticHelper {
     /**
      * {@see StringBuilderPrinter}.
      */
-    public static Printer stringBuilder(final StringBuilder builder, final LineEnding lineEnding) {
-        return StringBuilderPrinter.with(builder, lineEnding);
+    public static Printer stringBuilder(final StringBuilder builder,
+                                        final LineEnding lineEnding) {
+        return StringBuilderPrinter.with(
+                builder,
+                lineEnding
+        );
     }
 
     /**
@@ -87,7 +99,8 @@ final public class Printers implements PublicStaticHelper {
     /**
      * {@see TeePrinter}.
      */
-    public static Printer tee(final Printer first, final Printer second) {
+    public static Printer tee(final Printer first,
+                              final Printer second) {
         return TeePrinter.wrap(first, second);
     }
 
@@ -110,8 +123,12 @@ final public class Printers implements PublicStaticHelper {
      * {@see WriterPrinter}
      */
     @GwtIncompatible
-    public static Printer writer(final Writer writer, final LineEnding lineEnding) {
-        return WriterPrinter.adapt(writer, lineEnding);
+    public static Printer writer(final Writer writer,
+                                 final LineEnding lineEnding) {
+        return WriterPrinter.adapt(
+                writer,
+                lineEnding
+        );
     }
 
     /**
