@@ -17,6 +17,7 @@
 
 package walkingkooka.text.printer;
 
+import walkingkooka.text.HasLineEnding;
 import walkingkooka.text.LineEnding;
 
 import java.io.PrintStream;
@@ -31,7 +32,8 @@ final class PrintStreamPrinter implements Printer {
      * Factory with special cases when the given {@link PrintStream} is {@link System#out} or {@link
      * System#err}.
      */
-    static PrintStreamPrinter with(final PrintStream printStream, final LineEnding lineEnding) {
+    static PrintStreamPrinter with(final PrintStream printStream,
+                                   final HasLineEnding lineEnding) {
         Objects.requireNonNull(printStream, "printStream");
         Objects.requireNonNull(lineEnding, "lineEnding");
 
@@ -84,7 +86,7 @@ final class PrintStreamPrinter implements Printer {
      */
     private PrintStreamPrinter(final String label,
                                final PrintStream printStream,
-                               final LineEnding lineEnding) {
+                               final HasLineEnding lineEnding) {
         super();
 
         this.label = label;
@@ -99,10 +101,10 @@ final class PrintStreamPrinter implements Printer {
 
     @Override
     public LineEnding lineEnding() {
-        return this.lineEnding;
+        return this.lineEnding.lineEnding();
     }
 
-    private final LineEnding lineEnding;
+    private final HasLineEnding lineEnding;
 
     @Override
     public void flush() {
