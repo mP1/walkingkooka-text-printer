@@ -48,7 +48,7 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
     }
 
     @Test
-    public void testWithNullLineEndingFails() {
+    public void testWithNullHasLineEndingFails() {
         assertThrows(NullPointerException.class, () -> PrintStreamPrinter.with(System.out, null));
     }
 

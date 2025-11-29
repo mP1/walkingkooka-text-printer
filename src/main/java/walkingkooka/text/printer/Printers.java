@@ -19,6 +19,7 @@ package walkingkooka.text.printer;
 
 import javaemul.internal.annotations.GwtIncompatible;
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.text.HasLineEnding;
 import walkingkooka.text.LineEnding;
 
 import java.io.PrintStream;
@@ -57,7 +58,7 @@ final public class Printers implements PublicStaticHelper {
      * {@see PrintStreamPrinter}.
      */
     public static Printer printStream(final PrintStream printStream,
-                                      final LineEnding lineEnding) {
+                                      final HasLineEnding lineEnding) {
         return PrintStreamPrinter.with(
                 printStream,
                 lineEnding
