@@ -81,6 +81,35 @@ final public class StringBuilderPrinterTest extends PrinterTestCase2<StringBuild
         );
     }
 
+    @Test
+    public void testPrintlnChangeLineEndingPrintln() {
+        final StringBuilder stringBuilder = new StringBuilder();
+        final LineEnding[] lineEnding = new LineEnding[]{
+                LineEnding.NL
+        };
+
+        final StringBuilderPrinter printer = StringBuilderPrinter.with(
+                stringBuilder,
+                () -> lineEnding[0]
+        );
+
+        printer.println("Hello");
+
+        this.checkEquals(
+                "Hello" + LINE_ENDING,
+                stringBuilder.toString()
+        );
+
+        lineEnding[0] = LineEnding.CR;
+
+        printer.println("World");
+
+        this.checkEquals(
+                "Hello" + LineEnding.NL + "World" + LineEnding.CR,
+                stringBuilder.toString()
+        );
+    }
+
     @Override
     public StringBuilderPrinter createPrinter(final StringBuilder target) {
         return StringBuilderPrinter.with(target, LINE_ENDING);
