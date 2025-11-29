@@ -17,6 +17,7 @@
 
 package walkingkooka.text.printer;
 
+import walkingkooka.text.HasLineEnding;
 import walkingkooka.text.LineEnding;
 
 import java.util.Objects;
@@ -26,26 +27,27 @@ import java.util.Objects;
  */
 final class SinkPrinter implements Printer {
 
-    static SinkPrinter with(final LineEnding lineEnding) {
-        Objects.requireNonNull(lineEnding, "lineEnding");
-
+    static SinkPrinter with(final HasLineEnding lineEnding) {
         final SinkPrinter printer;
 
-        switch (lineEnding.toString()) {
-            case "\r":
-                printer = CR;
-                break;
-            case "\r\n":
+        if(LineEnding.CR.equals(lineEnding)) {
+            printer = CR;
+        } else {
+            if(LineEnding.CRNL.equals(lineEnding)) {
                 printer = CRNL;
-                break;
-            case "\n":
-                printer = NL;
-                break;
-            case "":
-                printer = NONE;
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown lineEnding: " + lineEnding);
+            } else {
+                if(LineEnding.NL.equals(lineEnding)) {
+                    printer = NL;
+                } else {
+                    if(LineEnding.NONE.equals(lineEnding)) {
+                        printer = NONE;
+                    } else {
+                        printer = new SinkPrinter(
+                                Objects.requireNonNull(lineEnding, "lineEnding")
+                        );
+                    }
+                }
+            }
         }
 
         return printer;
@@ -59,7 +61,7 @@ final class SinkPrinter implements Printer {
     /**
      * Singleton
      */
-    private SinkPrinter(final LineEnding lineEnding) {
+    private SinkPrinter(final HasLineEnding lineEnding) {
         super();
         this.lineEnding = lineEnding;
     }
@@ -74,10 +76,11 @@ final class SinkPrinter implements Printer {
      */
     @Override
     public LineEnding lineEnding() {
-        return this.lineEnding;
+        return this.lineEnding
+                .lineEnding();
     }
 
-    private final LineEnding lineEnding;
+    private final HasLineEnding lineEnding;
 
     @Override
     public void flush() {

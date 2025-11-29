@@ -68,7 +68,7 @@ final public class Printers implements PublicStaticHelper {
     /**
      * {@see SinkPrinter}.
      */
-    public static Printer sink(final LineEnding lineEnding) {
+    public static Printer sink(final HasLineEnding lineEnding) {
         return SinkPrinter.with(lineEnding);
     }
 
