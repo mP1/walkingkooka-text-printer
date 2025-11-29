@@ -18,6 +18,7 @@
 package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.text.HasLineEnding;
 import walkingkooka.text.LineEnding;
 
 import java.io.IOException;
@@ -48,7 +49,7 @@ final public class WriterPrinterTest extends PrinterTestCase<WriterPrinter> {
         }
     };
 
-    private final static LineEnding LINE_ENDING = LineEnding.NL;
+    private final static HasLineEnding LINE_ENDING = LineEnding.NL;
 
     // tests
 
@@ -58,12 +59,13 @@ final public class WriterPrinterTest extends PrinterTestCase<WriterPrinter> {
             NullPointerException.class,
             () -> WriterPrinter.with(
                 null,
-                LINE_ENDING)
+                LINE_ENDING
+            )
         );
     }
 
     @Test
-    public void testWithNullLineEndingFails() {
+    public void testWithNullHasLineEndingFails() {
         assertThrows(
             NullPointerException.class,
             () -> WriterPrinter.with(
