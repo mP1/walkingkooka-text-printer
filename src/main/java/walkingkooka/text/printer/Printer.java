@@ -18,6 +18,7 @@
 package walkingkooka.text.printer;
 
 import javaemul.internal.annotations.GwtIncompatible;
+import walkingkooka.text.HasLineEnding;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
@@ -29,7 +30,9 @@ import java.util.function.Function;
 /**
  * A {@link Printer} may be used to print {@link CharSequence characters} to a target.
  */
-public interface Printer extends PrinterLike, Closeable {
+public interface Printer extends PrinterLike,
+        Closeable,
+        HasLineEnding {
 
     /**
      * Prints of or more characters.
