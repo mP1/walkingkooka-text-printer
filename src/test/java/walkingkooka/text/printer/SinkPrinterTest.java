@@ -21,7 +21,17 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.text.LineEnding;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 final public class SinkPrinterTest extends PrinterTestCase<SinkPrinter> implements ToStringTesting<SinkPrinter> {
+
+    @Test
+    public void testWithNullHasLineEndingFails() {
+        assertThrows(
+                NullPointerException.class,
+                () -> SinkPrinter.with(null)
+        );
+    }
 
     @Override
     @Test
