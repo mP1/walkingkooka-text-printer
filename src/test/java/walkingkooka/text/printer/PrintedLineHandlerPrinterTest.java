@@ -36,7 +36,7 @@ final public class PrintedLineHandlerPrinterTest extends PrinterTestCase2<Printe
         final String lineString = line.toString();
         if ((-1 != lineString.indexOf('\r')) || (-1 != lineString.indexOf('\n'))) {
             Assertions.fail("PrintedLineHandler line should not have a CR or NL="
-                    + CharSequences.escape(line));
+                + CharSequences.escape(line));
         }
         printer.print(line);
         printer.print("!");
@@ -84,9 +84,9 @@ final public class PrintedLineHandlerPrinterTest extends PrinterTestCase2<Printe
     public void testStringWithoutLineEndingCharacterByCharacter() {
         final String printed = "123456";
         this.printAndCheck(this.characterByCharacter(printed),
-                LINE_ENDING,
-                null,
-                printed);
+            LINE_ENDING,
+            null,
+            printed);
     }
 
     @Test
@@ -215,33 +215,33 @@ final public class PrintedLineHandlerPrinterTest extends PrinterTestCase2<Printe
     @Test
     public void testManyLinesCrNlCharacterByCharacter() {
         this.printAndCheck(this.characterByCharacter("123\r\n456\r\n7"),
-                LineEnding.CRNL,
-                "123!\r\n456!\r\n",
-                "7");
+            LineEnding.CRNL,
+            "123!\r\n456!\r\n",
+            "7");
     }
 
     @Test
     public void testManyLinesCrCharacterByCharacter2() {
         this.printAndCheck(this.characterByCharacter("@123@456@7"),
-                LineEnding.CR,
-                "@123@456@",
-                "7");
+            LineEnding.CR,
+            "@123@456@",
+            "7");
     }
 
     @Test
     public void testManyLinesNlCharacterByCharacter2() {
         this.printAndCheck(this.characterByCharacter("@123@456@7"),
-                LineEnding.NL,
-                "@123@456@",
-                "7");
+            LineEnding.NL,
+            "@123@456@",
+            "7");
     }
 
     @Test
     public void testManyLinesCrNlCharacterByCharacter2() {
         this.printAndCheck(this.characterByCharacter("\r\n123\r\n456\r\n7"),
-                LineEnding.CRNL,
-                "!\r\n123!\r\n456!\r\n",
-                "7");
+            LineEnding.CRNL,
+            "!\r\n123!\r\n456!\r\n",
+            "7");
     }
 
     @Test
@@ -273,7 +273,7 @@ final public class PrintedLineHandlerPrinterTest extends PrinterTestCase2<Printe
         printer.flush();
 
         this.checkEquals("123!" + LINE_ENDING + "456!"
-                + LINE_ENDING, printed.toString());
+            + LINE_ENDING, printed.toString());
     }
 
     @Override
@@ -297,18 +297,18 @@ final public class PrintedLineHandlerPrinterTest extends PrinterTestCase2<Printe
     @Test
     public void testManyThreadsPrintingConcurrently() throws Exception {
         final PrintedLineHandlerPrinter printer = PrintedLineHandlerPrinter.wrap(
-                Printers.stringBuilder(
-                        new StringBuilder(),
-                        LineEnding.NL
-                ),
-                new PrintedLineHandler() {
-                    @Override
-                    public void linePrinted(final CharSequence line,
-                                            final LineEnding lineEnding,
-                                            final Printer printer) {
-                        printer.print("" + line + lineEnding);
-                    }
+            Printers.stringBuilder(
+                new StringBuilder(),
+                LineEnding.NL
+            ),
+            new PrintedLineHandler() {
+                @Override
+                public void linePrinted(final CharSequence line,
+                                        final LineEnding lineEnding,
+                                        final Printer printer) {
+                    printer.print("" + line + lineEnding);
                 }
+            }
         );
 
         final AtomicLong printLineCounter = new AtomicLong();
@@ -318,20 +318,20 @@ final public class PrintedLineHandlerPrinterTest extends PrinterTestCase2<Printe
 
         for (int i = 0; i < threadCount; i++) {
             new Thread(
-                    () -> {
-                        try {
-                            System.out.println("BEGIN " + Thread.currentThread().getId());
+                () -> {
+                    try {
+                        System.out.println("BEGIN " + Thread.currentThread().getId());
 
-                            for (int j = 0; j < 1000; j++) {
-                                printer.println("Hello\nHello2\nHello3\n");
-                                printLineCounter.incrementAndGet();
-                            }
-
-                            System.out.println("END " + Thread.currentThread().getId());
-                        } finally {
-                            finished.incrementAndGet();
+                        for (int j = 0; j < 1000; j++) {
+                            printer.println("Hello\nHello2\nHello3\n");
+                            printLineCounter.incrementAndGet();
                         }
+
+                        System.out.println("END " + Thread.currentThread().getId());
+                    } finally {
+                        finished.incrementAndGet();
                     }
+                }
             ).start();
         }
 
@@ -353,15 +353,15 @@ final public class PrintedLineHandlerPrinterTest extends PrinterTestCase2<Printe
     @Test
     public void testToString() {
         this.checkEquals(
-                HANDLER + " " + PRINTER,
-                PrintedLineHandlerPrinter.wrap(PRINTER,
-                        HANDLER).toString());
+            HANDLER + " " + PRINTER,
+            PrintedLineHandlerPrinter.wrap(PRINTER,
+                HANDLER).toString());
     }
 
     @Override
     public PrintedLineHandlerPrinter createPrinter(final StringBuilder printed) {
         return this.createPrinter(Printers.stringBuilder(printed,
-                LINE_ENDING));
+            LINE_ENDING));
     }
 
     private PrintedLineHandlerPrinter createPrinter(final Printer printer) {
@@ -392,31 +392,31 @@ final public class PrintedLineHandlerPrinterTest extends PrinterTestCase2<Printe
 
         // if expected is null or empty pass a fake Printer to fail of soon of the first print occurs.
         final PrintedLineHandlerPrinter printer = this.createPrinter(
-                (null == expected) || expected.equals("") ?
-                        //
-                        PRINTER
-                        //
-                        :
-                        Printers.stringBuilder(target, LINE_ENDING));
+            (null == expected) || expected.equals("") ?
+                //
+                PRINTER
+                //
+                :
+                Printers.stringBuilder(target, LINE_ENDING));
         for (int i = 0; i < printed.length; i++) {
             printed[i] = this.replacePlaceHolder(printed[i], lineEnding);
         }
 
         this.printAndCheck(//
-                printer,
-                // the target Printer
-                printed,
-                // what is printed
-                target,
-                // StringBuilder
-                null == expected ? "" : this.replacePlaceHolder2(expected, lineEnding).toString(),
-                //
-                flushAndClose,
-                // do not flush and close
-                null); // message if fails
+            printer,
+            // the target Printer
+            printed,
+            // what is printed
+            target,
+            // StringBuilder
+            null == expected ? "" : this.replacePlaceHolder2(expected, lineEnding).toString(),
+            //
+            flushAndClose,
+            // do not flush and close
+            null); // message if fails
 
         this.checkEquals(this.replacePlaceHolder(this.toString(buffer), lineEnding),
-                this.toString(printer.buffer));
+            this.toString(printer.buffer));
     }
 
     private CharSequence replacePlaceHolder(final CharSequence text, final LineEnding lineEnding) {

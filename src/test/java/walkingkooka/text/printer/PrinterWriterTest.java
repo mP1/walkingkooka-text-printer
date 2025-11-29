@@ -32,15 +32,15 @@ public final class PrinterWriterTest implements ClassTesting<PrinterWriter> {
         final Printer printer = Printers.stringBuilder(b, LineEnding.NL);
         final PrinterWriter printWriter = PrinterWriter.with(printer);
         printWriter.write(
-                "1234567890",
-                3,
-                5
+            "1234567890",
+            3,
+            5
         );
         printWriter.flush();
 
         this.checkEquals(
-                "45678",
-                b.toString()
+            "45678",
+            b.toString()
         );
     }
 

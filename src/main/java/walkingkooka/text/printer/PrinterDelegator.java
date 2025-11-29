@@ -27,25 +27,25 @@ public interface PrinterDelegator extends Printer {
     @Override
     default void print(final CharSequence chars) {
         this.printer()
-                .print(chars);
+            .print(chars);
     }
 
     @Override
     default LineEnding lineEnding() {
         return this.printer()
-                .lineEnding();
+            .lineEnding();
     }
 
     @Override
     default void flush() {
         this.printer()
-                .flush();
+            .flush();
     }
 
     @Override
     default void close() {
         this.printer()
-                .close();
+            .close();
     }
 
     Printer printer();

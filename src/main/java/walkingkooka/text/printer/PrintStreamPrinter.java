@@ -59,8 +59,8 @@ final class PrintStreamPrinter implements Printer {
     static PrintStreamPrinter sysOut() {
         if (null == PrintStreamPrinter.sysOut) {
             PrintStreamPrinter.sysOut = new PrintStreamPrinter("System.out ",
-                    System.out,
-                    LineEnding.SYSTEM);
+                System.out,
+                LineEnding.SYSTEM);
         }
         return PrintStreamPrinter.sysOut;
     }
@@ -73,8 +73,8 @@ final class PrintStreamPrinter implements Printer {
     static PrintStreamPrinter sysErr() {
         if (null == PrintStreamPrinter.sysErr) {
             PrintStreamPrinter.sysErr = new PrintStreamPrinter("System.err ",
-                    System.err,
-                    LineEnding.SYSTEM);
+                System.err,
+                LineEnding.SYSTEM);
         }
         return PrintStreamPrinter.sysErr;
     }

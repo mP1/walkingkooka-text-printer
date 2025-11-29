@@ -25,7 +25,7 @@ import walkingkooka.text.LineEnding;
  * Base class for testing a {@link Printer} with mostly parameter checking tests.
  */
 abstract public class PrinterTestCase<P extends Printer> implements ClassTesting2<P>,
-        PrinterTesting<P> {
+    PrinterTesting<P> {
 
     PrinterTestCase() {
         super();

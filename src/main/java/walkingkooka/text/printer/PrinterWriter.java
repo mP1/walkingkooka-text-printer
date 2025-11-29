@@ -37,7 +37,7 @@ final class PrinterWriter extends Writer {
                       final int offset,
                       final int length) {
         this.printer.print(
-                new String(buffer, offset, length)
+            new String(buffer, offset, length)
         );
     }
 

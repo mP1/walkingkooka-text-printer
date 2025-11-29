@@ -29,15 +29,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * Interface with default methods which can be mixed in to assist testing of an {@link Printer}.
  */
 public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
-        TypeNameTesting<P>,
-        HasLineEndingTesting {
+    TypeNameTesting<P>,
+    HasLineEndingTesting {
 
     @Test
     default void testPrintNullFails() {
         final P printer = this.createPrinter();
         assertThrows(
-                NullPointerException.class,
-                () -> printer.print(null)
+            NullPointerException.class,
+            () -> printer.print(null)
         );
     }
 
@@ -56,8 +56,8 @@ public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
         final P printer = this.createPrinterAndClose();
 
         assertThrows(
-                IllegalStateException.class,
-                () -> printer.print("print should have been failed because is already closed")
+            IllegalStateException.class,
+            () -> printer.print("print should have been failed because is already closed")
         );
     }
 
@@ -66,8 +66,8 @@ public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
         final P printer = this.createPrinterAndClose();
 
         assertThrows(
-                IllegalStateException.class,
-                printer::lineEnding
+            IllegalStateException.class,
+            printer::lineEnding
         );
     }
 
@@ -76,8 +76,8 @@ public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
         final P printer = this.createPrinterAndClose();
 
         assertThrows(
-                IllegalStateException.class,
-                printer::flush
+            IllegalStateException.class,
+            printer::flush
         );
     }
 
@@ -98,9 +98,9 @@ public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
     default void checkEquals(final CharSequence expected,
                              final CharSequence actual) {
         this.checkEquals(
-                expected,
-                actual,
-                (String) null
+            expected,
+            actual,
+            (String) null
         );
     }
 
@@ -108,9 +108,9 @@ public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
                              final CharSequence actual,
                              final String message) {
         this.checkEquals(
-                (Object) CharSequences.escape(expected),
-                (Object) CharSequences.escape(actual).toString(),
-                message
+            (Object) CharSequences.escape(expected),
+            (Object) CharSequences.escape(actual).toString(),
+            message
         );
     }
 

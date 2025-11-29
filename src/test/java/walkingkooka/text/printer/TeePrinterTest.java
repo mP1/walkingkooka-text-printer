@@ -37,30 +37,30 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
     @Test
     public void testWithNullFirstPrinterFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> TeePrinter.with(null, PRINTER)
+            NullPointerException.class,
+            () -> TeePrinter.with(null, PRINTER)
         );
     }
 
     @Test
     public void testWithNullSecondPrinterFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> TeePrinter.with(
-                        PRINTER,
-                        null
-                )
+            NullPointerException.class,
+            () -> TeePrinter.with(
+                PRINTER,
+                null
+            )
         );
     }
 
     @Test
     public void testWithSamePrinterTwice() {
         assertSame(
+            PRINTER,
+            TeePrinter.with(
                 PRINTER,
-                TeePrinter.with(
-                        PRINTER,
-                        PRINTER
-                )
+                PRINTER
+            )
         );
     }
 
@@ -76,8 +76,8 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
         final StringBuilder builder2 = new StringBuilder();
         final StringBuilder builder3 = new StringBuilder();
         final Printer printer = TeePrinter.with(Printers.stringBuilder(builder1,
-                        LINE_ENDING),
-                Printers.stringBuilder(builder2, LINE_ENDING));
+                LINE_ENDING),
+            Printers.stringBuilder(builder2, LINE_ENDING));
         printer.print("string");
         builder3.append("string");
 
@@ -98,8 +98,8 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
         final StringBuilder builder2 = new StringBuilder();
         final StringBuilder builder3 = new StringBuilder();
         final Printer printer = TeePrinter.with(Printers.stringBuilder(builder1,
-                        LINE_ENDING),
-                Printers.stringBuilder(builder2, LINE_ENDING));
+                LINE_ENDING),
+            Printers.stringBuilder(builder2, LINE_ENDING));
         printer.print("string");
         builder3.append("string");
 
@@ -122,7 +122,7 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
         final Printer left = Printers.fake();
         final Printer right = Printers.fake();
         this.checkEquals("tee (" + left + " AND " + right + ")",
-                TeePrinter.with(left, right).toString());
+            TeePrinter.with(left, right).toString());
     }
 
     @Override

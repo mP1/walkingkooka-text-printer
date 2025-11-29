@@ -41,8 +41,8 @@ public interface TreePrintableTesting extends Testing {
     default void treePrintAndCheck(final Optional<? extends TreePrintable> printable,
                                    final String expected) {
         this.treePrintAndCheck(
-                printable.orElse(null),
-                expected
+            printable.orElse(null),
+            expected
         );
     }
 
@@ -50,17 +50,17 @@ public interface TreePrintableTesting extends Testing {
                                    final String expected) {
         if (null == printable) {
             this.checkEquals(
-                    expected,
-                    null
+                expected,
+                null
             );
         } else {
             this.checkEquals(
-                    expected,
-                    printable.treeToString(
-                            Indentation.SPACES2,
-                            EOL
-                    ),
-                    printable::toString
+                expected,
+                printable.treeToString(
+                    Indentation.SPACES2,
+                    EOL
+                ),
+                printable::toString
             );
         }
     }
@@ -68,9 +68,9 @@ public interface TreePrintableTesting extends Testing {
     default void checkEquals(final TreePrintable expected,
                              final TreePrintable actual) {
         this.checkEquals(
-                expected,
-                actual,
-                (String) null
+            expected,
+            actual,
+            (String) null
         );
     }
 
@@ -78,9 +78,9 @@ public interface TreePrintableTesting extends Testing {
                              final TreePrintable actual,
                              final String message) {
         this.checkEquals(
-                expected,
-                actual,
-                () -> message
+            expected,
+            actual,
+            () -> message
         );
     }
 
@@ -89,9 +89,9 @@ public interface TreePrintableTesting extends Testing {
                              final Supplier<String> message) {
         if (!Objects.equals(expected, actual)) {
             this.checkEquals(
-                    TreePrintableTestingHelper.treePrintWithClassName(expected),
-                    TreePrintableTestingHelper.treePrintWithClassName(actual),
-                    message
+                TreePrintableTestingHelper.treePrintWithClassName(expected),
+                TreePrintableTestingHelper.treePrintWithClassName(actual),
+                message
             );
         }
     }
@@ -99,9 +99,9 @@ public interface TreePrintableTesting extends Testing {
     default void checkNotEquals(final TreePrintable expected,
                                 final TreePrintable actual) {
         this.checkNotEquals(
-                expected,
-                actual,
-                (String) null
+            expected,
+            actual,
+            (String) null
         );
     }
 
@@ -109,9 +109,9 @@ public interface TreePrintableTesting extends Testing {
                                 final TreePrintable actual,
                                 final String message) {
         this.checkNotEquals(
-                expected,
-                actual,
-                () -> message
+            expected,
+            actual,
+            () -> message
         );
     }
 
@@ -120,16 +120,16 @@ public interface TreePrintableTesting extends Testing {
                                 final Supplier<String> message) {
         if (Objects.equals(expected, actual)) {
             final String expectedString = TreePrintableTestingHelper.treePrintWithClassName(
-                    (TreePrintable)expected
+                (TreePrintable) expected
             );
             final String actualString = TreePrintableTestingHelper.treePrintWithClassName(
-                    (TreePrintable)actual
+                (TreePrintable) actual
             );
 
             Testing.super.checkNotEquals(
-                    expectedString,
-                    actualString,
-                    message
+                expectedString,
+                actualString,
+                message
             );
 
             throw new AssertionFailedError("Expected different but got <" + expectedString + "> and <" + actualString + ">");
@@ -147,9 +147,9 @@ public interface TreePrintableTesting extends Testing {
             final Optional<?> actualOptional = Cast.to(actual);
 
             this.checkEquals(
-                    expectedOptional.orElse(null),
-                    actualOptional.orElse(null),
-                    message
+                expectedOptional.orElse(null),
+                actualOptional.orElse(null),
+                message
             );
         } else {
             if (expected instanceof TreePrintable && actual instanceof TreePrintable) {
@@ -158,18 +158,18 @@ public interface TreePrintableTesting extends Testing {
                 if (TreePrintableTestingHelper.shouldTreePrint(actual) && TreePrintableTestingHelper.shouldTreePrint(expected)) {
                     // extra test here because some TreePrintables might be equal but print differently.
                     // SpreadsheetDelta.deletedCell Set<SpreadsheetCellReference> ignores SpreadsheetReferenceKind
-                    if(false == Objects.equals(expected, actual)) {
+                    if (false == Objects.equals(expected, actual)) {
                         Testing.super.checkEquals(
-                                TreePrintableTestingHelper.treePrint((Collection<?>) expected),
-                                TreePrintableTestingHelper.treePrint((Collection<?>) actual),
-                                message
+                            TreePrintableTestingHelper.treePrint((Collection<?>) expected),
+                            TreePrintableTestingHelper.treePrint((Collection<?>) actual),
+                            message
                         );
                     }
                 } else {
                     Testing.super.checkEquals(
-                            expected,
-                            actual,
-                            message
+                        expected,
+                        actual,
+                        message
                     );
                 }
             }
@@ -185,38 +185,39 @@ public interface TreePrintableTesting extends Testing {
             final Optional<?> actualOptional = Cast.to(actual);
 
             this.checkNotEquals(
-                    expectedOptional.orElse(null),
-                    actualOptional.orElse(null),
-                    message
+                expectedOptional.orElse(null),
+                actualOptional.orElse(null),
+                message
             );
         } else {
             if (expected instanceof TreePrintable && actual instanceof TreePrintable) {
                 this.checkNotEquals(
-                        (TreePrintable) expected,
-                        (TreePrintable) actual,
-                        message
+                    (TreePrintable) expected,
+                    (TreePrintable) actual,
+                    message
                 );
             } else {
                 if (TreePrintableTestingHelper.shouldTreePrint(actual) && TreePrintableTestingHelper.shouldTreePrint(expected)) {
                     // extra test here because some TreePrintables might be equal but print differently.
                     // SpreadsheetDelta.deletedCell Set<SpreadsheetCellReference> ignores SpreadsheetReferenceKind
-                    if(Objects.equals(expected, actual)) {
+                    if (Objects.equals(expected, actual)) {
                         final String expectedString = TreePrintableTestingHelper.treePrint((Collection<?>) expected);
                         final String actualString = TreePrintableTestingHelper.treePrint((Collection<?>) actual);
 
                         Testing.super.checkNotEquals(
-                                expectedString,
-                                actualString,
-                                message
+                            expectedString,
+                            actualString,
+                            message
                         );
 
                         throw new AssertionFailedError("Expected different but got <" + expectedString + "> and <" + actualString + ">");
-                    };
+                    }
+                    ;
                 } else {
                     Testing.super.checkNotEquals(
-                            expected,
-                            actual,
-                            message
+                        expected,
+                        actual,
+                        message
                     );
                 }
             }

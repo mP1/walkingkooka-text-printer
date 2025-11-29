@@ -154,8 +154,8 @@ public interface PrinterTesting2<P extends Printer> extends PrinterTesting<P> {
         final String printed = target.toString();
         if (false == printed.equals(expected)) {
             this.checkEquals(CharSequences.quoteAndEscape(expected),
-                    CharSequences.quoteAndEscape(printed),
-                    message);
+                CharSequences.quoteAndEscape(printed),
+                message);
         }
     }
 

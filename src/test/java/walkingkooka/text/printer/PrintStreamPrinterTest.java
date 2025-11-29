@@ -45,22 +45,22 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
     @Test
     public void testWithNullPrintStreamFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> PrintStreamPrinter.with(
-                        null,
-                        LINE_ENDING
-                )
+            NullPointerException.class,
+            () -> PrintStreamPrinter.with(
+                null,
+                LINE_ENDING
+            )
         );
     }
 
     @Test
     public void testWithNullHasLineEndingFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> PrintStreamPrinter.with(
-                        System.out,
-                        null
-                )
+            NullPointerException.class,
+            () -> PrintStreamPrinter.with(
+                System.out,
+                null
+            )
         );
     }
 
@@ -74,19 +74,19 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
     public void testSysErr() {
         final Printer printer = PrintStreamPrinter.sysErr();
         assertSame(
-                printer,
-                PrintStreamPrinter.sysErr()
+            printer,
+            PrintStreamPrinter.sysErr()
         );
     }
 
     @Test
     public void testPrintStreamWithSysErr() {
         assertSame(
-                PrintStreamPrinter.sysErr(),
-                PrintStreamPrinter.with(
-                        System.err,
-                        LINE_ENDING
-                )
+            PrintStreamPrinter.sysErr(),
+            PrintStreamPrinter.with(
+                System.err,
+                LINE_ENDING
+            )
         );
     }
 
@@ -94,19 +94,19 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
     public void testSysOut() {
         final Printer printer = PrintStreamPrinter.sysOut();
         assertSame(
-                printer,
-                PrintStreamPrinter.sysOut()
+            printer,
+            PrintStreamPrinter.sysOut()
         );
     }
 
     @Test
     public void testPrintStreamWithSysOut() {
         assertSame(
-                PrintStreamPrinter.sysOut(),
-                PrintStreamPrinter.with(
-                        System.out,
-                        LINE_ENDING
-                )
+            PrintStreamPrinter.sysOut(),
+            PrintStreamPrinter.with(
+                System.out,
+                LINE_ENDING
+            )
         );
     }
 
@@ -114,14 +114,14 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
     public void testAppend() {
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
         final Printer printer = PrintStreamPrinter.with(
-                new PrintStream(output),
-                LINE_ENDING
+            new PrintStream(output),
+            LINE_ENDING
         );
         printer.print("ascii");
 
         this.checkEquals(
-                "ascii",
-                output.toString()
+            "ascii",
+            output.toString()
         );
     }
 
@@ -129,11 +129,11 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
     public void testToString() {
         final PrintStream printStream = new PrintStream(OUTPUTSTREAM);
         this.checkEquals(
-                printStream.toString(),
-                PrintStreamPrinter.with(
-                        printStream,
-                        LINE_ENDING
-                ).toString())
+            printStream.toString(),
+            PrintStreamPrinter.with(
+                printStream,
+                LINE_ENDING
+            ).toString())
         ;
     }
 
@@ -141,8 +141,8 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
     public void testSystemErrToString() {
         final PrintStream printStream = System.err;
         this.checkEquals(
-                "System.err " + printStream.toString(),
-                PrintStreamPrinter.sysErr().toString()
+            "System.err " + printStream.toString(),
+            PrintStreamPrinter.sysErr().toString()
         );
     }
 
@@ -150,8 +150,8 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
     public void testSystemOutToString() {
         final PrintStream printStream = System.out;
         this.checkEquals(
-                "System.out " + printStream.toString(),
-                PrintStreamPrinter.sysOut().toString()
+            "System.out " + printStream.toString(),
+            PrintStreamPrinter.sysOut().toString()
         );
     }
 
@@ -164,40 +164,40 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
     @Override
     public PrintStreamPrinter createPrinter() {
         return PrintStreamPrinter.with(//
-                new PrintStream(OUTPUTSTREAM) {
+            new PrintStream(OUTPUTSTREAM) {
 
-                    @Override
-                    public void println() {
-                        if (this.closed) {
-                            throw new IllegalStateException("PrintStream already closed");
-                        }
+                @Override
+                public void println() {
+                    if (this.closed) {
+                        throw new IllegalStateException("PrintStream already closed");
                     }
+                }
 
-                    @Override
-                    public void print(final Object object) {
-                        if (this.closed) {
-                            throw new IllegalStateException("PrintStream already closed");
-                        }
-                        super.print(object);
+                @Override
+                public void print(final Object object) {
+                    if (this.closed) {
+                        throw new IllegalStateException("PrintStream already closed");
                     }
+                    super.print(object);
+                }
 
-                    @Override
-                    public void flush() {
-                        if (this.closed) {
-                            throw new IllegalStateException("PrintStream already closed");
-                        }
-                        super.flush();
+                @Override
+                public void flush() {
+                    if (this.closed) {
+                        throw new IllegalStateException("PrintStream already closed");
                     }
+                    super.flush();
+                }
 
-                    @Override
-                    public void close() {
-                        this.closed = true;
-                        super.close();
-                    }
+                @Override
+                public void close() {
+                    this.closed = true;
+                    super.close();
+                }
 
-                    private boolean closed;
-                }, //
-                LINE_ENDING);
+                private boolean closed;
+            }, //
+            LINE_ENDING);
     }
 
     // class............................................................................................................

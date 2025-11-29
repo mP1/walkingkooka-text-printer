@@ -35,8 +35,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.print(true);
 
         this.printerCheck(
-                b,
-                "true"
+            b,
+            "true"
         );
     }
 
@@ -48,8 +48,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.print(false);
 
         this.printerCheck(
-                b,
-                "false"
+            b,
+            "false"
         );
     }
 
@@ -62,8 +62,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.print((byte) 2);
 
         this.printerCheck(
-                b,
-                "12"
+            b,
+            "12"
         );
     }
 
@@ -76,8 +76,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.print('1');
 
         this.printerCheck(
-                b,
-                "A1"
+            b,
+            "A1"
         );
     }
 
@@ -89,8 +89,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.print(1.2);
 
         this.printerCheck(
-                b,
-                "1.2"
+            b,
+            "1.2"
         );
     }
 
@@ -102,8 +102,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.print(1.2f);
 
         this.printerCheck(
-                b,
-                "1.2"
+            b,
+            "1.2"
         );
     }
 
@@ -115,8 +115,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.print(12345);
 
         this.printerCheck(
-                b,
-                "12345"
+            b,
+            "12345"
         );
     }
 
@@ -128,8 +128,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.print(123456L);
 
         this.printerCheck(
-                b,
-                "123456"
+            b,
+            "123456"
         );
     }
 
@@ -141,8 +141,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.print((short) 78);
 
         this.printerCheck(
-                b,
-                "78"
+            b,
+            "78"
         );
     }
 
@@ -154,8 +154,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.print("A1");
 
         this.printerCheck(
-                b,
-                "A1"
+            b,
+            "A1"
         );
     }
 
@@ -167,8 +167,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.println();
 
         this.printerCheck(
-                b,
-                "\n"
+            b,
+            "\n"
         );
     }
 
@@ -180,8 +180,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.println(true);
 
         this.printerCheck(
-                b,
-                "true\n"
+            b,
+            "true\n"
         );
     }
 
@@ -193,8 +193,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.println(false);
 
         this.printerCheck(
-                b,
-                "false\n"
+            b,
+            "false\n"
         );
     }
 
@@ -207,8 +207,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.println((byte) 2);
 
         this.printerCheck(
-                b,
-                "1\n2\n"
+            b,
+            "1\n2\n"
         );
     }
 
@@ -220,8 +220,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.println('A');
 
         this.printerCheck(
-                b,
-                "A\n"
+            b,
+            "A\n"
         );
     }
 
@@ -233,8 +233,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.println(1.2);
 
         this.printerCheck(
-                b,
-                "1.2\n"
+            b,
+            "1.2\n"
         );
     }
 
@@ -246,8 +246,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.println(1.2f);
 
         this.printerCheck(
-                b,
-                "1.2\n"
+            b,
+            "1.2\n"
         );
     }
 
@@ -259,8 +259,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.println(12345);
 
         this.printerCheck(
-                b,
-                "12345\n"
+            b,
+            "12345\n"
         );
     }
 
@@ -272,8 +272,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.println(123456L);
 
         this.printerCheck(
-                b,
-                "123456\n"
+            b,
+            "123456\n"
         );
     }
 
@@ -285,8 +285,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.println((short) 78);
 
         this.printerCheck(
-                b,
-                "78\n"
+            b,
+            "78\n"
         );
     }
 
@@ -298,8 +298,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.println("A1");
 
         this.printerCheck(
-                b,
-                "A1\n"
+            b,
+            "A1\n"
         );
     }
 
@@ -313,8 +313,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.close();
 
         this.printerCheck(
-                b,
-                "A1\n"
+            b,
+            "A1\n"
         );
     }
 
@@ -328,8 +328,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.append('A');
 
         this.printerCheck(
-                b,
-                "A"
+            b,
+            "A"
         );
     }
 
@@ -341,8 +341,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         printStream.append(new StringBuilder("ABC"));
 
         this.printerCheck(
-                b,
-                "ABC"
+            b,
+            "ABC"
         );
     }
 
@@ -352,14 +352,14 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         final PrintStream printStream = this.printStream(b);
 
         printStream.append(
-                new StringBuilder("ABCDE"),
-                1,
-                2
+            new StringBuilder("ABCDE"),
+            1,
+            2
         );
 
         this.printerCheck(
-                b,
-                new StringBuilder("ABCDE").subSequence(1, 2)
+            b,
+            new StringBuilder("ABCDE").subSequence(1, 2)
         );
     }
 
@@ -370,8 +370,8 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
         final Printer printer = Printers.fake();
 
         this.toStringAndCheck(
-                printer.asPrintStream(),
-                printer.toString()
+            printer.asPrintStream(),
+            printer.toString()
         );
     }
 
@@ -380,15 +380,15 @@ public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintS
     private void printerCheck(final CharSequence printed,
                               final CharSequence expected) {
         this.checkEquals(
-                printed.toString(),
-                expected.toString()
+            printed.toString(),
+            expected.toString()
         );
     }
 
     private PrintStream printStream(final StringBuilder b) {
         return Printers.stringBuilder(
-                b,
-                LineEnding.NL
+            b,
+            LineEnding.NL
         ).asPrintStream();
     }
 

@@ -28,8 +28,8 @@ final public class SinkPrinterTest extends PrinterTestCase<SinkPrinter> implemen
     @Test
     public void testWithNullHasLineEndingFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> SinkPrinter.with(null)
+            NullPointerException.class,
+            () -> SinkPrinter.with(null)
         );
     }
 
@@ -42,23 +42,23 @@ final public class SinkPrinterTest extends PrinterTestCase<SinkPrinter> implemen
     @Test
     public void testPrintWorks() {
         SinkPrinter.with(LineEnding.CR)
-                .print("string");
+            .print("string");
     }
 
     @Test
     public void testLineEndingCr() {
         this.checkEquals(
-                LineEnding.CR,
-                this.createPrinter().lineEnding()
+            LineEnding.CR,
+            this.createPrinter().lineEnding()
         );
     }
 
     @Test
     public void testLineEndingNone() {
         this.checkEquals(
-                LineEnding.NONE,
-                SinkPrinter.with(LineEnding.NONE)
-                        .lineEnding()
+            LineEnding.NONE,
+            SinkPrinter.with(LineEnding.NONE)
+                .lineEnding()
         );
     }
 
@@ -83,8 +83,8 @@ final public class SinkPrinterTest extends PrinterTestCase<SinkPrinter> implemen
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createPrinter(),
-                "sink"
+            this.createPrinter(),
+            "sink"
         );
     }
 

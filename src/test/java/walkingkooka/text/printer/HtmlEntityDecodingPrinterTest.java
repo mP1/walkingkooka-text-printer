@@ -169,8 +169,8 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
         printer.print(printer.lineEnding());
         printer.flush();
         this.checkEquals(
-                "123" + LINE_ENDING + "456" + LINE_ENDING,
-                printed.toString());
+            "123" + LINE_ENDING + "456" + LINE_ENDING,
+            printed.toString());
     }
 
     @Test
@@ -183,8 +183,8 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
         printer.print(printer.lineEnding());
         printer.flush();
         this.checkEquals(
-                "1*3" + LINE_ENDING + "4*6" + LINE_ENDING,
-                printed.toString());
+            "1*3" + LINE_ENDING + "4*6" + LINE_ENDING,
+            printed.toString());
     }
 
     @Test
@@ -192,7 +192,7 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
         final Function<String, String> decoder = (s) -> s;
         final Printer printer = Printers.fake();
         this.checkEquals(printer + " AND " + decoder,
-                HtmlEntityDecodingPrinter.wrap(decoder, printer).toString());
+            HtmlEntityDecodingPrinter.wrap(decoder, printer).toString());
     }
 
     // factory
@@ -204,8 +204,8 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
 
     private HtmlEntityDecodingPrinter createPrinter(final StringBuilder printed) {
         return HtmlEntityDecodingPrinter.wrap( //
-                (entity) -> "&star;".equals(entity) ? "*" : entity, //
-                Printers.stringBuilder(printed, LINE_ENDING));
+            (entity) -> "&star;".equals(entity) ? "*" : entity, //
+            Printers.stringBuilder(printed, LINE_ENDING));
     }
 
     private final StringBuilder builder = new StringBuilder();
@@ -213,8 +213,8 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
     private void check(final HtmlEntityDecodingPrinter printer, final String expected) {
         final String actual = this.builder.toString();
         this.checkEquals(expected,
-                actual,
-                () -> "Different text written, buffer=" + CharSequences.quote(printer.buffer()));
+            actual,
+            () -> "Different text written, buffer=" + CharSequences.quote(printer.buffer()));
     }
 
     private void printAndCheck(final String expected, final String... strings) {

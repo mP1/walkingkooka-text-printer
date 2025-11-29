@@ -31,8 +31,8 @@ import java.util.function.Function;
  * A {@link Printer} may be used to print {@link CharSequence characters} to a target.
  */
 public interface Printer extends PrinterLike,
-        Closeable,
-        HasLineEnding {
+    Closeable,
+    HasLineEnding {
 
     /**
      * Prints of or more characters.
@@ -111,8 +111,8 @@ public interface Printer extends PrinterLike,
     @GwtIncompatible("https://github.com/mP1/j2cl-java-io/issues/70")
     default PrintWriter asPrintWriter() {
         return new PrintWriter(
-                PrinterWriter.with(this),
-                false // auto-flash
+            PrinterWriter.with(this),
+            false // auto-flash
         );
     }
 
