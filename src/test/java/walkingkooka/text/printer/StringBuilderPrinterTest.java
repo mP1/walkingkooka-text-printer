@@ -38,7 +38,7 @@ final public class StringBuilderPrinterTest extends PrinterTestCase2<StringBuild
     }
 
     @Test
-    public void testWithNullLineEndingFails() {
+    public void testWithNullHasLineEndingFails() {
         assertThrows(NullPointerException.class, () -> StringBuilderPrinter.with(STRING_BUILDER, null));
     }
 

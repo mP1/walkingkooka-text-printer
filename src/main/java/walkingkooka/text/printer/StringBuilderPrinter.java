@@ -17,6 +17,7 @@
 
 package walkingkooka.text.printer;
 
+import walkingkooka.text.HasLineEnding;
 import walkingkooka.text.LineEnding;
 import walkingkooka.util.OpenChecker;
 
@@ -31,7 +32,7 @@ final class StringBuilderPrinter implements Printer {
      * Creates a new {@link StringBuilderPrinter}. Note the {@link StringBuilder} does not have to
      * be empty nor is it cleared.
      */
-    static StringBuilderPrinter with(final StringBuilder builder, final LineEnding lineEnding) {
+    static StringBuilderPrinter with(final StringBuilder builder, final HasLineEnding lineEnding) {
         Objects.requireNonNull(builder, "builder");
         Objects.requireNonNull(lineEnding, "lineEnding");
 
@@ -41,7 +42,7 @@ final class StringBuilderPrinter implements Printer {
     /**
      * Private constructor use static factory
      */
-    private StringBuilderPrinter(final StringBuilder builder, final LineEnding lineEnding) {
+    private StringBuilderPrinter(final StringBuilder builder, final HasLineEnding lineEnding) {
         this.stringBuilder = builder;
         this.lineEnding = lineEnding;
     }
@@ -58,10 +59,10 @@ final class StringBuilderPrinter implements Printer {
     @Override
     public LineEnding lineEnding() {
         this.openChecker.check();
-        return this.lineEnding;
+        return this.lineEnding.lineEnding();
     }
 
-    private final LineEnding lineEnding;
+    private final HasLineEnding lineEnding;
 
     /**
      * Does nothing but verify this printer is still open
