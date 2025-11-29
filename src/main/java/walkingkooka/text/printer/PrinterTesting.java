@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.text.CharSequences;
+import walkingkooka.text.HasLineEndingTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -28,7 +29,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * Interface with default methods which can be mixed in to assist testing of an {@link Printer}.
  */
 public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
-        TypeNameTesting<P> {
+        TypeNameTesting<P>,
+        HasLineEndingTesting {
 
     @Test
     default void testPrintNullFails() {
