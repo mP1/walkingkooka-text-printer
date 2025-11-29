@@ -76,7 +76,7 @@ final public class Printers implements PublicStaticHelper {
      * {@see StringBuilderPrinter}.
      */
     public static Printer stringBuilder(final StringBuilder builder,
-                                        final LineEnding lineEnding) {
+                                        final HasLineEnding lineEnding) {
         return StringBuilderPrinter.with(
                 builder,
                 lineEnding
