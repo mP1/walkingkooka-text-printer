@@ -125,7 +125,7 @@ final public class Printers implements PublicStaticHelper {
     @GwtIncompatible
     public static Printer writer(final Writer writer,
                                  final LineEnding lineEnding) {
-        return WriterPrinter.adapt(
+        return WriterPrinter.with(
                 writer,
                 lineEnding
         );
