@@ -17,6 +17,7 @@
 
 package walkingkooka.text.printer;
 
+import walkingkooka.text.HasLineEnding;
 import walkingkooka.text.LineEnding;
 
 import java.io.IOException;
@@ -33,14 +34,14 @@ final class WriterPrinter implements Printer {
     /**
      * Creates a new {@link WriterPrinter}
      */
-    static WriterPrinter with(final Writer writer, final LineEnding lineEnding) {
+    static WriterPrinter with(final Writer writer, final HasLineEnding lineEnding) {
         Objects.requireNonNull(writer, "writer");
         Objects.requireNonNull(lineEnding, "lineEnding");
 
         return new WriterPrinter(writer, lineEnding);
     }
 
-    private WriterPrinter(final Writer writer, final LineEnding lineEnding) {
+    private WriterPrinter(final Writer writer, final HasLineEnding lineEnding) {
         super();
         this.writer = writer;
         this.lineEnding = lineEnding;
@@ -62,10 +63,11 @@ final class WriterPrinter implements Printer {
      */
     @Override
     public LineEnding lineEnding() {
-        return this.lineEnding;
+        return this.lineEnding
+                .lineEnding();
     }
 
-    private final LineEnding lineEnding;
+    private final HasLineEnding lineEnding;
 
     @Override
     public void flush() {
