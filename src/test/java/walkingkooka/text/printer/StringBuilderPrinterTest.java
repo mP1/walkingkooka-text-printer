@@ -64,6 +64,23 @@ final public class StringBuilderPrinterTest extends PrinterTestCase2<StringBuild
         this.printAndCheck(new CharSequence[]{"1", "23", "456"}, "123456");
     }
 
+    @Test
+    public void testPrintln() {
+        final StringBuilder stringBuilder = new StringBuilder();
+
+        final StringBuilderPrinter printer = StringBuilderPrinter.with(
+                stringBuilder,
+                LINE_ENDING
+        );
+
+        printer.println("Hello");
+
+        this.checkEquals(
+                "Hello" + LINE_ENDING,
+                stringBuilder.toString()
+        );
+    }
+
     @Override
     public StringBuilderPrinter createPrinter(final StringBuilder target) {
         return StringBuilderPrinter.with(target, LINE_ENDING);
