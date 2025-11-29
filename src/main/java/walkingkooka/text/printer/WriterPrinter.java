@@ -33,7 +33,7 @@ final class WriterPrinter implements Printer {
     /**
      * Creates a new {@link WriterPrinter}
      */
-    static WriterPrinter adapt(final Writer writer, final LineEnding lineEnding) {
+    static WriterPrinter with(final Writer writer, final LineEnding lineEnding) {
         Objects.requireNonNull(writer, "writer");
         Objects.requireNonNull(lineEnding, "lineEnding");
 

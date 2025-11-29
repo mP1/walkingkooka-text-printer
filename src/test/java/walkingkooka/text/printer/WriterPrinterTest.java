@@ -53,13 +53,24 @@ final public class WriterPrinterTest extends PrinterTestCase<WriterPrinter> {
     // tests
 
     @Test
-    public void testAdaptNullWriterFails() {
-        assertThrows(NullPointerException.class, () -> WriterPrinter.adapt(null, LINE_ENDING));
+    public void testWithNullWriterFails() {
+        assertThrows(
+                NullPointerException.class,
+                () -> WriterPrinter.with(
+                        null,
+                        LINE_ENDING)
+        );
     }
 
     @Test
-    public void testAdaptNullLineEndingFails() {
-        assertThrows(NullPointerException.class, () -> WriterPrinter.adapt(WRITER, null));
+    public void testWithNullLineEndingFails() {
+        assertThrows(
+                NullPointerException.class,
+                () -> WriterPrinter.with(
+                        WRITER,
+                        null
+                )
+        );
     }
 
     @Test
@@ -148,7 +159,7 @@ final public class WriterPrinterTest extends PrinterTestCase<WriterPrinter> {
     }
 
     private WriterPrinter createPrinter(final Writer writer) {
-        return WriterPrinter.adapt(writer, LINE_ENDING);
+        return WriterPrinter.with(writer, LINE_ENDING);
     }
 
     @Override
