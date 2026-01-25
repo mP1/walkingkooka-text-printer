@@ -20,7 +20,6 @@ package walkingkooka.text.printer;
 import javaemul.internal.annotations.GwtIncompatible;
 import walkingkooka.text.HasLineEnding;
 import walkingkooka.text.Indentation;
-import walkingkooka.text.LineEnding;
 
 import java.io.Closeable;
 import java.io.PrintStream;
@@ -53,11 +52,6 @@ public interface Printer extends PrinterLike,
     default void println() {
         this.print(this.lineEnding());
     }
-
-    /**
-     * Returns the recommended {@link LineEnding}.
-     */
-    LineEnding lineEnding();
 
     /**
      * Flushes this {@link Printer}
