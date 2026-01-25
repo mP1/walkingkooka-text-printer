@@ -64,12 +64,6 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
         );
     }
 
-    @Override
-    @Test
-    public void testPrintNullFails() {
-        // nop
-    }
-
     @Test
     public void testPrint() {
         final StringBuilder builder1 = new StringBuilder();

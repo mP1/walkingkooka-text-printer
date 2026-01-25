@@ -330,12 +330,6 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         assertThrows(NullPointerException.class, () -> this.createPrinter((Printer) null));
     }
 
-    @Override
-    @Test
-    public void testPrintNullFails() {
-        //
-    }
-
     @Test
     public void testPrint() {
         final StringBuilder builder = new StringBuilder();

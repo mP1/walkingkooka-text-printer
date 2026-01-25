@@ -33,12 +33,6 @@ final public class SinkPrinterTest extends PrinterTestCase<SinkPrinter> implemen
         );
     }
 
-    @Override
-    @Test
-    public void testPrintNullFails() {
-        // nop
-    }
-
     @Test
     public void testPrintWorks() {
         SinkPrinter.with(LineEnding.CR)

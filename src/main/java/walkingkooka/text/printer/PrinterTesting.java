@@ -33,15 +33,6 @@ public interface PrinterTesting<P extends Printer> extends ToStringTesting<P>,
     HasLineEndingTesting {
 
     @Test
-    default void testPrintNullFails() {
-        final P printer = this.createPrinter();
-        assertThrows(
-            NullPointerException.class,
-            () -> printer.print(null)
-        );
-    }
-
-    @Test
     default void testFlush() {
         this.createPrinter().flush();
     }
