@@ -49,10 +49,10 @@ final class WriterPrinter implements Printer {
 
     @Override
     public void print(final CharSequence chars) {
-        Objects.requireNonNull(chars, "chars");
-
         try {
-            this.writer.write(chars.toString());
+            this.writer.write(
+                String.valueOf(chars)
+            );
         } catch (final IOException cause) {
             throw new IllegalStateException("Print failed", cause);
         }
