@@ -86,6 +86,16 @@ final public class WriterPrinterTest extends PrinterTestCase<WriterPrinter> {
     }
 
     @Test
+    public void testPrintNull() {
+        final StringWriter writer = new StringWriter();
+        final WriterPrinter printer = this.createPrinter(writer);
+        printer.print("1");
+        printer.print(null);
+        printer.print("456");
+        this.checkEquals("1null456", writer.toString());
+    }
+
+    @Test
     public void testPrintThenWriterThrowsFails() {
         final String written = "printed";
         final IOException thrown = new IOException("thrown");
