@@ -110,7 +110,6 @@ public interface Printer extends PrinterLike,
         );
     }
 
-    @GwtIncompatible
     default PrintStream asPrintStream() {
         return PrinterPrintStream.with(this);
     }

@@ -22,9 +22,28 @@ import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.LineEnding;
 
+import java.io.PrintStream;
 import java.io.PrintWriter;
 
 public final class PrinterTest implements ClassTesting<Printer> {
+
+    @Test
+    public void testPrinterAsPrintStream() {
+        final StringBuilder b = new StringBuilder();
+        final Printer printer = Printers.stringBuilder(
+            b,
+            LineEnding.NL
+        );
+
+        final PrintStream printStream = printer.asPrintStream();
+        printStream.println("Hello");
+        printStream.flush();
+
+        this.checkEquals(
+            "Hello\n",
+            b.toString()
+        );
+    }
 
     @Test
     public void testPrintWriterPrintln() {

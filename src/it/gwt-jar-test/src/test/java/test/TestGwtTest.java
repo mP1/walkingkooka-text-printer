@@ -20,6 +20,7 @@ import com.google.gwt.junit.client.GWTTestCase;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.printer.Printer;
 import walkingkooka.text.printer.Printers;
+import java.io.PrintStream;
 
 public class TestGwtTest extends GWTTestCase {
     @Override
@@ -43,6 +44,23 @@ public class TestGwtTest extends GWTTestCase {
 
         assertEquals(
             "Hello",
+            b.toString()
+        );
+    }
+
+    public void testPrinterAsPrintStream() {
+        final StringBuilder b = new StringBuilder();
+        final Printer printer = Printers.stringBuilder(
+            b,
+            LineEnding.NL
+        );
+
+        final PrintStream printStream = printer.asPrintStream();
+        printStream.println("Hello");
+        printStream.flush();
+
+        assertEquals(
+            "Hello\n",
             b.toString()
         );
     }
