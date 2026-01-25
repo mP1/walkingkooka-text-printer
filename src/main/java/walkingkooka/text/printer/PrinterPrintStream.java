@@ -18,7 +18,6 @@ package walkingkooka.text.printer;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.Locale;
 
 final class PrinterPrintStream extends PrintStream {
 
@@ -135,34 +134,6 @@ final class PrinterPrintStream extends PrintStream {
     @Override
     public void println(final Object x) {
         this.println(String.valueOf(x));
-    }
-
-    @Override
-    public PrintStream printf(final String format,
-                              final Object... values) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public PrintStream printf(final Locale l,
-                              final String format,
-                              final Object... values) {
-        throw new UnsupportedOperationException();
-    }
-
-    // format...........................................................................................................
-
-    @Override
-    public PrintStream format(final String format,
-                              final Object... values) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public PrintStream format(final Locale l,
-                              final String format,
-                              final Object... values) {
-        throw new UnsupportedOperationException();
     }
 
     // write............................................................................................................
