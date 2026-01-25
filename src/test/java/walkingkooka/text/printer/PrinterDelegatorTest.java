@@ -25,11 +25,6 @@ public final class PrinterDelegatorTest implements PrinterTesting<TestPrinterDel
 
     private final static LineEnding LINE_ENDING = LineEnding.NL;
 
-    @Override
-    public void testPrintNullFails() {
-        throw new UnsupportedOperationException();
-    }
-
     @Test
     public void testPrintln() {
         final TestPrinterDelegator printer = new TestPrinterDelegator();

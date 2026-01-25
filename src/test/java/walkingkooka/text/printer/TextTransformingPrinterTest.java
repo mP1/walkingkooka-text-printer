@@ -84,12 +84,6 @@ final public class TextTransformingPrinterTest extends PrinterTestCase2<TextTran
         this.checkEquals("ABC123DEF456", printed);
     }
 
-    @Override
-    @Test
-    public void testPrintNullFails() {
-        // nop
-    }
-
     // toString.........................................................................................................
 
     @Test

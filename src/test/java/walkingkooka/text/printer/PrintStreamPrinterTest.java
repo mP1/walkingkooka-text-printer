@@ -64,12 +64,6 @@ final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPri
         );
     }
 
-    @Override
-    @Test
-    public void testPrintNullFails() {
-        // nop
-    }
-
     @Test
     public void testSysErr() {
         final Printer printer = PrintStreamPrinter.sysErr();

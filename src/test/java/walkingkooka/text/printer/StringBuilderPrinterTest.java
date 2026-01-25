@@ -54,11 +54,6 @@ final public class StringBuilderPrinterTest extends PrinterTestCase2<StringBuild
         );
     }
 
-    @Override
-    public void testPrintNullFails() {
-        // nop
-    }
-
     @Test
     public void testPrint() {
         this.printAndCheck(new CharSequence[]{"1", "23", "456"}, "123456");

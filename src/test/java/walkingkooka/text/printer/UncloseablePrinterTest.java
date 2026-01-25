@@ -42,12 +42,6 @@ final public class UncloseablePrinterTest extends PrinterTestCase2<UncloseablePr
         assertSame(printer, UncloseablePrinter.wrap(printer));
     }
 
-    @Override
-    @Test
-    public void testPrintNullFails() {
-        // nop
-    }
-
     @Test
     public void testPrint() {
         this.printAndCheck("123");
