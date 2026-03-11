@@ -6,19 +6,18 @@
 ![](https://tokei.rs/b1/github/mP1/walkingkooka-text-printer)
 [![J2CL compatible](https://img.shields.io/badge/J2CL-compatible-brightgreen.svg)](https://github.com/mP1/j2cl-central)
 
-
-
 A library that establishes simple but elegant interfaces for printing text with devices to create elegant readable
 structured text rather than difficult to read sea of text of found in tools and programs that print output.
 
 # Abstractions
-Some simple abstractions and examples are included below.
 
+Many advanced and simple easy to use abstractions are available to support printing of text. Some examples are available
+and shown below.
 
+## [IndentingPrinter](https://github.com/mP1/walkingkooka-text-printer/blob/master/src/main/java/walkingkooka/text/printer/IndentingPrinter.java)
 
-## IndentingPrinter
-This library provides several building blocks including `IndentingPrinter` which supports fine grained multi levels of 
-indentation to all printed lines with a scope. 
+This printer supports printing text with various levels of nested indentation. Each printed line of text will honour the 
+current level of indentation.
 
 ```java
 final IndentingPrinter printer = Printers.sysOut()
@@ -26,7 +25,7 @@ final IndentingPrinter printer = Printers.sysOut()
 printer.print("First line\n");
 printer.indent();
 {
-    printer.indent();
+    printer.indent(); // adds a level of indentation
     {
         printer.print("Second\nThird\nFourth lines\n");
     }
@@ -97,10 +96,10 @@ Messages
 ```
 
 
-## PrintedLineHandler
+## [PrintedLineHandler](https://github.com/mP1/walkingkooka-text-printer/blob/master/src/main/java/walkingkooka/text/printer/PrintedLineHandler.java)
 
-The `PrintedLineHandler` is mapper that is called for each and every completed line of text printed. The mapper can change
-the text or line ending and then print.
+The `PrintedLineHandler` is a mapper that is called for each and every completed line of text printed. The handler can 
+then edit or even skip the line of text and line ending.
 
 ```java
 final Printer printer = Printers.sysOut()
@@ -127,7 +126,6 @@ prints the following, notice that each line has had a ">>" added.
 >>Fourth lines
 >>last
 ```
-
 
 # walkingkooka-text-pretty
 The [walkingkooka-text-printer](https://github.com/mP1/walkingkooka-text-pretty) sub project adds support for much more
