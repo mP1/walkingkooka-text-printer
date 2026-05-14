@@ -54,12 +54,21 @@ public interface TreePrintableTesting extends Testing {
                 null
             );
         } else {
+            final StringBuilder b = new StringBuilder();
+            try (final BasicIndentingPrinter printer = (BasicIndentingPrinter) Printers.stringBuilder(b, EOL).indenting(Indentation.SPACES2)) {
+                printable.printTree(printer);
+                printer.flush();
+
+                this.checkEquals(
+                    0,
+                    printer.indentationDepth(),
+                    "Printer.indentationDepth"
+                );
+            }
+
             this.checkEquals(
                 expected,
-                printable.treeToString(
-                    Indentation.SPACES2,
-                    EOL
-                ),
+                b.toString(),
                 printable::toString
             );
         }
