@@ -45,7 +45,7 @@ final class BasicIndentingPrinter implements IndentingPrinter {
     /**
      * The indentation depth that increases with calls to {@link #indent} and decreases with calls to {@link #outdent()}.
      */
-    private AtomicInteger indentationDepth;
+    private final AtomicInteger indentationDepth;
 
     private int indentationDepth() {
         return Math.max(
