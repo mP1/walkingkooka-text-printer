@@ -119,12 +119,8 @@ public interface TreePrintableTesting extends Testing {
                                 final TreePrintable actual,
                                 final Supplier<String> message) {
         if (Objects.equals(expected, actual)) {
-            final String expectedString = TreePrintableTestingHelper.treePrintWithClassName(
-                (TreePrintable) expected
-            );
-            final String actualString = TreePrintableTestingHelper.treePrintWithClassName(
-                (TreePrintable) actual
-            );
+            final String expectedString = TreePrintableTestingHelper.treePrintWithClassName(expected);
+            final String actualString = TreePrintableTestingHelper.treePrintWithClassName(actual);
 
             Testing.super.checkNotEquals(
                 expectedString,
