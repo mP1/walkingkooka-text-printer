@@ -47,7 +47,8 @@ final class BasicIndentingPrinter implements IndentingPrinter {
      */
     private final AtomicInteger indentationDepth;
 
-    private int indentationDepth() {
+    // @VisibleForTesting
+    int indentationDepth() {
         return Math.max(
             this.indentationDepth.get(),
             0
