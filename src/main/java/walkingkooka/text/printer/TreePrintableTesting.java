@@ -149,7 +149,11 @@ public interface TreePrintableTesting extends Testing {
             );
         } else {
             if (expected instanceof TreePrintable && actual instanceof TreePrintable) {
-                this.checkEquals((TreePrintable) expected, (TreePrintable) actual, message);
+                this.checkEquals(
+                    (TreePrintable) expected,
+                    (TreePrintable) actual,
+                    message
+                );
             } else {
                 if (TreePrintableTestingHelper.shouldTreePrint(actual) && TreePrintableTestingHelper.shouldTreePrint(expected)) {
                     // extra test here because some TreePrintables might be equal but print differently.
