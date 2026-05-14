@@ -208,7 +208,6 @@ public interface TreePrintableTesting extends Testing {
 
                         throw new AssertionFailedError("Expected different but got <" + expectedString + "> and <" + actualString + ">");
                     }
-                    ;
                 } else {
                     Testing.super.checkNotEquals(
                         expected,
