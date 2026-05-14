@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicIndentingPrinter> implements IndentingPrinterTesting<BasicIndentingPrinter>, walkingkooka.reflect.TypeNameTesting<BasicIndentingPrinter> {
 
-    protected final static LineEnding LINE_ENDING = LineEnding.CR;
+    private final static LineEnding LINE_ENDING = LineEnding.CR;
     private final static Indentation INDENTATION = Indentation.with(">");
 
     @Test
