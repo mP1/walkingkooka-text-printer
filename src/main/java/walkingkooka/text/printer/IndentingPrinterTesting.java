@@ -19,16 +19,13 @@ package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.TypeNameTesting;
+import walkingkooka.text.HasIndentationTesting;
 import walkingkooka.text.Indentation;
 
 public interface IndentingPrinterTesting<P extends IndentingPrinter>
     extends PrinterTesting2<P>,
+    HasIndentationTesting,
     TypeNameTesting<P> {
-
-
-    // constants
-
-    Indentation INDENTATION = Indentation.SPACES2;
 
     // tests
 
