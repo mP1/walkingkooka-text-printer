@@ -18,7 +18,7 @@ package walkingkooka.text.printer;
 
 import org.opentest4j.AssertionFailedError;
 import walkingkooka.Cast;
-import walkingkooka.test.Testing;
+import walkingkooka.text.HasIndentationTesting;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
@@ -27,9 +27,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public interface TreePrintableTesting extends Testing {
-
-    Indentation INDENTATION = Indentation.SPACES2;
+public interface TreePrintableTesting extends HasIndentationTesting {
 
     /**
      * {@link LineEnding} are particularly important especially in {@link #treePrintAndCheck(TreePrintable, String)} where the {@link String} will have fixed line endings.
@@ -131,7 +129,7 @@ public interface TreePrintableTesting extends Testing {
             final String expectedString = TreePrintableTestingHelper.treePrintWithClassName(expected);
             final String actualString = TreePrintableTestingHelper.treePrintWithClassName(actual);
 
-            Testing.super.checkNotEquals(
+            HasIndentationTesting.super.checkNotEquals(
                 expectedString,
                 actualString,
                 message
@@ -168,14 +166,14 @@ public interface TreePrintableTesting extends Testing {
                     // extra test here because some TreePrintables might be equal but print differently.
                     // SpreadsheetDelta.deletedCell Set<SpreadsheetCellReference> ignores SpreadsheetReferenceKind
                     if (false == Objects.equals(expected, actual)) {
-                        Testing.super.checkEquals(
+                        HasIndentationTesting.super.checkEquals(
                             TreePrintableTestingHelper.treePrint((Collection<?>) expected),
                             TreePrintableTestingHelper.treePrint((Collection<?>) actual),
                             message
                         );
                     }
                 } else {
-                    Testing.super.checkEquals(
+                    HasIndentationTesting.super.checkEquals(
                         expected,
                         actual,
                         message
@@ -213,7 +211,7 @@ public interface TreePrintableTesting extends Testing {
                         final String expectedString = TreePrintableTestingHelper.treePrint((Collection<?>) expected);
                         final String actualString = TreePrintableTestingHelper.treePrint((Collection<?>) actual);
 
-                        Testing.super.checkNotEquals(
+                        HasIndentationTesting.super.checkNotEquals(
                             expectedString,
                             actualString,
                             message
@@ -222,7 +220,7 @@ public interface TreePrintableTesting extends Testing {
                         throw new AssertionFailedError("Expected different but got <" + expectedString + "> and <" + actualString + ">");
                     }
                 } else {
-                    Testing.super.checkNotEquals(
+                    HasIndentationTesting.super.checkNotEquals(
                         expected,
                         actual,
                         message
