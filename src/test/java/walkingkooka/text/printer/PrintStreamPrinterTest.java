@@ -18,7 +18,6 @@
 package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.text.LineEnding;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -28,10 +27,6 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 final public class PrintStreamPrinterTest extends PrinterTestCase<PrintStreamPrinter> {
-
-    // constants
-
-    private final static LineEnding LINE_ENDING = LineEnding.NL;
 
     private final static OutputStream OUTPUTSTREAM = new OutputStream() {
         @Override

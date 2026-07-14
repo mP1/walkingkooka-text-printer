@@ -28,8 +28,6 @@ final public class StringBuilderPrinterTest extends PrinterTestCase2<StringBuild
 
     private final static StringBuilder STRING_BUILDER = new StringBuilder();
 
-    private final static LineEnding LINE_ENDING = LineEnding.NL;
-
     // tests
 
     @Test

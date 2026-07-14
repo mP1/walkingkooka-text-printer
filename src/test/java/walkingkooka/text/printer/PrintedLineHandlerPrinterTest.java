@@ -43,8 +43,6 @@ final public class PrintedLineHandlerPrinterTest extends PrinterTestCase2<Printe
         printer.print(lineEnding);
     };
 
-    private final static LineEnding LINE_ENDING = LineEnding.CR;
-
     // tests
 
     @Test

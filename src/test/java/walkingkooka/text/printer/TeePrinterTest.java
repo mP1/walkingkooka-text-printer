@@ -19,7 +19,6 @@ package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
-import walkingkooka.text.LineEnding;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -29,8 +28,6 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
     // constants
 
     private final static Printer PRINTER = createContractPrinter();
-
-    private final static LineEnding LINE_ENDING = LineEnding.NL;
 
     // tests
 
