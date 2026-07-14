@@ -18,12 +18,14 @@
 package walkingkooka.text.printer;
 
 import javaemul.internal.annotations.GwtIncompatible;
+import walkingkooka.text.HasIndentation;
 import walkingkooka.text.Indentation;
 
 /**
  * A {@link Printer} that includes additional functionality to support indentation.
  */
-public interface IndentingPrinter extends Printer {
+public interface IndentingPrinter extends Printer,
+    HasIndentation {
 
     /**
      * Starts a new line, multiple requests are ignored.
@@ -43,6 +45,7 @@ public interface IndentingPrinter extends Printer {
     /**
      * Returns the current {@link Indentation} if a newline followed by text was printed.
      */
+    @Override
     Indentation indentation();
 
     /**
