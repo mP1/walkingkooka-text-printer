@@ -18,12 +18,9 @@
 package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.text.LineEnding;
 import walkingkooka.text.printer.PrinterDelegatorTest.TestPrinterDelegator;
 
 public final class PrinterDelegatorTest implements PrinterTesting<TestPrinterDelegator> {
-
-    private final static LineEnding LINE_ENDING = LineEnding.NL;
 
     @Test
     public void testPrintln() {

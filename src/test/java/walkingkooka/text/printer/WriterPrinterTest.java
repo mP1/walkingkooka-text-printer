@@ -18,8 +18,6 @@
 package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.text.HasLineEnding;
-import walkingkooka.text.LineEnding;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -48,8 +46,6 @@ final public class WriterPrinterTest extends PrinterTestCase<WriterPrinter> {
             throw new UnsupportedOperationException();
         }
     };
-
-    private final static HasLineEnding LINE_ENDING = LineEnding.NL;
 
     // tests
 

@@ -19,13 +19,11 @@ package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.text.Indentation;
-import walkingkooka.text.LineEnding;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicIndentingPrinter> implements IndentingPrinterTesting<BasicIndentingPrinter>, walkingkooka.reflect.TypeNameTesting<BasicIndentingPrinter> {
 
-    private final static LineEnding LINE_ENDING = LineEnding.CR;
     private final static Indentation INDENTATION = Indentation.with(">");
 
     @Test
@@ -168,7 +166,10 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
         printer.print("line3");
         printer.lineStart();
 
-        this.checkEquals("line1\rline2\rline3\r", printed.toString());
+        this.checkEquals(
+            "line1\nline2\nline3\n",
+            printed.toString()
+        );
     }
 
     @Test

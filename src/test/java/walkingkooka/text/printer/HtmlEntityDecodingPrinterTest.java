@@ -19,17 +19,12 @@ package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.text.CharSequences;
-import walkingkooka.text.LineEnding;
 
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEntityDecodingPrinter> {
-
-    // constants
-
-    private final static LineEnding LINE_ENDING = LineEnding.NL;
 
     // tests
 

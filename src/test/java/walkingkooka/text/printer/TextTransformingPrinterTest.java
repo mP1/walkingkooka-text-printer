@@ -25,10 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 final public class TextTransformingPrinterTest extends PrinterTestCase2<TextTransformingPrinter> {
 
-    // constants
-
-    private final static LineEnding LINE_ENDING = LineEnding.NL;
-
     // tests............................................................................................................
 
     @Test
