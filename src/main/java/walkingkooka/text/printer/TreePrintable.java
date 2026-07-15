@@ -18,8 +18,7 @@ package walkingkooka.text.printer;
 
 import walkingkooka.naming.Name;
 import walkingkooka.text.CharSequences;
-import walkingkooka.text.Indentation;
-import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextContext;
 
 import java.util.Collection;
 import java.util.Map;
@@ -86,10 +85,9 @@ public interface TreePrintable {
     /**
      * Returns as a {@link String} the result of calling {@link #printTree(IndentingPrinter)}.
      */
-    default String treeToString(final Indentation indentation,
-                                final LineEnding eol) {
+    default String treeToString(final TextContext context) {
         final StringBuilder b = new StringBuilder();
-        try (final IndentingPrinter printer = Printers.stringBuilder(b, eol).indenting(indentation)) {
+        try (final IndentingPrinter printer = Printers.stringBuilder(b, context.lineEnding()).indenting(context.indentation())) {
             this.printTree(printer);
             printer.flush();
         }
