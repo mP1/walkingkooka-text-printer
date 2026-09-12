@@ -29,12 +29,24 @@ final public class PrinterTextTransformingTest extends PrinterTestCase2<PrinterT
 
     @Test
     public void testWithNullTransformerFails() {
-        assertThrows(NullPointerException.class, () -> PrinterTextTransforming.with(null, Printers.fake()));
+        assertThrows(
+            NullPointerException.class,
+            () -> PrinterTextTransforming.with(
+                null,
+                Printers.fake()
+            )
+        );
     }
 
     @Test
     public void testWithNullPrinterFails() {
-        assertThrows(NullPointerException.class, () -> PrinterTextTransforming.with(this::transformer, null));
+        assertThrows(
+            NullPointerException.class,
+            () -> PrinterTextTransforming.with(
+                this::transformer,
+                null
+            )
+        );
     }
 
     // lineEnding........................................................................................................
@@ -55,13 +67,18 @@ final public class PrinterTextTransformingTest extends PrinterTestCase2<PrinterT
     }
 
     private void lineEndingAndCheck(final LineEnding lineEnding) {
-        final PrinterTextTransforming printer = this.createPrinter(new FakePrinter() {
-            @Override
-            public LineEnding lineEnding() {
-                return lineEnding;
+        final PrinterTextTransforming printer = this.createPrinter(
+            new FakePrinter() {
+                @Override
+                public LineEnding lineEnding() {
+                    return lineEnding;
+                }
             }
-        });
-        assertSame(lineEnding, printer.lineEnding());
+        );
+        assertSame(
+            lineEnding,
+            printer.lineEnding()
+        );
     }
 
     // print............................................................................................................
@@ -77,7 +94,10 @@ final public class PrinterTextTransformingTest extends PrinterTestCase2<PrinterT
         printer.print("");
         printer.print("456");
 
-        this.checkEquals("ABC123DEF456", printed);
+        this.checkEquals(
+            "ABC123DEF456",
+            printed
+        );
     }
 
     // toString.........................................................................................................
@@ -85,22 +105,34 @@ final public class PrinterTextTransformingTest extends PrinterTestCase2<PrinterT
     @Test
     public void testToString() {
         final Printer wrapped = Printers.fake();
-        this.toStringAndCheck(this.createPrinter(wrapped), wrapped.toString());
+        this.toStringAndCheck(
+            this.createPrinter(wrapped),
+            wrapped.toString()
+        );
     }
 
     // helpers...........................................................................................................
 
     @Override
     public PrinterTextTransforming createPrinter(final StringBuilder target) {
-        return this.createPrinter(Printers.stringBuilder(target, LINE_ENDING));
+        return this.createPrinter(
+            Printers.stringBuilder(
+                target,
+                LINE_ENDING
+            )
+        );
     }
 
     private PrinterTextTransforming createPrinter(final Printer printer) {
-        return PrinterTextTransforming.with(this::transformer, printer);
+        return PrinterTextTransforming.with(
+            this::transformer,
+            printer
+        );
     }
 
     private CharSequence transformer(final CharSequence chars) {
-        return chars.toString().toUpperCase();
+        return chars.toString()
+            .toUpperCase();
     }
 
     // ClassTesting.....................................................................................................
