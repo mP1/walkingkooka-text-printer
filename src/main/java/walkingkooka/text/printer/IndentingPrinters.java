@@ -34,7 +34,7 @@ final public class IndentingPrinters implements PublicStaticHelper {
      */
     public static IndentingPrinter printer(final Printer printer,
                                            final Indentation indentation) {
-        return BasicIndentingPrinter.with(printer, indentation);
+        return IndentingPrinterBasic.with(printer, indentation);
     }
 
     /**

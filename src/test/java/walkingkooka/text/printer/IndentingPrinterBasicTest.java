@@ -22,14 +22,14 @@ import walkingkooka.text.Indentation;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicIndentingPrinter> implements IndentingPrinterTesting<BasicIndentingPrinter>, walkingkooka.reflect.TypeNameTesting<BasicIndentingPrinter> {
+final public class IndentingPrinterBasicTest extends PrinterTestCase2<IndentingPrinterBasic> implements IndentingPrinterTesting<IndentingPrinterBasic>, walkingkooka.reflect.TypeNameTesting<IndentingPrinterBasic> {
 
     private final static Indentation INDENTATION = Indentation.with(">");
 
     @Test
     public void testPrintWithIndent() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.indent();
         printer.print("line1");
         this.checkEquals(">line1", printed.toString());
@@ -38,7 +38,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testIndentNotImmediate() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.print("before");
         printer.indent();
         printer.print("after\n");
@@ -49,7 +49,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testAutoIndentWhenCarriageReturnWritten() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.indent();
         printer.print("line1\r");
         printer.print("line2\r");
@@ -59,7 +59,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testAutoIndentWhenNewLineWritten() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.indent();
         printer.print("line1\n");
         printer.print("line2\n");
@@ -69,7 +69,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testAutoIndentedWhenCarriageReturnNewLineWritten() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.indent();
         printer.print("line1\r\n");
         printer.print("line2\r\n");
@@ -79,7 +79,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testWithManyLines() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.indent();
         printer.print("line1\n");
         printer.print("lin");
@@ -95,7 +95,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testIndentThenOutdentThenPrint() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.indent();
         printer.print("line1\n");
         printer.outdent();
@@ -108,7 +108,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testIndentOutdentIndentOutdentThenPrint() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.indent();
         printer.print("line1\n");
         printer.outdent();
@@ -126,7 +126,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testOutdentNotImmediate() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.indent();
         printer.print("before");
         printer.outdent();
@@ -138,7 +138,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testNestedIndents() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.indent();
         printer.print("line1\n");
         printer.indent();
@@ -158,7 +158,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testPrintAndLineStartWithoutEol() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.print("line1");
         printer.lineStart();
         printer.print("line2");
@@ -175,7 +175,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testLineStartAfterIndent() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.print("line1");
         printer.indent();
         printer.lineStart();
@@ -188,7 +188,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testMixedCharactersAndLineEnding() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.print("line1");
         printer.indent();
         printer.print(printer.lineEnding());
@@ -202,7 +202,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     public void testIndentingPrinterWrappingIndentingPrinter() {
         final StringBuilder printed = new StringBuilder();
 
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.print("line1");
         printer.indent();
         printer.print(printer.lineEnding());
@@ -223,7 +223,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     public void testPrintIndentLineStartPrintOutdent() {
         final StringBuilder printed = new StringBuilder();
 
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
 
         final IndentingPrinter printer2 = printer.indenting(Indentation.with(">>"));
         printer2.lineStart();
@@ -251,7 +251,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     public void testPrintIndentLineStartPrintOutdent2() {
         final StringBuilder printed = new StringBuilder();
 
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
 
         final IndentingPrinter printer2 = printer.indenting(Indentation.with(">>"));
 
@@ -284,7 +284,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     public void testIndentPrintOutdentOutdentPrintIndentPrint() {
         final StringBuilder printed = new StringBuilder();
 
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
 
 
         printer.indent();
@@ -314,16 +314,16 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testToString() {
         final Printer printer = Printers.fake();
-        this.checkEquals(printer.toString(), BasicIndentingPrinter.with(printer, INDENTATION).toString());
+        this.checkEquals(printer.toString(), IndentingPrinterBasic.with(printer, INDENTATION).toString());
     }
 
-    private BasicIndentingPrinter createPrinter(final Printer printer) {
-        return BasicIndentingPrinter.with(printer, INDENTATION);
+    private IndentingPrinterBasic createPrinter(final Printer printer) {
+        return IndentingPrinterBasic.with(printer, INDENTATION);
     }
 
     @Override
-    public Class<BasicIndentingPrinter> type() {
-        return BasicIndentingPrinter.class;
+    public Class<IndentingPrinterBasic> type() {
+        return IndentingPrinterBasic.class;
     }
 
     @Test
@@ -334,7 +334,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testPrint() {
         final StringBuilder builder = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(builder);
+        final IndentingPrinterBasic printer = this.createPrinter(builder);
         printer.print("line1\n");
         printer.print("line2\n");
         this.checkEquals("line1\nline2\n", builder.toString());
@@ -343,7 +343,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testLineStart() {
         final StringBuilder builder = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(Printers.stringBuilder(builder,
+        final IndentingPrinterBasic printer = this.createPrinter(Printers.stringBuilder(builder,
             LINE_ENDING));
         printer.print("before");
         printer.lineStart();
@@ -356,7 +356,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testLineStartWhenEmpty() {
         final StringBuilder builder = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(builder);
+        final IndentingPrinterBasic printer = this.createPrinter(builder);
         printer.lineStart();
         printer.print("after");
 
@@ -366,7 +366,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testLineStart2() {
         final StringBuilder builder = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(builder);
+        final IndentingPrinterBasic printer = this.createPrinter(builder);
         printer.print("before");
         printer.lineStart();
         printer.print("after");
@@ -378,7 +378,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testLineStartWithoutFollowingPrint() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.print("before");
         printer.lineStart();
 
@@ -388,7 +388,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testLineStartFollowingCarriageReturn() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.print("before\r");
         printer.lineStart();
         printer.print("next");
@@ -399,7 +399,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testLineStartFollowingNewline() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.print("before\n");
         printer.lineStart();
         printer.print("next");
@@ -410,7 +410,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testLineStartFollowingCarriageReturnNewLine() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.print("before\r\n");
         printer.lineStart();
         printer.print("next");
@@ -421,7 +421,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     @Test
     public void testManyConsecutiveLineStarts() {
         final StringBuilder printed = new StringBuilder();
-        final BasicIndentingPrinter printer = this.createPrinter(printed);
+        final IndentingPrinterBasic printer = this.createPrinter(printed);
         printer.print("before\n");
         printer.lineStart();
         printer.lineStart();
@@ -458,7 +458,7 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
     }
 
     @Override
-    public BasicIndentingPrinter createPrinter(final StringBuilder builder) {
+    public IndentingPrinterBasic createPrinter(final StringBuilder builder) {
         return this.createPrinter(this.createStringBuilderPrinter(builder));
     }
 
@@ -471,11 +471,16 @@ final public class BasicIndentingPrinterTest extends PrinterTestCase2<BasicInden
 
     @Override
     public String typeNamePrefix() {
-        return BasicIndentingPrinter.class.getSimpleName();
+        return IndentingPrinterBasic.class.getSimpleName();
     }
 
     @Override
     public String typeNameSuffix() {
         return "";
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }

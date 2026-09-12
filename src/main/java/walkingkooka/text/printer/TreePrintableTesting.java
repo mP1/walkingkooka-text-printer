@@ -53,7 +53,7 @@ public interface TreePrintableTesting extends HasIndentationTesting {
             );
         } else {
             final StringBuilder b = new StringBuilder();
-            try (final BasicIndentingPrinter printer = (BasicIndentingPrinter) Printers.stringBuilder(b, EOL).indenting(Indentation.SPACES2)) {
+            try (final IndentingPrinterBasic printer = (IndentingPrinterBasic) Printers.stringBuilder(b, EOL).indenting(Indentation.SPACES2)) {
                 printable.printTree(printer);
                 printer.flush();
 
