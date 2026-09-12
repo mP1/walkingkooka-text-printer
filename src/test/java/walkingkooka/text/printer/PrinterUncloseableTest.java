@@ -22,19 +22,19 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-final public class UncloseablePrinterTest extends PrinterTestCase2<UncloseablePrinter> {
+final public class PrinterUncloseableTest extends PrinterTestCase2<PrinterUncloseable> {
 
     // tests
 
     @Test
     public void testWrapNullPrinterFails() {
-        assertThrows(NullPointerException.class, () -> UncloseablePrinter.wrap(null));
+        assertThrows(NullPointerException.class, () -> PrinterUncloseable.wrap(null));
     }
 
     @Test
     public void testDoesntDoubleWrap() {
-        final UncloseablePrinter printer = this.createPrinter();
-        assertSame(printer, UncloseablePrinter.wrap(printer));
+        final PrinterUncloseable printer = this.createPrinter();
+        assertSame(printer, PrinterUncloseable.wrap(printer));
     }
 
     @Test
@@ -45,7 +45,7 @@ final public class UncloseablePrinterTest extends PrinterTestCase2<UncloseablePr
     @Test
     public void testMixedCharsAndLineEndings() {
         final StringBuilder printed = new StringBuilder();
-        final UncloseablePrinter printer = this.createPrinter(printed);
+        final PrinterUncloseable printer = this.createPrinter(printed);
         printer.print("123");
         printer.print(printer.lineEnding());
         printer.print("456");
@@ -59,7 +59,7 @@ final public class UncloseablePrinterTest extends PrinterTestCase2<UncloseablePr
         final StringBuilder printed = new StringBuilder();
         final StringBuilder expected = new StringBuilder();
 
-        final UncloseablePrinter printer = this.createPrinter(printed);
+        final PrinterUncloseable printer = this.createPrinter(printed);
 
         final String before = "BEFORE";
         printer.print(before);
@@ -85,7 +85,7 @@ final public class UncloseablePrinterTest extends PrinterTestCase2<UncloseablePr
     @Override
     @Test
     public void testFlushAfterCloseFails() {
-        final UncloseablePrinter printer = this.createPrinter();
+        final PrinterUncloseable printer = this.createPrinter();
         printer.close();
         printer.flush();
         printer.close();
@@ -99,13 +99,18 @@ final public class UncloseablePrinterTest extends PrinterTestCase2<UncloseablePr
     }
 
     @Override
-    public UncloseablePrinter createPrinter(final StringBuilder target) {
-        return UncloseablePrinter.wrap(Printers.stringBuilder(target,
+    public PrinterUncloseable createPrinter(final StringBuilder target) {
+        return PrinterUncloseable.wrap(Printers.stringBuilder(target,
             LINE_ENDING));
     }
 
     @Override
-    public Class<UncloseablePrinter> type() {
-        return UncloseablePrinter.class;
+    public Class<PrinterUncloseable> type() {
+        return PrinterUncloseable.class;
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }

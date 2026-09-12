@@ -113,10 +113,10 @@ final public class Printers implements PublicStaticHelper {
     }
 
     /**
-     * {@see UncloseablePrinter}
+     * {@see PrinterUncloseable}
      */
     public static Printer uncloseable(final Printer printer) {
-        return UncloseablePrinter.wrap(printer);
+        return PrinterUncloseable.wrap(printer);
     }
 
     /**
