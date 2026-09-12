@@ -26,23 +26,23 @@ import java.util.Objects;
 /**
  * A {@link Printer} that adds any {@link CharSequence characters} to a {@link StringBuilder}.
  */
-final class StringBuilderPrinter implements Printer {
+final class PrinterStringBuilder implements Printer {
 
     /**
-     * Creates a new {@link StringBuilderPrinter}. Note the {@link StringBuilder} does not have to
+     * Creates a new {@link PrinterStringBuilder}. Note the {@link StringBuilder} does not have to
      * be empty nor is it cleared.
      */
-    static StringBuilderPrinter with(final StringBuilder builder, final HasLineEnding lineEnding) {
+    static PrinterStringBuilder with(final StringBuilder builder, final HasLineEnding lineEnding) {
         Objects.requireNonNull(builder, "builder");
         Objects.requireNonNull(lineEnding, "lineEnding");
 
-        return new StringBuilderPrinter(builder, lineEnding);
+        return new PrinterStringBuilder(builder, lineEnding);
     }
 
     /**
      * Private constructor use static factory
      */
-    private StringBuilderPrinter(final StringBuilder builder, final HasLineEnding lineEnding) {
+    private PrinterStringBuilder(final StringBuilder builder, final HasLineEnding lineEnding) {
         this.stringBuilder = builder;
         this.lineEnding = lineEnding;
     }
