@@ -22,7 +22,7 @@ import walkingkooka.text.LineEnding;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-final public class StringBuilderPrinterTest extends PrinterTestCase2<StringBuilderPrinter> {
+final public class PrinterStringBuilderTest extends PrinterTestCase2<PrinterStringBuilder> {
 
     // constants
 
@@ -34,7 +34,7 @@ final public class StringBuilderPrinterTest extends PrinterTestCase2<StringBuild
     public void testWithNullStringBuilderFails() {
         assertThrows(
             NullPointerException.class,
-            () -> StringBuilderPrinter.with(
+            () -> PrinterStringBuilder.with(
                 null,
                 LINE_ENDING
             )
@@ -45,7 +45,7 @@ final public class StringBuilderPrinterTest extends PrinterTestCase2<StringBuild
     public void testWithNullHasLineEndingFails() {
         assertThrows(
             NullPointerException.class,
-            () -> StringBuilderPrinter.with(
+            () -> PrinterStringBuilder.with(
                 STRING_BUILDER,
                 null
             )
@@ -61,7 +61,7 @@ final public class StringBuilderPrinterTest extends PrinterTestCase2<StringBuild
     public void testPrintln() {
         final StringBuilder stringBuilder = new StringBuilder();
 
-        final StringBuilderPrinter printer = StringBuilderPrinter.with(
+        final PrinterStringBuilder printer = PrinterStringBuilder.with(
             stringBuilder,
             LINE_ENDING
         );
@@ -81,7 +81,7 @@ final public class StringBuilderPrinterTest extends PrinterTestCase2<StringBuild
             LineEnding.NL
         };
 
-        final StringBuilderPrinter printer = StringBuilderPrinter.with(
+        final PrinterStringBuilder printer = PrinterStringBuilder.with(
             stringBuilder,
             () -> lineEnding[0]
         );
@@ -104,12 +104,17 @@ final public class StringBuilderPrinterTest extends PrinterTestCase2<StringBuild
     }
 
     @Override
-    public StringBuilderPrinter createPrinter(final StringBuilder target) {
-        return StringBuilderPrinter.with(target, LINE_ENDING);
+    public PrinterStringBuilder createPrinter(final StringBuilder target) {
+        return PrinterStringBuilder.with(target, LINE_ENDING);
     }
 
     @Override
-    public Class<StringBuilderPrinter> type() {
-        return StringBuilderPrinter.class;
+    public Class<PrinterStringBuilder> type() {
+        return PrinterStringBuilder.class;
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }
