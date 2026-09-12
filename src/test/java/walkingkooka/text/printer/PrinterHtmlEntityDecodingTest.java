@@ -24,13 +24,13 @@ import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEntityDecodingPrinter> {
+final public class PrinterHtmlEntityDecodingTest extends PrinterTestCase<PrinterHtmlEntityDecoding> {
 
     // tests
 
     @Test
     public void testWrapNullEntityDecoderFails() {
-        assertThrows(NullPointerException.class, () -> HtmlEntityDecodingPrinter.wrap(null, Printers.fake()));
+        assertThrows(NullPointerException.class, () -> PrinterHtmlEntityDecoding.wrap(null, Printers.fake()));
     }
 
     @Test
@@ -58,7 +58,7 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
 
     @Test
     public void testAmpersand() {
-        final HtmlEntityDecodingPrinter printer = this.createPrinter();
+        final PrinterHtmlEntityDecoding printer = this.createPrinter();
         printer.print("&");
         this.check(printer, "");
         this.checkEquals(1, printer.last);
@@ -67,7 +67,7 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
 
     @Test
     public void testEmptyEntity() {
-        final HtmlEntityDecodingPrinter printer = this.createPrinter();
+        final PrinterHtmlEntityDecoding printer = this.createPrinter();
         printer.print("&;");
         this.check(printer, "&;");
         this.checkEquals(0, printer.last);
@@ -75,7 +75,7 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
 
     @Test
     public void testIncompleteNamedEntity() {
-        final HtmlEntityDecodingPrinter printer = this.createPrinter();
+        final PrinterHtmlEntityDecoding printer = this.createPrinter();
         final String text = "&star";
         printer.print(text);
         this.check(printer, "");
@@ -100,7 +100,7 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
 
     @Test
     public void testIncompleteNumericEntity() {
-        final HtmlEntityDecodingPrinter printer = this.createPrinter();
+        final PrinterHtmlEntityDecoding printer = this.createPrinter();
         final String text = "&#123";
         printer.print(text);
         this.check(printer, "");
@@ -157,7 +157,7 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
     @Test
     public void testMixedCharsAndLineEndings() {
         final StringBuilder printed = new StringBuilder();
-        final HtmlEntityDecodingPrinter printer = this.createPrinter(printed);
+        final PrinterHtmlEntityDecoding printer = this.createPrinter(printed);
         printer.print("123");
         printer.print(printer.lineEnding());
         printer.print("456");
@@ -171,7 +171,7 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
     @Test
     public void testMixedDecodedCharsAndLineEndings() {
         final StringBuilder printed = new StringBuilder();
-        final HtmlEntityDecodingPrinter printer = this.createPrinter(printed);
+        final PrinterHtmlEntityDecoding printer = this.createPrinter(printed);
         printer.print("1&star;3");
         printer.print(printer.lineEnding());
         printer.print("4&star;6");
@@ -187,25 +187,25 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
         final Function<String, String> decoder = (s) -> s;
         final Printer printer = Printers.fake();
         this.checkEquals(printer + " AND " + decoder,
-            HtmlEntityDecodingPrinter.wrap(decoder, printer).toString());
+            PrinterHtmlEntityDecoding.wrap(decoder, printer).toString());
     }
 
     // factory
 
     @Override
-    public HtmlEntityDecodingPrinter createPrinter() {
+    public PrinterHtmlEntityDecoding createPrinter() {
         return this.createPrinter(this.builder);
     }
 
-    private HtmlEntityDecodingPrinter createPrinter(final StringBuilder printed) {
-        return HtmlEntityDecodingPrinter.wrap( //
+    private PrinterHtmlEntityDecoding createPrinter(final StringBuilder printed) {
+        return PrinterHtmlEntityDecoding.wrap( //
             (entity) -> "&star;".equals(entity) ? "*" : entity, //
             Printers.stringBuilder(printed, LINE_ENDING));
     }
 
     private final StringBuilder builder = new StringBuilder();
 
-    private void check(final HtmlEntityDecodingPrinter printer, final String expected) {
+    private void check(final PrinterHtmlEntityDecoding printer, final String expected) {
         final String actual = this.builder.toString();
         this.checkEquals(expected,
             actual,
@@ -213,7 +213,7 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
     }
 
     private void printAndCheck(final String expected, final String... strings) {
-        final HtmlEntityDecodingPrinter printer = this.createPrinter();
+        final PrinterHtmlEntityDecoding printer = this.createPrinter();
         final StringBuilder b = new StringBuilder();
         for (final String string : strings) {
             printer.print(string);
@@ -234,7 +234,12 @@ final public class HtmlEntityDecodingPrinterTest extends PrinterTestCase<HtmlEnt
     }
 
     @Override
-    public Class<HtmlEntityDecodingPrinter> type() {
-        return HtmlEntityDecodingPrinter.class;
+    public Class<PrinterHtmlEntityDecoding> type() {
+        return PrinterHtmlEntityDecoding.class;
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }

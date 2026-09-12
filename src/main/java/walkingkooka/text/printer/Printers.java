@@ -28,11 +28,11 @@ import java.util.function.Function;
 final public class Printers implements PublicStaticHelper {
 
     /**
-     * {@see HtmlEntityDecodingPrinter}.
+     * {@see PrinterHtmlEntityDecoding}.
      */
     public static Printer htmlEntityDecoder(final Function<String, String> entityDecoder,
                                             final Printer printer) {
-        return HtmlEntityDecodingPrinter.wrap(entityDecoder, printer);
+        return PrinterHtmlEntityDecoding.wrap(entityDecoder, printer);
     }
 
     /**
