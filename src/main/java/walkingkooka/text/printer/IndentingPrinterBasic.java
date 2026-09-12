@@ -27,11 +27,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Adds support for writing text that requires some line formatting functionality such of
  * indentation and starting a new line.
  */
-final class BasicIndentingPrinter implements IndentingPrinter {
+final class IndentingPrinterBasic implements IndentingPrinter {
 
     private final static char NL = '\n';
     private final static char CR = '\r';
-    private final static char START_OF_NEW_LINE = BasicIndentingPrinter.NL;
+    private final static char START_OF_NEW_LINE = IndentingPrinterBasic.NL;
 
     /**
      * The {@link Printer} that is written too.
@@ -60,18 +60,18 @@ final class BasicIndentingPrinter implements IndentingPrinter {
      */
     private char previous;
 
-    static BasicIndentingPrinter with(final Printer printer,
+    static IndentingPrinterBasic with(final Printer printer,
                                       final Indentation indentation) {
         Objects.requireNonNull(printer, "printer");
         Objects.requireNonNull(indentation, "indentation");
 
-        return new BasicIndentingPrinter(printer, indentation);
+        return new IndentingPrinterBasic(printer, indentation);
     }
 
     /**
      * Private constructor use static factory.
      */
-    private BasicIndentingPrinter(final Printer printer,
+    private IndentingPrinterBasic(final Printer printer,
                                   final Indentation indentation) {
         super();
 
@@ -100,7 +100,7 @@ final class BasicIndentingPrinter implements IndentingPrinter {
         for (int i = 0; i < end; i++) {
             final char c = chars.charAt(i);
 
-            if (BasicIndentingPrinter.NL == previous || ((previous == CR) && (NL != c))) {
+            if (IndentingPrinterBasic.NL == previous || ((previous == CR) && (NL != c))) {
                 if (start != i) {
                     printer.print(chars.subSequence(start, i));
                 }
@@ -159,10 +159,10 @@ final class BasicIndentingPrinter implements IndentingPrinter {
     @Override
     public void lineStart() {
         final char previous = this.previous;
-        if ((BasicIndentingPrinter.CR != previous) && (BasicIndentingPrinter.NL != previous)) {
+        if ((IndentingPrinterBasic.CR != previous) && (IndentingPrinterBasic.NL != previous)) {
             final Printer printer = this.printer;
             printer.print(printer.lineEnding());
-            this.previous = BasicIndentingPrinter.START_OF_NEW_LINE;
+            this.previous = IndentingPrinterBasic.START_OF_NEW_LINE;
         }
     }
 
