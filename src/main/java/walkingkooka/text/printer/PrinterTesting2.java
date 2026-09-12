@@ -61,8 +61,8 @@ public interface PrinterTesting2<P extends Printer> extends PrinterTesting<P> {
         final Printer printer = this.createPrinter();
         final Function<CharSequence, CharSequence> transformer = (s) -> s.toString().toUpperCase();
         final Printer transformingPrinter = printer.transformText(transformer);
-        this.checkEquals(TextTransformingPrinter.class, transformingPrinter.getClass(), transformingPrinter::toString);
-        assertSame(transformer, ((TextTransformingPrinter) transformingPrinter).transformer, "transformer");
+        this.checkEquals(PrinterTextTransforming.class, transformingPrinter.getClass(), transformingPrinter::toString);
+        assertSame(transformer, ((PrinterTextTransforming) transformingPrinter).transformer, "transformer");
     }
 
     @Test
