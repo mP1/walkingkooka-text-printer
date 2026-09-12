@@ -72,7 +72,7 @@ final public class Printers implements PublicStaticHelper {
     }
 
     /**
-     * {@see StringBuilderPrinter}.
+     * {@see PrinterStringBuilder}.
      */
     public static Printer stringBuilder(final StringBuilder builder,
                                         final HasLineEnding lineEnding) {
