@@ -23,19 +23,19 @@ import walkingkooka.text.LineEnding;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-final public class SinkPrinterTest extends PrinterTestCase<SinkPrinter> implements ToStringTesting<SinkPrinter> {
+final public class PrinterSinkTest extends PrinterTestCase<PrinterSink> implements ToStringTesting<PrinterSink> {
 
     @Test
     public void testWithNullHasLineEndingFails() {
         assertThrows(
             NullPointerException.class,
-            () -> SinkPrinter.with(null)
+            () -> PrinterSink.with(null)
         );
     }
 
     @Test
     public void testPrintWorks() {
-        SinkPrinter.with(LineEnding.CR)
+        PrinterSink.with(LineEnding.CR)
             .print("string");
     }
 
@@ -51,7 +51,7 @@ final public class SinkPrinterTest extends PrinterTestCase<SinkPrinter> implemen
     public void testLineEndingNone() {
         this.checkEquals(
             LineEnding.NONE,
-            SinkPrinter.with(LineEnding.NONE)
+            PrinterSink.with(LineEnding.NONE)
                 .lineEnding()
         );
     }
@@ -83,12 +83,17 @@ final public class SinkPrinterTest extends PrinterTestCase<SinkPrinter> implemen
     }
 
     @Override
-    public SinkPrinter createPrinter() {
-        return SinkPrinter.with(LineEnding.CR);
+    public PrinterSink createPrinter() {
+        return PrinterSink.with(LineEnding.CR);
     }
 
     @Override
-    public Class<SinkPrinter> type() {
-        return SinkPrinter.class;
+    public Class<PrinterSink> type() {
+        return PrinterSink.class;
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }

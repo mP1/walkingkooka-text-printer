@@ -25,10 +25,10 @@ import java.util.Objects;
 /**
  * A {@link Printer} that ignores all {@link CharSequence sequences} added to it.
  */
-final class SinkPrinter implements Printer {
+final class PrinterSink implements Printer {
 
-    static SinkPrinter with(final HasLineEnding lineEnding) {
-        final SinkPrinter printer;
+    static PrinterSink with(final HasLineEnding lineEnding) {
+        final PrinterSink printer;
 
         if (LineEnding.CR.equals(lineEnding)) {
             printer = CR;
@@ -42,7 +42,7 @@ final class SinkPrinter implements Printer {
                     if (LineEnding.NONE.equals(lineEnding)) {
                         printer = NONE;
                     } else {
-                        printer = new SinkPrinter(
+                        printer = new PrinterSink(
                             Objects.requireNonNull(lineEnding, "lineEnding")
                         );
                     }
@@ -53,15 +53,15 @@ final class SinkPrinter implements Printer {
         return printer;
     }
 
-    private final static SinkPrinter CR = new SinkPrinter(LineEnding.CR);
-    private final static SinkPrinter CRNL = new SinkPrinter(LineEnding.CRNL);
-    private final static SinkPrinter NL = new SinkPrinter(LineEnding.NL);
-    private final static SinkPrinter NONE = new SinkPrinter(LineEnding.NONE);
+    private final static PrinterSink CR = new PrinterSink(LineEnding.CR);
+    private final static PrinterSink CRNL = new PrinterSink(LineEnding.CRNL);
+    private final static PrinterSink NL = new PrinterSink(LineEnding.NL);
+    private final static PrinterSink NONE = new PrinterSink(LineEnding.NONE);
 
     /**
      * Singleton
      */
-    private SinkPrinter(final HasLineEnding lineEnding) {
+    private PrinterSink(final HasLineEnding lineEnding) {
         super();
         this.lineEnding = lineEnding;
     }
