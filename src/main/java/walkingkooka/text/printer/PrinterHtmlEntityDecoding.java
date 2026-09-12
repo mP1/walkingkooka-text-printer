@@ -26,23 +26,23 @@ import java.util.function.Function;
  * A {@link Printer} that replaces any HTML entities with their raw form before passing any printed
  * {@link CharSequence} to a wrapped {@link Printer}.
  */
-final class HtmlEntityDecodingPrinter implements Printer, CharSequence {
+final class PrinterHtmlEntityDecoding implements Printer, CharSequence {
 
     /**
-     * Creates a new {@link HtmlEntityDecodingPrinter}.
+     * Creates a new {@link PrinterHtmlEntityDecoding}.
      */
-    static HtmlEntityDecodingPrinter wrap(final Function<String, String> entityDecoder,
+    static PrinterHtmlEntityDecoding wrap(final Function<String, String> entityDecoder,
                                           final Printer printer) {
         Objects.requireNonNull(entityDecoder, "htmlEntityDecoder");
         Objects.requireNonNull(printer, "printer");
 
-        return new HtmlEntityDecodingPrinter(entityDecoder, printer);
+        return new PrinterHtmlEntityDecoding(entityDecoder, printer);
     }
 
     /**
      * private constructor.
      */
-    private HtmlEntityDecodingPrinter(final Function<String, String> entityDecoder,
+    private PrinterHtmlEntityDecoding(final Function<String, String> entityDecoder,
                                       final Printer printer) {
         this.entityDecoder = entityDecoder;
         this.printer = printer;
