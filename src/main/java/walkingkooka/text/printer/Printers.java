@@ -105,11 +105,11 @@ final public class Printers implements PublicStaticHelper {
     }
 
     /**
-     * {@see TextTransformingPrinter}
+     * {@see PrinterTextTransforming}
      */
     public static Printer textTransforming(final Function<CharSequence, CharSequence> transformer,
                                            final Printer printer) {
-        return TextTransformingPrinter.with(transformer, printer);
+        return PrinterTextTransforming.with(transformer, printer);
     }
 
     /**

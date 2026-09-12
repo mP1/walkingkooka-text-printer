@@ -25,23 +25,23 @@ import java.util.function.Function;
 /**
  * A {@link Printer} that passes text to a wrapped {@link Printer} that has been transformed by a {@link java.util.function.Function}.
  */
-final class TextTransformingPrinter implements Printer {
+final class PrinterTextTransforming implements Printer {
 
     /**
-     * Creates a new {@link TextTransformingPrinter}.
+     * Creates a new {@link PrinterTextTransforming}.
      */
-    static TextTransformingPrinter with(final Function<CharSequence, CharSequence> transformer,
+    static PrinterTextTransforming with(final Function<CharSequence, CharSequence> transformer,
                                         final Printer printer) {
         Objects.requireNonNull(transformer, "transformer");
         Objects.requireNonNull(printer, "printer");
 
-        return new TextTransformingPrinter(transformer, printer);
+        return new PrinterTextTransforming(transformer, printer);
     }
 
     /**
      * Private constructor use static factory.
      */
-    private TextTransformingPrinter(final Function<CharSequence, CharSequence> transformer,
+    private PrinterTextTransforming(final Function<CharSequence, CharSequence> transformer,
                                     final Printer printer) {
         super();
         this.transformer = transformer;

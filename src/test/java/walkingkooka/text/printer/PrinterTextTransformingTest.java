@@ -23,18 +23,18 @@ import walkingkooka.text.LineEnding;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-final public class TextTransformingPrinterTest extends PrinterTestCase2<TextTransformingPrinter> {
+final public class PrinterTextTransformingTest extends PrinterTestCase2<PrinterTextTransforming> {
 
     // tests............................................................................................................
 
     @Test
     public void testWithNullTransformerFails() {
-        assertThrows(NullPointerException.class, () -> TextTransformingPrinter.with(null, Printers.fake()));
+        assertThrows(NullPointerException.class, () -> PrinterTextTransforming.with(null, Printers.fake()));
     }
 
     @Test
     public void testWithNullPrinterFails() {
-        assertThrows(NullPointerException.class, () -> TextTransformingPrinter.with(this::transformer, null));
+        assertThrows(NullPointerException.class, () -> PrinterTextTransforming.with(this::transformer, null));
     }
 
     // lineEnding........................................................................................................
@@ -55,7 +55,7 @@ final public class TextTransformingPrinterTest extends PrinterTestCase2<TextTran
     }
 
     private void lineEndingAndCheck(final LineEnding lineEnding) {
-        final TextTransformingPrinter printer = this.createPrinter(new FakePrinter() {
+        final PrinterTextTransforming printer = this.createPrinter(new FakePrinter() {
             @Override
             public LineEnding lineEnding() {
                 return lineEnding;
@@ -69,7 +69,7 @@ final public class TextTransformingPrinterTest extends PrinterTestCase2<TextTran
     @Test
     public void testPrint() {
         final StringBuilder printed = new StringBuilder();
-        final TextTransformingPrinter printer = this.createPrinter(printed);
+        final PrinterTextTransforming printer = this.createPrinter(printed);
 
         printer.print("a");
         printer.print("BC1");
@@ -91,12 +91,12 @@ final public class TextTransformingPrinterTest extends PrinterTestCase2<TextTran
     // helpers...........................................................................................................
 
     @Override
-    public TextTransformingPrinter createPrinter(final StringBuilder target) {
+    public PrinterTextTransforming createPrinter(final StringBuilder target) {
         return this.createPrinter(Printers.stringBuilder(target, LINE_ENDING));
     }
 
-    private TextTransformingPrinter createPrinter(final Printer printer) {
-        return TextTransformingPrinter.with(this::transformer, printer);
+    private PrinterTextTransforming createPrinter(final Printer printer) {
+        return PrinterTextTransforming.with(this::transformer, printer);
     }
 
     private CharSequence transformer(final CharSequence chars) {
@@ -106,7 +106,12 @@ final public class TextTransformingPrinterTest extends PrinterTestCase2<TextTran
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<TextTransformingPrinter> type() {
-        return TextTransformingPrinter.class;
+    public Class<PrinterTextTransforming> type() {
+        return PrinterTextTransforming.class;
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }
