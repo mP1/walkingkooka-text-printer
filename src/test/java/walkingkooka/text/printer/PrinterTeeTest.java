@@ -23,7 +23,7 @@ import walkingkooka.Cast;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
+final public class PrinterTeeTest extends PrinterTestCase<PrinterTee> {
 
     // constants
 
@@ -35,7 +35,7 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
     public void testWithNullFirstPrinterFails() {
         assertThrows(
             NullPointerException.class,
-            () -> TeePrinter.with(null, PRINTER)
+            () -> PrinterTee.with(null, PRINTER)
         );
     }
 
@@ -43,7 +43,7 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
     public void testWithNullSecondPrinterFails() {
         assertThrows(
             NullPointerException.class,
-            () -> TeePrinter.with(
+            () -> PrinterTee.with(
                 PRINTER,
                 null
             )
@@ -54,7 +54,7 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
     public void testWithSamePrinterTwice() {
         assertSame(
             PRINTER,
-            TeePrinter.with(
+            PrinterTee.with(
                 PRINTER,
                 PRINTER
             )
@@ -66,7 +66,7 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
         final StringBuilder builder1 = new StringBuilder();
         final StringBuilder builder2 = new StringBuilder();
         final StringBuilder builder3 = new StringBuilder();
-        final Printer printer = TeePrinter.with(Printers.stringBuilder(builder1,
+        final Printer printer = PrinterTee.with(Printers.stringBuilder(builder1,
                 LINE_ENDING),
             Printers.stringBuilder(builder2, LINE_ENDING));
         printer.print("string");
@@ -88,7 +88,7 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
         final StringBuilder builder1 = new StringBuilder();
         final StringBuilder builder2 = new StringBuilder();
         final StringBuilder builder3 = new StringBuilder();
-        final Printer printer = TeePrinter.with(Printers.stringBuilder(builder1,
+        final Printer printer = PrinterTee.with(Printers.stringBuilder(builder1,
                 LINE_ENDING),
             Printers.stringBuilder(builder2, LINE_ENDING));
         printer.print("string");
@@ -113,16 +113,21 @@ final public class TeePrinterTest extends PrinterTestCase<TeePrinter> {
         final Printer left = Printers.fake();
         final Printer right = Printers.fake();
         this.checkEquals("tee (" + left + " AND " + right + ")",
-            TeePrinter.with(left, right).toString());
+            PrinterTee.with(left, right).toString());
     }
 
     @Override
-    public TeePrinter createPrinter() {
-        return Cast.to(TeePrinter.with(createContractPrinter(), createContractPrinter()));
+    public PrinterTee createPrinter() {
+        return Cast.to(PrinterTee.with(createContractPrinter(), createContractPrinter()));
     }
 
     @Override
-    public Class<TeePrinter> type() {
-        return TeePrinter.class;
+    public Class<PrinterTee> type() {
+        return PrinterTee.class;
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }

@@ -97,11 +97,11 @@ final public class Printers implements PublicStaticHelper {
     }
 
     /**
-     * {@see TeePrinter}.
+     * {@see PrinterTee}.
      */
     public static Printer tee(final Printer first,
                               final Printer second) {
-        return TeePrinter.with(first, second);
+        return PrinterTee.with(first, second);
     }
 
     /**
