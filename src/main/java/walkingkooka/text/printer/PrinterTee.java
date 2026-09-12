@@ -25,22 +25,22 @@ import java.util.Objects;
  * A {@link Printer} that passes the {@link CharSequence} too each of the two {@link Printer} given
  * at construction.
  */
-final class TeePrinter implements Printer {
+final class PrinterTee implements Printer {
 
     /**
-     * Creates a new {@link TeePrinter} if the two printers are different.
+     * Creates a new {@link PrinterTee} if the two printers are different.
      */
     static Printer with(final Printer first, final Printer second) {
         Objects.requireNonNull(first, "first Printer");
         Objects.requireNonNull(second, "second Printer");
 
-        return first.equals(second) ? first : new TeePrinter(first, second);
+        return first.equals(second) ? first : new PrinterTee(first, second);
     }
 
     /**
      * Private constructor.
      */
-    private TeePrinter(final Printer first, final Printer second) {
+    private PrinterTee(final Printer first, final Printer second) {
         this.first = first;
         this.second = second;
     }
