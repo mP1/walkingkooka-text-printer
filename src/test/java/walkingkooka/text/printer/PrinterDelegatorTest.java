@@ -20,7 +20,7 @@ package walkingkooka.text.printer;
 import org.junit.jupiter.api.Test;
 import walkingkooka.text.printer.PrinterDelegatorTest.TestPrinterDelegator;
 
-public final class PrinterDelegatorTest implements PrinterTesting<TestPrinterDelegator> {
+public final class PrinterDelegatorTest implements PrinterTesting2<TestPrinterDelegator> {
 
     @Test
     public void testPrintln() {

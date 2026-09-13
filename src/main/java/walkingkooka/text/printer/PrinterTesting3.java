@@ -17,15 +17,92 @@
 
 package walkingkooka.text.printer;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.text.CharSequences;
-import walkingkooka.text.HasLineEndingTesting;
 
 import java.util.Objects;
+import java.util.function.Function;
+
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * Interface with default methods which can be mixed in to assist testing of an {@link Printer}.
  */
-public interface PrinterTesting extends HasLineEndingTesting {
+public interface PrinterTesting3<P extends Printer> extends PrinterTesting2<P> {
+
+    @Test
+    default void testTransformText() {
+        final Printer printer = this.createPrinter();
+        final Function<CharSequence, CharSequence> transformer = (s) -> s.toString().toUpperCase();
+        final Printer transformingPrinter = printer.transformText(transformer);
+
+        this.checkEquals(
+            PrinterTextTransforming.class,
+            transformingPrinter.getClass(),
+            transformingPrinter::toString
+        );
+
+        assertSame(
+            transformer,
+            ((PrinterTextTransforming) transformingPrinter).transformer,
+            "transformer"
+        );
+    }
+
+    @Override
+    default P createPrinter() {
+        return this.createPrinter(new StringBuilder());
+    }
+
+    P createPrinter(final StringBuilder target);
+
+    default void printAndCheck(final CharSequence printed) {
+        this.printAndCheck(
+            printed,
+            printed.toString()
+        );
+    }
+
+    default void printAndCheck(final CharSequence printed,
+                               final String expected) {
+        this.printAndCheck(
+            printed,
+            expected,
+            null
+        );
+    }
+
+    default void printAndCheck(final CharSequence printed,
+                               final String expected,
+                               final String message) {
+        this.printAndCheck(
+            new CharSequence[]{printed},
+            expected,
+            message
+        );
+    }
+
+    default void printAndCheck(final CharSequence[] chars,
+                               final String expected) {
+        this.printAndCheck(
+            chars,
+            expected,
+            null
+        );
+    }
+
+    default void printAndCheck(final CharSequence[] chars,
+                               final String expected,
+                               final String message) {
+        final StringBuilder target = new StringBuilder();
+        this.printAndCheck(
+            this.createPrinter(target),
+            chars,
+            target,
+            expected,
+            message
+        );
+    }
 
     default void printAndCheck(final Printer printer,
                                final CharSequence printed,
@@ -120,24 +197,5 @@ public interface PrinterTesting extends HasLineEndingTesting {
             array[i] = chars.subSequence(i, i + 1);
         }
         return array;
-    }
-
-    default void checkEquals(final CharSequence expected,
-                             final CharSequence actual) {
-        this.checkEquals(
-            expected,
-            actual,
-            (String) null
-        );
-    }
-
-    default void checkEquals(final CharSequence expected,
-                             final CharSequence actual,
-                             final String message) {
-        this.checkEquals(
-            (Object) CharSequences.escape(expected),
-            (Object) CharSequences.escape(actual).toString(),
-            message
-        );
     }
 }
