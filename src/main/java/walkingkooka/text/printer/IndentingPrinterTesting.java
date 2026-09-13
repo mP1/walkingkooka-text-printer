@@ -20,7 +20,6 @@ package walkingkooka.text.printer;
 import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.text.HasIndentationTesting;
-import walkingkooka.text.Indentation;
 
 public interface IndentingPrinterTesting<P extends IndentingPrinter>
     extends PrinterTesting2<P>,
@@ -47,17 +46,6 @@ public interface IndentingPrinterTesting<P extends IndentingPrinter>
         printer.outdent();
 
         printer.outdent();
-    }
-
-    // indentation............ .........................................................................................
-
-    default void indentationAndCheck(final IndentingPrinter printer,
-                                     final Indentation indentation) {
-        this.checkEquals(
-            indentation,
-            printer.indentation(),
-            () -> "indentation of " + printer
-        );
     }
 
     // TypeNameTesting .........................................................................................
