@@ -18,160 +18,39 @@
 package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.reflect.ClassTesting;
+import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.text.LineEnding;
 
 import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
 
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-final public class WriterPrinterTest extends PrinterTestCase<WriterPrinter> {
-
-    // constants
-
-    private final static Writer WRITER = new Writer() {
-        @Override
-        public void write(final char[] cbuf, final int off, final int len) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public void flush() {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public void close() {
-            throw new UnsupportedOperationException();
-        }
-    };
-
-    // tests
+public final class WriterPrinterTest implements ClassTesting<WriterPrinter> {
 
     @Test
-    public void testWithNullWriterFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> WriterPrinter.with(
-                null,
-                LINE_ENDING
-            )
+    public void testWrite() throws IOException {
+        final StringBuilder b = new StringBuilder();
+        final Printer printer = Printers.stringBuilder(b, LineEnding.NL);
+        final WriterPrinter printWriter = WriterPrinter.with(printer);
+        printWriter.write(
+            "1234567890",
+            3,
+            5
         );
-    }
+        printWriter.flush();
 
-    @Test
-    public void testWithNullHasLineEndingFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> WriterPrinter.with(
-                WRITER,
-                null
-            )
+        this.checkEquals(
+            "45678",
+            b.toString()
         );
-    }
-
-    @Test
-    public void testPrint() {
-        final StringWriter writer = new StringWriter();
-        final WriterPrinter printer = this.createPrinter(writer);
-        printer.print("1");
-        printer.print("23");
-        printer.print("456");
-        this.checkEquals("123456", writer.toString());
-    }
-
-    @Test
-    public void testPrintNull() {
-        final StringWriter writer = new StringWriter();
-        final WriterPrinter printer = this.createPrinter(writer);
-        printer.print("1");
-        printer.print(null);
-        printer.print("456");
-        this.checkEquals("1null456", writer.toString());
-    }
-
-    @Test
-    public void testPrintThenWriterThrowsFails() {
-        final String written = "printed";
-        final IOException thrown = new IOException("thrown");
-        final WriterPrinter printer = this.createPrinter(//
-            new Writer() {
-                @Override
-                public void write(final String string) throws IOException {
-                    assertSame(written, string, "written");
-                    throw thrown;
-                }
-
-                @Override
-                public void write(final char[] cbuf, final int off, final int len) {
-                    throw new UnsupportedOperationException();
-                }
-
-                @Override
-                public void flush() {
-                    throw new UnsupportedOperationException();
-                }
-
-                @Override
-                public void close() {
-                    throw new UnsupportedOperationException();
-                }
-            });
-        final IllegalStateException expected = assertThrows(
-            IllegalStateException.class,
-            () -> printer.print(written)
-        );
-        assertSame(thrown, expected.getCause(), "cause");
-    }
-
-    @Override
-    @Test
-    public void testLineEndingAfterCloseFails() {
-        // nop
-    }
-
-    @Test
-    public void testToString() {
-        this.checkEquals(WRITER.toString(),
-            this.createPrinter(WRITER).toString());
-    }
-
-    @Override
-    public WriterPrinter createPrinter() {
-        return this.createPrinter(//
-            new Writer() {
-
-                @Override
-                public void write(final char[] cbuf, final int off, final int len)
-                    throws IOException {
-                    if (this.closed) {
-                        throw new IOException("Writer already closed");
-                    }
-                }
-
-                @Override
-                public void flush() throws IOException {
-                    if (this.closed) {
-                        throw new IOException("Writer already closed");
-                    }
-                }
-
-                @Override
-                public void close() {
-                    this.closed = true;
-                }
-
-                private boolean closed;
-            });
-    }
-
-    private WriterPrinter createPrinter(final Writer writer) {
-        return WriterPrinter.with(writer, LINE_ENDING);
     }
 
     @Override
     public Class<WriterPrinter> type() {
         return WriterPrinter.class;
+    }
+
+    @Override
+    public JavaVisibility typeVisibility() {
+        return JavaVisibility.PACKAGE_PRIVATE;
     }
 }

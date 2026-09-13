@@ -17,47 +17,85 @@
 
 package walkingkooka.text.printer;
 
+import walkingkooka.text.HasLineEnding;
+import walkingkooka.text.LineEnding;
+
+import java.io.IOException;
 import java.io.Writer;
+import java.util.Objects;
 
 /**
- * Acts as an adapter supporting the return of a {@link java.io.PrintWriter} from {@link Printer#asPrintWriter()}.
+ * A Printer that directs all prints  to the provided Writer. Any {@link IOException} that may. be thrown is wrapped
+ * and rethrown within a {@link IllegalStateException}. The wrapped {@link Writer} is never automatically flushed, calls to
+ * {@link Printer#flush} are required.
  */
-final class PrinterWriter extends Writer {
+final class PrinterWriter implements Printer {
 
-    static PrinterWriter with(final Printer printer) {
-        return new PrinterWriter(printer);
+    /**
+     * Creates a new {@link PrinterWriter}
+     */
+    static PrinterWriter with(final Writer writer, final HasLineEnding lineEnding) {
+        Objects.requireNonNull(writer, "writer");
+        Objects.requireNonNull(lineEnding, "lineEnding");
+
+        return new PrinterWriter(writer, lineEnding);
     }
 
-    private PrinterWriter(final Printer printer) {
-        this.printer = printer;
+    private PrinterWriter(final Writer writer, final HasLineEnding lineEnding) {
+        super();
+        this.writer = writer;
+        this.lineEnding = lineEnding;
     }
 
     @Override
-    public void write(final char[] buffer,
-                      final int offset,
-                      final int length) {
-        this.printer.print(
-            new String(buffer, offset, length)
-        );
+    public void print(final CharSequence chars) {
+        try {
+            this.writer.write(
+                String.valueOf(chars)
+            );
+        } catch (final IOException cause) {
+            throw new IllegalStateException("Print failed", cause);
+        }
     }
+
+    /**
+     * Returns the {@link LineEnding} passed to the factory.
+     */
+    @Override
+    public LineEnding lineEnding() {
+        return this.lineEnding
+                .lineEnding();
+    }
+
+    private final HasLineEnding lineEnding;
 
     @Override
     public void flush() {
-        this.printer.flush();
+        try {
+            this.writer.flush();
+        } catch (final IOException cause) {
+            throw new IllegalStateException("Flush failed", cause);
+        }
     }
 
     @Override
     public void close() {
-        this.printer.close();
+        try {
+            this.writer.close();
+        } catch (final IOException cause) {
+            throw new IllegalStateException("Close failed", cause);
+        }
     }
 
+    // properties
+
     /**
-     * The printer that receives all writes.
+     * The wrapped {@link Writer}
      */
-    private final Printer printer;
+    final Writer writer;
 
     @Override
     public String toString() {
-        return this.printer.toString();
+        return this.writer.toString();
     }
 }
