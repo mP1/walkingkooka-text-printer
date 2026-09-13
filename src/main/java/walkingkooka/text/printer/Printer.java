@@ -36,7 +36,7 @@ public interface Printer extends PrinterLike,
     /**
      * Prints of or more characters.
      */
-    void print(CharSequence chars);
+    void print(final CharSequence chars);
 
     /**
      * Prints the given {@link CharSequence} chars followed by a line ending.
