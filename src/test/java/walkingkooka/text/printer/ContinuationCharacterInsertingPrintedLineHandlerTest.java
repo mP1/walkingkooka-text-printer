@@ -25,7 +25,7 @@ import walkingkooka.text.LineEnding;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 final public class ContinuationCharacterInsertingPrintedLineHandlerTest implements ClassTesting2<PrintedLineHandlerContinuationCharacterInserting>,
-    PrintedLineHandlerTesting<PrintedLineHandlerContinuationCharacterInserting>,
+    PrintedLineHandlerTesting2<PrintedLineHandlerContinuationCharacterInserting>,
     ThrowableTesting {
 
     // constants

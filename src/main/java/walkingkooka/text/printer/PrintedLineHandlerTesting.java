@@ -18,71 +18,29 @@
 package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import walkingkooka.ToStringTesting;
-import walkingkooka.reflect.PackagePrivateClassTesting;
-import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.LineEnding;
 
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Interface with default methods which can be mixed in to assist testing of an {@link PrintedLineHandler}.
  */
-public interface PrintedLineHandlerTesting<H extends PrintedLineHandler>
-    extends ToStringTesting<H>,
-    TypeNameTesting<H>,
-    PackagePrivateClassTesting<H> {
-
-    // tests
-
-    @Test
-    default void testNullLineFails() {
-        assertThrows(NullPointerException.class, () -> this.createLineHandler().linePrinted(null,
-            LineEnding.NL,
-            Printers.fake()));
-    }
-
-    @Test
-    default void testNullLineEndingFails() {
-        assertThrows(NullPointerException.class, () -> this.createLineHandler().linePrinted("", null, Printers.fake()));
-    }
-
-    @Test
-    default void testNullPrinterFails() {
-        assertThrows(NullPointerException.class, () -> this.createLineHandler().linePrinted("",
-            LineEnding.NL,
-            null));
-    }
-
-    H createLineHandler();
-
-    default void linePrintedAndCheck(final CharSequence line,
-                                     final LineEnding lineEnding) {
-        this.linePrintedAndCheck(line, lineEnding, line.toString());
-    }
-
-    default void linePrintedAndCheck(final CharSequence line, final LineEnding lineEnding,
-                                     final String expected) {
-        this.linePrintedAndCheck(line, lineEnding, expected, null);
-    }
-
-    default void linePrintedAndCheck(final CharSequence line,
-                                     final LineEnding lineEnding,
-                                     final String expected,
-                                     final String message) {
-        this.linePrintedAndCheck(this.createLineHandler(), line, lineEnding, expected, message);
-    }
+public interface PrintedLineHandlerTesting extends TreePrintableTesting {
 
     default void linePrintedAndCheck(final PrintedLineHandler handler,
                                      final CharSequence line,
                                      final LineEnding lineEnding,
                                      final String expected) {
-        this.linePrintedAndCheck(handler, line, lineEnding, expected, null);
+        this.linePrintedAndCheck(
+            handler,
+            line,
+            lineEnding,
+            expected,
+            null
+        );
     }
 
     default void linePrintedAndCheck(final PrintedLineHandler handler,
@@ -120,17 +78,5 @@ public interface PrintedLineHandlerTesting<H extends PrintedLineHandler>
                 CharSequences.quoteAndEscape(printed),
                 message);
         }
-    }
-
-    // TypeNameTesting .........................................................................................
-
-    @Override
-    default String typeNamePrefix() {
-        return "";
-    }
-
-    @Override
-    default String typeNameSuffix() {
-        return PrintedLineHandler.class.getSimpleName();
     }
 }
