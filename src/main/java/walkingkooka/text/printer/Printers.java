@@ -120,12 +120,12 @@ final public class Printers implements PublicStaticHelper {
     }
 
     /**
-     * {@see WriterPrinter}
+     * {@see PrinterWriter}
      */
     @GwtIncompatible
     public static Printer writer(final Writer writer,
                                  final HasLineEnding lineEnding) {
-        return WriterPrinter.with(
+        return PrinterWriter.with(
             writer,
             lineEnding
         );

@@ -105,7 +105,7 @@ public interface Printer extends PrinterLike,
     @GwtIncompatible("https://github.com/mP1/j2cl-java-io/issues/70")
     default PrintWriter asPrintWriter() {
         return new PrintWriter(
-            PrinterWriter.with(this),
+            WriterPrinter.with(this),
             false // auto-flash
         );
     }
