@@ -37,7 +37,7 @@ public interface PrintedLineHandlerTesting2<H extends PrintedLineHandler>
     // tests
 
     @Test
-    default void testNullLineFails() {
+    default void testLinePrintedWithNullLineFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createLineHandler()
@@ -49,7 +49,7 @@ public interface PrintedLineHandlerTesting2<H extends PrintedLineHandler>
     }
 
     @Test
-    default void testNullLineEndingFails() {
+    default void testLinePrintedWithNullLineEndingFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createLineHandler()
@@ -62,7 +62,7 @@ public interface PrintedLineHandlerTesting2<H extends PrintedLineHandler>
     }
 
     @Test
-    default void testNullPrinterFails() {
+    default void testLinePrintedWithNullPrinterFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createLineHandler()
