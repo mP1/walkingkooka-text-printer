@@ -30,7 +30,7 @@ public interface IndentingPrinterTesting<P extends IndentingPrinter>
     // tests
 
     @Test
-    default void testTooManyOutdents() {
+    default void testOutdentTooMany() {
         final P printer = this.createPrinter();
         printer.indent();
         printer.outdent();
@@ -39,7 +39,7 @@ public interface IndentingPrinterTesting<P extends IndentingPrinter>
     }
 
     @Test
-    default void testTooManyOutdents2() {
+    default void testOutdentTooMany2() {
         final P printer = this.createPrinter();
         printer.indent();
         printer.indent();
