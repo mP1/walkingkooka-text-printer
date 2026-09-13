@@ -26,23 +26,23 @@ import java.util.Objects;
  * A {@link PrintedLineHandler} that breaks up any long lines each with a trailing continuation
  * character.
  */
-final class ContinuationCharacterInsertingPrintedLineHandler implements PrintedLineHandler {
+final class PrintedLineHandlerContinuationCharacterInserting implements PrintedLineHandler {
 
     /**
-     * Creates a new {@link ContinuationCharacterInsertingPrintedLineHandler}. Note continuation may
+     * Creates a new {@link PrintedLineHandlerContinuationCharacterInserting}. Note continuation may
      * not be a carriage return or new line.
      */
-    static ContinuationCharacterInsertingPrintedLineHandler with(final int width,
+    static PrintedLineHandlerContinuationCharacterInserting with(final int width,
                                                                  final char continuation) {
         if (width <= 0) {
             throw new IllegalArgumentException("Width " + width + " must be greater than 0");
         }
 
         if (('\r' == continuation) || ('\n' == continuation)) {
-            throw new IllegalArgumentException(ContinuationCharacterInsertingPrintedLineHandler.mustNotBeEndOfLineCharacter(
+            throw new IllegalArgumentException(PrintedLineHandlerContinuationCharacterInserting.mustNotBeEndOfLineCharacter(
                 continuation));
         }
-        return new ContinuationCharacterInsertingPrintedLineHandler(width, continuation);
+        return new PrintedLineHandlerContinuationCharacterInserting(width, continuation);
     }
 
     /**
@@ -56,7 +56,7 @@ final class ContinuationCharacterInsertingPrintedLineHandler implements PrintedL
     /**
      * Private constructor use static factory.
      */
-    private ContinuationCharacterInsertingPrintedLineHandler(final int width,
+    private PrintedLineHandlerContinuationCharacterInserting(final int width,
                                                              final char continuation) {
         super();
         this.width = width;
