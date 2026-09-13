@@ -18,13 +18,14 @@
 package walkingkooka.text.printer;
 
 import walkingkooka.reflect.ClassTesting2;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PackagePrivateClassTesting;
 import walkingkooka.text.LineEnding;
 
 /**
  * Base class for testing a {@link Printer} with mostly parameter checking tests.
  */
 abstract public class PrinterTestCase<P extends Printer> implements ClassTesting2<P>,
+    PackagePrivateClassTesting<P>,
     PrinterTesting<P> {
 
     PrinterTestCase() {
@@ -66,13 +67,7 @@ abstract public class PrinterTestCase<P extends Printer> implements ClassTesting
         };
     }
 
-
-    @Override
-    public final JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
-    }
-
-    // TypeNameTesting .........................................................................................
+    // class............................................................................................................
 
     @Override
     public String typeNamePrefix() {
