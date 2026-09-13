@@ -29,10 +29,10 @@ final public class PrintedLineHandlers implements PublicStaticHelper {
     }
 
     /**
-     * {@see ContinuationCharacterInsertingPrintedLineHandler}.
+     * {@see PrintedLineHandlerContinuationCharacterInserting}.
      */
     public static PrintedLineHandler split(final int width, final char continuation) {
-        return ContinuationCharacterInsertingPrintedLineHandler.with(width, continuation);
+        return PrintedLineHandlerContinuationCharacterInserting.with(width, continuation);
     }
 
     /**

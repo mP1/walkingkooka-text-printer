@@ -25,8 +25,8 @@ import walkingkooka.text.LineEnding;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-final public class ContinuationCharacterInsertingPrintedLineHandlerTest implements ClassTesting2<ContinuationCharacterInsertingPrintedLineHandler>,
-    PrintedLineHandlerTesting<ContinuationCharacterInsertingPrintedLineHandler>,
+final public class ContinuationCharacterInsertingPrintedLineHandlerTest implements ClassTesting2<PrintedLineHandlerContinuationCharacterInserting>,
+    PrintedLineHandlerTesting<PrintedLineHandlerContinuationCharacterInserting>,
     ThrowableTesting {
 
     // constants
@@ -39,21 +39,21 @@ final public class ContinuationCharacterInsertingPrintedLineHandlerTest implemen
 
     @Test
     public void testWithInvalidWidthFails() {
-        assertThrows(IllegalArgumentException.class, () -> ContinuationCharacterInsertingPrintedLineHandler.with(0, CONTINUATION));
+        assertThrows(IllegalArgumentException.class, () -> PrintedLineHandlerContinuationCharacterInserting.with(0, CONTINUATION));
     }
 
     @Test
     public void testWithCarriageReturnContinuationCharacterFails() {
         final IllegalArgumentException expected = assertThrows(
             IllegalArgumentException.class,
-            () -> ContinuationCharacterInsertingPrintedLineHandler.with(
+            () -> PrintedLineHandlerContinuationCharacterInserting.with(
                 WIDTH,
                 '\r'
             )
         );
         this.getMessageAndCheck(
             expected,
-            ContinuationCharacterInsertingPrintedLineHandler.mustNotBeEndOfLineCharacter('\r')
+            PrintedLineHandlerContinuationCharacterInserting.mustNotBeEndOfLineCharacter('\r')
         );
     }
 
@@ -61,13 +61,13 @@ final public class ContinuationCharacterInsertingPrintedLineHandlerTest implemen
     public void testWithNewLineContinuationCharacterFails() {
         final IllegalArgumentException expected = assertThrows(
             IllegalArgumentException.class,
-            () -> ContinuationCharacterInsertingPrintedLineHandler.with(
+            () -> PrintedLineHandlerContinuationCharacterInserting.with(
                 WIDTH,
                 '\n')
         );
         this.getMessageAndCheck(
             expected,
-            ContinuationCharacterInsertingPrintedLineHandler.mustNotBeEndOfLineCharacter('\n')
+            PrintedLineHandlerContinuationCharacterInserting.mustNotBeEndOfLineCharacter('\n')
         );
     }
 
@@ -145,8 +145,8 @@ final public class ContinuationCharacterInsertingPrintedLineHandlerTest implemen
     }
 
     @Override
-    public ContinuationCharacterInsertingPrintedLineHandler createLineHandler() {
-        return ContinuationCharacterInsertingPrintedLineHandler.with(
+    public PrintedLineHandlerContinuationCharacterInserting createLineHandler() {
+        return PrintedLineHandlerContinuationCharacterInserting.with(
             WIDTH,
             CONTINUATION);
     }
@@ -154,7 +154,7 @@ final public class ContinuationCharacterInsertingPrintedLineHandlerTest implemen
     private void linePrintedAndCheck(final int width, final CharSequence line,
                                      final LineEnding lineEnding, final String expected) {
         this.linePrintedAndCheck(//
-            ContinuationCharacterInsertingPrintedLineHandler.with(width,
+            PrintedLineHandlerContinuationCharacterInserting.with(width,
                 CONTINUATION), //
             replacePlaceHolder(line,
                 lineEnding), //
@@ -169,12 +169,22 @@ final public class ContinuationCharacterInsertingPrintedLineHandlerTest implemen
     }
 
     @Override
-    public Class<ContinuationCharacterInsertingPrintedLineHandler> type() {
-        return ContinuationCharacterInsertingPrintedLineHandler.class;
+    public Class<PrintedLineHandlerContinuationCharacterInserting> type() {
+        return PrintedLineHandlerContinuationCharacterInserting.class;
     }
 
     @Override
     public JavaVisibility typeVisibility() {
         return JavaVisibility.PACKAGE_PRIVATE;
+    }
+
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }
