@@ -19,7 +19,6 @@ package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.ClassTesting2;
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.ThrowableTesting;
 import walkingkooka.text.LineEnding;
 
@@ -171,11 +170,6 @@ final public class ContinuationCharacterInsertingPrintedLineHandlerTest implemen
     @Override
     public Class<PrintedLineHandlerContinuationCharacterInserting> type() {
         return PrintedLineHandlerContinuationCharacterInserting.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
     }
 
     @Override

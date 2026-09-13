@@ -20,6 +20,7 @@ package walkingkooka.text.printer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
+import walkingkooka.reflect.PackagePrivateClassTesting;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.LineEnding;
@@ -34,7 +35,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 public interface PrintedLineHandlerTesting<H extends PrintedLineHandler>
     extends ToStringTesting<H>,
-    TypeNameTesting<H> {
+    TypeNameTesting<H>,
+    PackagePrivateClassTesting<H> {
 
     // tests
 
