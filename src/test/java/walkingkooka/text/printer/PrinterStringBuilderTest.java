@@ -24,12 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 final public class PrinterStringBuilderTest extends PrinterTestCase2<PrinterStringBuilder> {
 
-    // constants
-
-    private final static StringBuilder STRING_BUILDER = new StringBuilder();
-
-    // tests
-
     @Test
     public void testWithNullStringBuilderFails() {
         assertThrows(
@@ -46,7 +40,7 @@ final public class PrinterStringBuilderTest extends PrinterTestCase2<PrinterStri
         assertThrows(
             NullPointerException.class,
             () -> PrinterStringBuilder.with(
-                STRING_BUILDER,
+                new StringBuilder(),
                 null
             )
         );
