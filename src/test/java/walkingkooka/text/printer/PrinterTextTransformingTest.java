@@ -96,7 +96,7 @@ final public class PrinterTextTransformingTest extends PrinterTestCase2<PrinterT
 
         this.checkEquals(
             "ABC123DEF456",
-            printed
+            printed.toString()
         );
     }
 

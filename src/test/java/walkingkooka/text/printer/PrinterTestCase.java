@@ -26,7 +26,7 @@ import walkingkooka.text.LineEnding;
  */
 abstract public class PrinterTestCase<P extends Printer> implements ClassTesting2<P>,
     PackagePrivateClassTesting<P>,
-    PrinterTesting<P> {
+    PrinterTesting2<P> {
 
     PrinterTestCase() {
         super();

@@ -22,7 +22,7 @@ import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.text.HasIndentationTesting;
 
 public interface IndentingPrinterTesting<P extends IndentingPrinter>
-    extends PrinterTesting2<P>,
+    extends PrinterTesting3<P>,
     HasIndentationTesting,
     TypeNameTesting<P> {
 
