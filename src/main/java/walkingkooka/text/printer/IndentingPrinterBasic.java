@@ -17,6 +17,7 @@
 
 package walkingkooka.text.printer;
 
+import walkingkooka.text.HasIndentation;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
@@ -38,9 +39,9 @@ final class IndentingPrinterBasic implements IndentingPrinter {
      */
     private final Printer printer;
     /**
-     * This string is written to each and every new line.
+     * This {@link Indentation} is written to each and every new line.
      */
-    private final Indentation indentation;
+    private final HasIndentation indentation;
 
     /**
      * The indentation depth that increases with calls to {@link #indent} and decreases with calls to {@link #outdent()}.
@@ -61,7 +62,7 @@ final class IndentingPrinterBasic implements IndentingPrinter {
     private char previous;
 
     static IndentingPrinterBasic with(final Printer printer,
-                                      final Indentation indentation) {
+                                      final HasIndentation indentation) {
         Objects.requireNonNull(printer, "printer");
         Objects.requireNonNull(indentation, "indentation");
 
@@ -72,7 +73,7 @@ final class IndentingPrinterBasic implements IndentingPrinter {
      * Private constructor use static factory.
      */
     private IndentingPrinterBasic(final Printer printer,
-                                  final Indentation indentation) {
+                                  final HasIndentation indentation) {
         super();
 
         this.printer = printer;
@@ -105,9 +106,7 @@ final class IndentingPrinterBasic implements IndentingPrinter {
                     printer.print(chars.subSequence(start, i));
                 }
                 printer.print(
-                    this.indentation.repeat(
-                        this.indentationDepth()
-                    )
+                    this.indentation()
                 );
                 start = i;
             }
@@ -168,9 +167,10 @@ final class IndentingPrinterBasic implements IndentingPrinter {
 
     @Override
     public Indentation indentation() {
-        return this.indentation.repeat(
-            this.indentationDepth()
-        );
+        return this.indentation.indentation()
+            .repeat(
+                this.indentationDepth()
+            );
     }
 
     @Override
