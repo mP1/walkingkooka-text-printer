@@ -18,7 +18,7 @@
 package walkingkooka.text.printer;
 
 import walkingkooka.reflect.PublicStaticHelper;
-import walkingkooka.text.Indentation;
+import walkingkooka.text.HasIndentation;
 
 final public class IndentingPrinters implements PublicStaticHelper {
 
@@ -33,8 +33,11 @@ final public class IndentingPrinters implements PublicStaticHelper {
      * {@see BasicIndentingPrinter}
      */
     public static IndentingPrinter printer(final Printer printer,
-                                           final Indentation indentation) {
-        return IndentingPrinterBasic.with(printer, indentation);
+                                           final HasIndentation indentation) {
+        return IndentingPrinterBasic.with(
+            printer,
+            indentation
+        );
     }
 
     /**
