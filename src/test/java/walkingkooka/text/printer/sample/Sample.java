@@ -47,4 +47,12 @@ public final class Sample implements Testing {
             b.toString()
         );
     }
+
+    @Test
+    public void testPrintThrowable() {
+        Printers.stringBuilder(
+            new StringBuilder(),
+            LineEnding.NL
+        ).printThrowable(new Throwable());
+    }
 }
