@@ -24,6 +24,7 @@ import walkingkooka.text.Indentation;
 import java.io.Closeable;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.util.Objects;
 import java.util.function.Function;
 
 /**
@@ -51,6 +52,18 @@ public interface Printer extends PrinterLike,
      */
     default void println() {
         this.print(this.lineEnding());
+    }
+
+    /**
+     * Prints the {@link Throwable}, equivalent to {@link Throwable#printStackTrace(PrintWriter)}.
+     */
+    default void printThrowable(final Throwable cause) {
+        Objects.requireNonNull(cause, "cause");
+
+        PrinterThrowable.print(
+            cause,
+            this
+        );
     }
 
     /**

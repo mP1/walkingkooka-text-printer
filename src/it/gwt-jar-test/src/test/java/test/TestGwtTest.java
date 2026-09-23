@@ -64,4 +64,11 @@ public class TestGwtTest extends GWTTestCase {
             b.toString()
         );
     }
+
+    public void testPrintThrowable() {
+        Printers.stringBuilder(
+            new StringBuilder(),
+            LineEnding.NL
+        ).printThrowable(new Throwable());
+    }
 }
