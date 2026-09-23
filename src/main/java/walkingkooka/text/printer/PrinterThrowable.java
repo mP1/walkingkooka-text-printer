@@ -12,9 +12,8 @@ abstract class PrinterThrowable extends PrinterThrowableGwt {
                       final Printer printer) {
         Objects.requireNonNull(cause, "cause");
 
-        try (final PrintWriter printWriter = printer.asPrintWriter()) {
-            cause.printStackTrace(printWriter);
-            printWriter.flush();
-        }
+        final PrintWriter printWriter = printer.asPrintWriter();
+        cause.printStackTrace(printWriter);
+        printWriter.flush();
     }
 }
