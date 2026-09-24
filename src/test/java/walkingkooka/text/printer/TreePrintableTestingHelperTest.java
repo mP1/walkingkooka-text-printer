@@ -17,18 +17,12 @@
 
 package walkingkooka.text.printer;
 
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PackagePrivateClassTesting;
 
-public final class TreePrintableTestingHelperTest implements ClassTesting<TreePrintableTestingHelper> {
+public final class TreePrintableTestingHelperTest implements PackagePrivateClassTesting<TreePrintableTestingHelper> {
 
     @Override
     public Class<TreePrintableTestingHelper> type() {
         return TreePrintableTestingHelper.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
     }
 }
