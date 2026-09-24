@@ -70,11 +70,12 @@ final class TreePrintableTestingHelper {
         final StringBuilder b = new StringBuilder();
         final IndentingPrinter printer = Printers.stringBuilder(b, TreePrintableTesting.EOL)
             .indenting(TreePrintableTesting.INDENTATION);
-        for (final Object element : collection) {
-            TreePrintable.printTreeOrToString(element, printer);
-            printer.println();
+        {
+            for (final Object element : collection) {
+                TreePrintable.printTreeOrToString(element, printer);
+                printer.lineStart();
+            }
         }
-
         printer.close();
 
         return b.toString();
