@@ -18,6 +18,7 @@ package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.reflect.ThrowableTesting;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -25,7 +26,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class TreePrintableTestingTest implements TreePrintableTesting {
+public final class TreePrintableTestingTest implements TreePrintableTesting,
+    ThrowableTesting {
 
     private final static TreePrintable NULL_TREE_PRINTABLE = null;
 
@@ -106,7 +108,8 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
             )
         );
 
-        this.checkEquals(
+        this.getMessageAndCheck(
+            thrown,
             "expected: <null\n" +
                 "Before1\n" +
                 "  Between2\n" +
@@ -122,8 +125,7 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
                 "> but was: <Before1\n" +
                 "  Between2\n" +
                 "After3\n" +
-                ">",
-            thrown.getMessage()
+                ">"
         );
     }
 
@@ -160,7 +162,8 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
             )
         );
 
-        this.checkEquals(
+        this.getMessageAndCheck(
+            thrown,
             "expected: not equal but was: <null\n" +
                 "Before1\n" +
                 "  Between2\n" +
@@ -173,8 +176,7 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
                 "9223372036854775807L\n" +
                 "32767 (Short)\n" +
                 "\"String\"\n" +
-                ">",
-            thrown.getMessage()
+                ">"
         );
     }
 
@@ -293,11 +295,10 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
                 "message"
             );
         } catch (final AssertionError expected) {
-            assertEquals(
+            this.getMessageAndCheck(
+                expected,
                 "message ==> expected: not equal but was: <walkingkooka.text.printer.TreePrintableTestingTest$TestTreePrintable\n" +
-                    "  111>",
-                expected.getMessage(),
-                "message"
+                    "  111>"
             );
             failed = true;
         }
@@ -389,11 +390,10 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
                 "message"
             );
         } catch (final AssertionError expected) {
-            assertEquals(
+            this.getMessageAndCheck(
+                expected,
                 "message ==> expected: not equal but was: <walkingkooka.text.printer.TreePrintableTestingTest$TestTreePrintable\n" +
-                    "  111>",
-                expected.getMessage(),
-                "message"
+                    "  111>"
             );
             failed = true;
         }
@@ -416,12 +416,11 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
                 (Object) new TestTreePrintable("different")
             );
         } catch (final AssertionError expected) {
-            assertEquals(
+            this.getMessageAndCheck(
+                expected,
                 "expected: <walkingkooka.text.printer.TreePrintableTestingTest$TestTreePrintable\n" +
                     "  123> but was: <walkingkooka.text.printer.TreePrintableTestingTest$TestTreePrintable\n" +
-                    "  different>",
-                expected.getMessage(),
-                "message"
+                    "  different>"
             );
             failed = true;
         }
@@ -442,11 +441,10 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
                 (Object) new TestTreePrintable("same")
             );
         } catch (final AssertionError expected) {
-            assertEquals(
+            this.getMessageAndCheck(
+                expected,
                 "expected: not equal but was: <walkingkooka.text.printer.TreePrintableTestingTest$TestTreePrintable\n" +
-                    "  same>",
-                expected.getMessage(),
-                "message"
+                    "  same>"
             );
             failed = true;
         }
