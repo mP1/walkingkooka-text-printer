@@ -108,31 +108,20 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
 
         this.checkEquals(
             "expected: <null\n" +
-                "\n" +
                 "Before1\n" +
                 "  Between2\n" +
                 "After3\n" +
-                "\n" +
                 "true\n" +
-                "\n" +
                 "'A'\n" +
-                "\n" +
                 "1.0\n" +
-                "\n" +
                 "2.5\n" +
-                "\n" +
                 "3\n" +
-                "\n" +
                 "9223372036854775807L\n" +
-                "\n" +
                 "32767 (Short)\n" +
-                "\n" +
                 "\"String\"\n" +
-                "\n" +
                 "> but was: <Before1\n" +
                 "  Between2\n" +
                 "After3\n" +
-                "\n" +
                 ">",
             thrown.getMessage()
         );
@@ -173,27 +162,17 @@ public final class TreePrintableTestingTest implements TreePrintableTesting {
 
         this.checkEquals(
             "expected: not equal but was: <null\n" +
-                "\n" +
                 "Before1\n" +
                 "  Between2\n" +
                 "After3\n" +
-                "\n" +
                 "true\n" +
-                "\n" +
                 "'A'\n" +
-                "\n" +
                 "1.0\n" +
-                "\n" +
                 "2.5\n" +
-                "\n" +
                 "3\n" +
-                "\n" +
                 "9223372036854775807L\n" +
-                "\n" +
                 "32767 (Short)\n" +
-                "\n" +
                 "\"String\"\n" +
-                "\n" +
                 ">",
             thrown.getMessage()
         );

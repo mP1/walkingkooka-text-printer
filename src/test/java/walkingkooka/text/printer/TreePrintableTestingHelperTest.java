@@ -17,9 +17,53 @@
 
 package walkingkooka.text.printer;
 
+import org.junit.jupiter.api.Test;
+import walkingkooka.collect.list.Lists;
 import walkingkooka.reflect.PackagePrivateClassTesting;
 
+import java.util.Collection;
+
 public final class TreePrintableTestingHelperTest implements PackagePrivateClassTesting<TreePrintableTestingHelper> {
+
+    @Test
+    public void testTreePrintCollectionWithEmptyList() {
+        this.treePrintCollectionAndCheck(
+            Lists.empty(),
+            ""
+        );
+    }
+
+    @Test
+    public void testTreePrintCollectionWithListOrList() {
+        this.treePrintCollectionAndCheck(
+            Lists.of(
+                Lists.empty()
+            ),
+            "[]\n"
+        );
+    }
+
+    @Test
+    public void testTreePrintCollectionWithListOrList2() {
+        this.treePrintCollectionAndCheck(
+            Lists.of(
+                Lists.empty(),
+                Lists.empty()
+            ),
+            "[]\n" +
+                "[]\n"
+        );
+    }
+
+    private void treePrintCollectionAndCheck(final Collection<?> collection,
+                                             final String expected) {
+        this.checkEquals(
+            expected,
+            TreePrintableTestingHelper.treePrint(collection)
+        );
+    }
+
+    // class............................................................................................................
 
     @Override
     public Class<TreePrintableTestingHelper> type() {
