@@ -18,9 +18,7 @@
 package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.text.CharSequences;
 
-import java.util.Objects;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -102,100 +100,5 @@ public interface PrinterTesting3<P extends Printer> extends PrinterTesting2<P> {
             expected,
             message
         );
-    }
-
-    default void printAndCheck(final Printer printer,
-                               final CharSequence printed,
-                               final StringBuilder target,
-                               final String expected) {
-        this.printAndCheck(
-            printer,
-            printed,
-            target,
-            expected,
-            "printed"
-        );
-    }
-
-    default void printAndCheck(final Printer printer,
-                               final CharSequence printed,
-                               final StringBuilder target,
-                               final String expected, final String message) {
-        this.printAndCheck(
-            printer,
-            new CharSequence[]{printed},
-            target,
-            expected,
-            message
-        );
-    }
-
-    default void printAndCheck(final Printer printer,
-                               final CharSequence[] chars,
-                               final StringBuilder target,
-                               final String expected) {
-        this.printAndCheck(
-            printer,
-            chars,
-            target,
-            expected,
-            "printed"
-        );
-    }
-
-    default void printAndCheck(final Printer printer,
-                               final CharSequence[] chars,
-                               final StringBuilder target,
-                               final String expected,
-                               final String message) {
-        this.printAndCheck(
-            printer,
-            chars,
-            target,
-            expected,
-            true, // flushAndClose
-            message
-        );
-    }
-
-    default void printAndCheck(final Printer printer,
-                               final CharSequence[] chars,
-                               final StringBuilder target,
-                               final String expected,
-                               final boolean flushAndClose,
-                               final String message) {
-        Objects.requireNonNull(printer, "printer");
-        Objects.requireNonNull(chars, "chars");
-        Objects.requireNonNull(target, "target");
-
-        for (final CharSequence c : chars) {
-            printer.print(c);
-        }
-        if (flushAndClose) {
-            printer.flush();
-            printer.close();
-        }
-        final String printed = target.toString();
-        if (false == printed.equals(expected)) {
-            this.checkEquals(
-                CharSequences.quoteAndEscape(expected),
-                CharSequences.quoteAndEscape(printed),
-                message
-            );
-        }
-    }
-
-    /**
-     * Splits a CharSequence into many CharSequence each holding a single character.
-     */
-    default CharSequence[] characterByCharacter(final CharSequence chars) {
-        Objects.requireNonNull(chars, "chars");
-
-        final int length = chars.length();
-        final CharSequence[] array = new CharSequence[length];
-        for (int i = 0; i < length; i++) {
-            array[i] = chars.subSequence(i, i + 1);
-        }
-        return array;
     }
 }
