@@ -19,6 +19,7 @@ package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Assertions;
 import walkingkooka.text.CharSequences;
+import walkingkooka.text.HasLineEndingTesting;
 import walkingkooka.text.LineEnding;
 
 import java.util.Objects;
@@ -28,7 +29,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 /**
  * Interface with default methods which can be mixed in to assist testing of an {@link PrintedLineHandler}.
  */
-public interface PrintedLineHandlerTesting extends TreePrintableTesting {
+public interface PrintedLineHandlerTesting extends TreePrintableTesting,
+    HasLineEndingTesting {
 
     default void linePrintedAndCheck(final PrintedLineHandler handler,
                                      final CharSequence line,
@@ -66,8 +68,10 @@ public interface PrintedLineHandlerTesting extends TreePrintableTesting {
         assertNotNull(expected, "expected");
 
         final StringBuilder printedBuffer = new StringBuilder();
-        final Printer printer = Printers.stringBuilder(printedBuffer,
-            LineEnding.NL);
+        final Printer printer = Printers.stringBuilder(
+            printedBuffer,
+            LINE_ENDING
+        );
         handler.linePrinted(line, lineEnding, printer);
         printer.flush();
         printer.close();
