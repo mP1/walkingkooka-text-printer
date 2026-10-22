@@ -85,7 +85,8 @@ public interface PrintedLineHandlerTesting2<H extends PrintedLineHandler>
         );
     }
 
-    default void linePrintedAndCheck(final CharSequence line, final LineEnding lineEnding,
+    default void linePrintedAndCheck(final CharSequence line,
+                                     final LineEnding lineEnding,
                                      final String expected) {
         this.linePrintedAndCheck(
             line,
@@ -108,7 +109,7 @@ public interface PrintedLineHandlerTesting2<H extends PrintedLineHandler>
         );
     }
 
-    // class.................. .........................................................................................
+    // class............................................................................................................
 
     @Override
     default String typeNamePrefix() {
