@@ -66,16 +66,4 @@ abstract public class PrinterTestCase<P extends Printer> implements ClassTesting
             private boolean closed;
         };
     }
-
-    // class............................................................................................................
-
-    @Override
-    public String typeNamePrefix() {
-        return "";
-    }
-
-    @Override
-    public String typeNameSuffix() {
-        return Printer.class.getSimpleName();
-    }
 }
