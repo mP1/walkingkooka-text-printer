@@ -390,7 +390,7 @@ final public class PrintedLineHandlerPrinterTest extends PrinterTestCase2<Printe
 
         // if expected is null or empty pass a fake Printer to fail of soon of the first print occurs.
         final PrintedLineHandlerPrinter printer = this.createPrinter(
-            (null == expected) || expected.equals("") ?
+            (null == expected) || expected.isEmpty() ?
                 //
                 PRINTER
                 //
