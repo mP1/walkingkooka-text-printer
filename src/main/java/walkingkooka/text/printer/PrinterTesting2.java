@@ -19,6 +19,7 @@ package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
+import walkingkooka.reflect.PackagePrivateClassTesting;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.text.HasIndentationTesting;
 import walkingkooka.text.HasLineEndingTesting;
@@ -33,7 +34,8 @@ public interface PrinterTesting2<P extends Printer> extends PrinterTesting,
     ToStringTesting<P>,
     TypeNameTesting<P>,
     HasIndentationTesting,
-    HasLineEndingTesting {
+    HasLineEndingTesting,
+    PackagePrivateClassTesting<P> {
 
     @Test
     default void testFlush() {
