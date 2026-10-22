@@ -18,13 +18,8 @@
 package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.reflect.TypeNameTesting;
-import walkingkooka.text.HasIndentationTesting;
 
-public interface IndentingPrinterTesting<P extends IndentingPrinter>
-    extends PrinterTesting3<P>,
-    HasIndentationTesting,
-    TypeNameTesting<P> {
+public interface IndentingPrinterTesting<P extends IndentingPrinter> extends PrinterTesting3<P> {
 
     // tests
 
@@ -48,7 +43,7 @@ public interface IndentingPrinterTesting<P extends IndentingPrinter>
         printer.outdent();
     }
 
-    // TypeNameTesting .........................................................................................
+    // class............................................................................................................
 
     @Override
     default String typeNamePrefix() {
