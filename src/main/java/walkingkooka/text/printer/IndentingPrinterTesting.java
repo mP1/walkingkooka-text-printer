@@ -17,41 +17,5 @@
 
 package walkingkooka.text.printer;
 
-import org.junit.jupiter.api.Test;
-
-public interface IndentingPrinterTesting<P extends IndentingPrinter> extends PrinterTesting3<P> {
-
-    // tests
-
-    @Test
-    default void testOutdentTooMany() {
-        final P printer = this.createPrinter();
-        printer.indent();
-        printer.outdent();
-
-        printer.outdent();
-    }
-
-    @Test
-    default void testOutdentTooMany2() {
-        final P printer = this.createPrinter();
-        printer.indent();
-        printer.indent();
-        printer.outdent();
-        printer.outdent();
-
-        printer.outdent();
-    }
-
-    // class............................................................................................................
-
-    @Override
-    default String typeNamePrefix() {
-        return "";
-    }
-
-    @Override
-    default String typeNameSuffix() {
-        return IndentingPrinter.class.getSimpleName();
-    }
+public interface IndentingPrinterTesting extends PrinterTesting {
 }

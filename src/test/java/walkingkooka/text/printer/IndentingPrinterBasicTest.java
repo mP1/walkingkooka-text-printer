@@ -22,7 +22,7 @@ import walkingkooka.text.Indentation;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-final public class IndentingPrinterBasicTest extends PrinterTestCase2<IndentingPrinterBasic> implements IndentingPrinterTesting<IndentingPrinterBasic>, walkingkooka.reflect.TypeNameTesting<IndentingPrinterBasic> {
+final public class IndentingPrinterBasicTest extends PrinterTestCase2<IndentingPrinterBasic> implements IndentingPrinterTesting2<IndentingPrinterBasic>, walkingkooka.reflect.TypeNameTesting<IndentingPrinterBasic> {
 
     private final static Indentation INDENTATION = Indentation.with(">");
 
