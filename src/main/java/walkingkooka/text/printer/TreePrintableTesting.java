@@ -20,6 +20,9 @@ import org.opentest4j.AssertionFailedError;
 import walkingkooka.Cast;
 import walkingkooka.text.HasIndentationTesting;
 import walkingkooka.text.HasLineEndingTesting;
+import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextContext;
+import walkingkooka.text.TextPrinting;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -39,6 +42,29 @@ public interface TreePrintableTesting extends HasIndentationTesting,
 
     default void treePrintAndCheck(final TreePrintable printable,
                                    final String expected) {
+        this.treePrintAndCheck(
+            printable,
+            LINE_ENDING,
+            expected
+        );
+    }
+
+    default void treePrintAndCheck(final TreePrintable printable,
+                                   final LineEnding lineEnding,
+                                   final String expected) {
+        this.treePrintAndCheck(
+            printable,
+            TextPrinting.with(
+                INDENTATION,
+                lineEnding
+            ),
+            expected
+        );
+    }
+
+    default void treePrintAndCheck(final TreePrintable printable,
+                                   final TextContext textContext,
+                                   final String expected) {
         if (null == printable) {
             this.checkEquals(
                 expected,
@@ -46,7 +72,7 @@ public interface TreePrintableTesting extends HasIndentationTesting,
             );
         } else {
             final StringBuilder b = new StringBuilder();
-            try (final IndentingPrinterBasic printer = (IndentingPrinterBasic) Printers.stringBuilder(b, LINE_ENDING).indenting(INDENTATION)) {
+            try (final IndentingPrinterBasic printer = (IndentingPrinterBasic) Printers.stringBuilder(b, textContext.lineEnding()).indenting(textContext.indentation())) {
                 printable.printTree(printer);
                 printer.flush();
 
