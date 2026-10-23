@@ -37,11 +37,11 @@ public final class TreePrintableTestingTest implements TreePrintableTesting,
 
         @Override
         public void printTree(final IndentingPrinter printer) {
-            printer.print("Before1\n");
+            printer.println("Before1");
             printer.indent();
-            printer.print("Between2\n");
+            printer.println("Between2");
             printer.outdent();
-            printer.print("After3\n");
+            printer.println("After3");
         }
 
         @Override
@@ -76,6 +76,17 @@ public final class TreePrintableTestingTest implements TreePrintableTesting,
             "Before1\n" +
                 "  Between2\n" +
                 "After3\n"
+        );
+    }
+
+    @Test
+    public void testTreePrintWithDifferentLineEndingAndCheck() {
+        this.treePrintAndCheck(
+            TREE_PRINTABLE,
+            DIFFERENT_LINE_ENDING,
+            "Before1\r\n" +
+                "  Between2\r\n" +
+                "After3\r\n"
         );
     }
 
