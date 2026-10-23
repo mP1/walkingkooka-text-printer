@@ -20,7 +20,6 @@ import org.opentest4j.AssertionFailedError;
 import walkingkooka.Cast;
 import walkingkooka.text.HasIndentationTesting;
 import walkingkooka.text.HasLineEndingTesting;
-import walkingkooka.text.Indentation;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -47,7 +46,7 @@ public interface TreePrintableTesting extends HasIndentationTesting,
             );
         } else {
             final StringBuilder b = new StringBuilder();
-            try (final IndentingPrinterBasic printer = (IndentingPrinterBasic) Printers.stringBuilder(b, LINE_ENDING).indenting(Indentation.SPACES2)) {
+            try (final IndentingPrinterBasic printer = (IndentingPrinterBasic) Printers.stringBuilder(b, LINE_ENDING).indenting(INDENTATION)) {
                 printable.printTree(printer);
                 printer.flush();
 
