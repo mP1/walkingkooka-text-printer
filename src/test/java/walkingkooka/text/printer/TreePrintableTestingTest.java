@@ -18,6 +18,7 @@ package walkingkooka.text.printer;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.reflect.PublicClassTesting;
 import walkingkooka.reflect.ThrowableTesting;
 
 import java.util.Collection;
@@ -27,7 +28,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class TreePrintableTestingTest implements TreePrintableTesting,
-    ThrowableTesting {
+    ThrowableTesting,
+    PublicClassTesting<TreePrintableTesting> {
 
     private final static TreePrintable NULL_TREE_PRINTABLE = null;
 
@@ -486,5 +488,12 @@ public final class TreePrintableTestingTest implements TreePrintableTesting,
         public String toString() {
             return "toString: " + this.printTree;
         }
+    }
+
+    // class............................................................................................................
+
+    @Override
+    public Class<TreePrintableTesting> type() {
+        return TreePrintableTesting.class;
     }
 }
