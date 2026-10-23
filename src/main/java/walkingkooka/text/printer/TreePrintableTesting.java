@@ -19,22 +19,16 @@ package walkingkooka.text.printer;
 import org.opentest4j.AssertionFailedError;
 import walkingkooka.Cast;
 import walkingkooka.text.HasIndentationTesting;
+import walkingkooka.text.HasLineEndingTesting;
 import walkingkooka.text.Indentation;
-import walkingkooka.text.LineEnding;
 
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public interface TreePrintableTesting extends HasIndentationTesting {
-
-    /**
-     * {@link LineEnding} are particularly important especially in {@link #treePrintAndCheck(TreePrintable, String)} where the {@link String} will have fixed line endings.
-     * <br>
-     * {@link LineEnding#NL} or <pre>\n</pre> should be used in all expected {@link String}.
-     */
-    LineEnding EOL = LineEnding.NL;
+public interface TreePrintableTesting extends HasIndentationTesting,
+    HasLineEndingTesting {
 
     default void treePrintAndCheck(final Optional<? extends TreePrintable> printable,
                                    final String expected) {
@@ -53,7 +47,7 @@ public interface TreePrintableTesting extends HasIndentationTesting {
             );
         } else {
             final StringBuilder b = new StringBuilder();
-            try (final IndentingPrinterBasic printer = (IndentingPrinterBasic) Printers.stringBuilder(b, EOL).indenting(Indentation.SPACES2)) {
+            try (final IndentingPrinterBasic printer = (IndentingPrinterBasic) Printers.stringBuilder(b, LINE_ENDING).indenting(Indentation.SPACES2)) {
                 printable.printTree(printer);
                 printer.flush();
 
