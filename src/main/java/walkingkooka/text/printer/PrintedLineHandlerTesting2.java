@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 public interface PrintedLineHandlerTesting2<H extends PrintedLineHandler>
     extends PrintedLineHandlerTesting,
-    ToStringTesting<H>,
+    ToStringTesting,
     TypeNameTesting<H>,
     PackagePrivateClassTesting<H> {
 

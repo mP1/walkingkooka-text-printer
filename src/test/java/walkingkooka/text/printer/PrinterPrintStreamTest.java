@@ -25,7 +25,8 @@ import walkingkooka.text.LineEnding;
 
 import java.io.PrintStream;
 
-public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintStream>, ToStringTesting<PrinterPrintStream> {
+public final class PrinterPrintStreamTest implements ClassTesting2<PrinterPrintStream>,
+    ToStringTesting {
 
     @Test
     public void testPrintBooleanTrue() {
