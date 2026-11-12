@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * Interface with default methods which can be mixed in to assist testing of an {@link Printer}.
  */
 public interface PrinterTesting2<P extends Printer> extends PrinterTesting,
-    ToStringTesting<P>,
+    ToStringTesting,
     TypeNameTesting<P>,
     HasIndentationTesting,
     HasLineEndingTesting,

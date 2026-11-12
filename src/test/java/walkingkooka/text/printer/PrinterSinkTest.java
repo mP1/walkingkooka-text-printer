@@ -23,7 +23,7 @@ import walkingkooka.text.LineEnding;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-final public class PrinterSinkTest extends PrinterTestCase<PrinterSink> implements ToStringTesting<PrinterSink> {
+final public class PrinterSinkTest extends PrinterTestCase<PrinterSink> implements ToStringTesting {
 
     @Test
     public void testWithNullHasLineEndingFails() {
